@@ -1,0 +1,68 @@
+# Entity: dns_result
+
+main: kit: entity: dns_result: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "domain"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "record"
+      req: false
+      type: "`$OBJECT`"
+    }
+  ]
+
+  name: "dns_result"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "example.com"
+                kind: "query"
+                name: "domain"
+                orig: "domain"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "A,MX,TXT"
+                kind: "query"
+                name: "type"
+                orig: "type"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/dns-lookup"
+          parts: [
+            "dns-lookup"
+          ]
+          select: {
+            exist: [
+              "domain"
+              "type"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

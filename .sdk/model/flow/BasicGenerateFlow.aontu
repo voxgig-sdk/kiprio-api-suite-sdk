@@ -1,0 +1,28 @@
+# BasicGenerateFlow
+
+main: kit: flow: BasicGenerateFlow:
+{
+  entity: "generate",
+  kind: "basic",
+  name: "BasicGenerateFlow",
+  step: [
+    {
+      input: {
+        ref: "generate_ref01",
+        srcdatavar: "generate_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-generate_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicGenerateFlow"
+}

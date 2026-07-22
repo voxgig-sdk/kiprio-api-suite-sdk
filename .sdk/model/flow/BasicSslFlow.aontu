@@ -1,0 +1,22 @@
+# BasicSslFlow
+
+main: kit: flow: BasicSslFlow:
+{
+  entity: "ssl",
+  kind: "basic",
+  name: "BasicSslFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "ssl_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicSslFlow"
+}

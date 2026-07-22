@@ -1,0 +1,74 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 10
+  metrics: count: path: 12
+  metrics: count: method: 12
+
+  entity: dns_result: {
+    path: "/dns-lookup": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: domain: {
+    path: "/robots-txt": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: email_validate: {
+    path: "/email-validate": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: generate: {
+    path: "/barcode": {
+      op: load: method: *GET
+    }
+    path: "/qr": {
+      op: load: method: *GET
+    }
+    path: "/screenshot": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: grammar: {
+    path: "/grammar": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: ipn: {
+    path: "/ip": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: redact: {
+    path: "/redact": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: ssl: {
+    path: "/ssl": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: utility: {
+    path: "/hash": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: whoi: {
+    path: "/whois": {
+      op: list: method: *GET
+    }
+  }
+
+}

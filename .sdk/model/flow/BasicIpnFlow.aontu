@@ -1,0 +1,28 @@
+# BasicIpnFlow
+
+main: kit: flow: BasicIpnFlow:
+{
+  entity: "ipn",
+  kind: "basic",
+  name: "BasicIpnFlow",
+  step: [
+    {
+      input: {
+        ref: "ipn_ref01",
+        srcdatavar: "ipn_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-ipn_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicIpnFlow"
+}

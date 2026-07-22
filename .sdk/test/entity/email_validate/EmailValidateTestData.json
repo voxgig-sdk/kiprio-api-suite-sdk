@@ -1,0 +1,57 @@
+{
+  "existing": {
+    "email_validate": {
+      "EMAIL_VALIDATE00": {
+        "confidence": 90,
+        "disposable": false,
+        "email": "s5c",
+        "free_provider": false,
+        "mx_found": true,
+        "role_based": false,
+        "suggest": "s60",
+        "syntax_ok": false,
+        "valid": true,
+        "id": "EMAIL_VALIDATE00"
+      },
+      "EMAIL_VALIDATE01": {
+        "confidence": 180,
+        "disposable": false,
+        "email": "sb6",
+        "free_provider": false,
+        "mx_found": true,
+        "role_based": false,
+        "suggest": "sba",
+        "syntax_ok": false,
+        "valid": true,
+        "id": "EMAIL_VALIDATE01"
+      },
+      "EMAIL_VALIDATE02": {
+        "confidence": 270,
+        "disposable": false,
+        "email": "s110",
+        "free_provider": false,
+        "mx_found": true,
+        "role_based": false,
+        "suggest": "s114",
+        "syntax_ok": false,
+        "valid": true,
+        "id": "EMAIL_VALIDATE02"
+      }
+    }
+  },
+  "new": {
+    "email_validate": {
+      "email_validate_ref01": {
+        "confidence": 360,
+        "disposable": false,
+        "email": "s16a",
+        "free_provider": false,
+        "mx_found": true,
+        "role_based": false,
+        "suggest": "s16e",
+        "syntax_ok": false,
+        "valid": true
+      }
+    }
+  }
+}

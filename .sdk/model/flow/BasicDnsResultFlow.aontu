@@ -1,0 +1,28 @@
+# BasicDnsResultFlow
+
+main: kit: flow: BasicDnsResultFlow:
+{
+  entity: "dns_result",
+  kind: "basic",
+  name: "BasicDnsResultFlow",
+  step: [
+    {
+      input: {
+        ref: "dns_result_ref01",
+        srcdatavar: "dns_result_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-dns_result_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicDnsResultFlow"
+}

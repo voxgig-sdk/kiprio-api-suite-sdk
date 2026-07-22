@@ -1,0 +1,62 @@
+# Entity: redact
+
+main: kit: entity: redact: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "count"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "entity"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "original_length"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "redact"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "redacted"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "text"
+      req: true
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "redact"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/redact"
+          parts: [
+            "redact"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,78 @@
+# Entity: utility
+
+main: kit: entity: utility: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "algo"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "hash"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "input"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "length"
+      req: false
+      type: "`$INTEGER`"
+    }
+  ]
+
+  name: "utility"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "sha256"
+                kind: "query"
+                name: "algo"
+                orig: "algo"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "hello world"
+                kind: "query"
+                name: "input"
+                orig: "input"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/hash"
+          parts: [
+            "hash"
+          ]
+          select: {
+            exist: [
+              "algo"
+              "input"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

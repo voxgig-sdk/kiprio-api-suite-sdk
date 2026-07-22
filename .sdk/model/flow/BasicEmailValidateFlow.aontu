@@ -1,0 +1,28 @@
+# BasicEmailValidateFlow
+
+main: kit: flow: BasicEmailValidateFlow:
+{
+  entity: "email_validate",
+  kind: "basic",
+  name: "BasicEmailValidateFlow",
+  step: [
+    {
+      input: {
+        ref: "email_validate_ref01",
+        srcdatavar: "email_validate_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-email_validate_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicEmailValidateFlow"
+}

@@ -1,0 +1,37 @@
+{
+  "existing": {
+    "utility": {
+      "UTILITY00": {
+        "algo": "s28",
+        "hash": "s29",
+        "input": "s2a",
+        "length": "s2b",
+        "id": "UTILITY00"
+      },
+      "UTILITY01": {
+        "algo": "s50",
+        "hash": "s51",
+        "input": "s52",
+        "length": "s53",
+        "id": "UTILITY01"
+      },
+      "UTILITY02": {
+        "algo": "s78",
+        "hash": "s79",
+        "input": "s7a",
+        "length": "s7b",
+        "id": "UTILITY02"
+      }
+    }
+  },
+  "new": {
+    "utility": {
+      "utility_ref01": {
+        "algo": "sa0",
+        "hash": "sa1",
+        "input": "sa2",
+        "length": "sa3"
+      }
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "existing": {
+    "ssl": {
+      "SSL00": {
+        "cipher": "s64",
+        "days_remaining": "s65",
+        "domain": "s66",
+        "expires_at": "s67",
+        "grade": "s68",
+        "issuer": "s69",
+        "protocol": "s6a",
+        "san": [],
+        "subject": "s6c",
+        "valid": false
+      },
+      "SSL01": {
+        "cipher": "sc8",
+        "days_remaining": "sc9",
+        "domain": "sca",
+        "expires_at": "scb",
+        "grade": "scc",
+        "issuer": "scd",
+        "protocol": "sce",
+        "san": [],
+        "subject": "sd0",
+        "valid": false
+      },
+      "SSL02": {
+        "cipher": "s12c",
+        "days_remaining": "s12d",
+        "domain": "s12e",
+        "expires_at": "s12f",
+        "grade": "s130",
+        "issuer": "s131",
+        "protocol": "s132",
+        "san": [],
+        "subject": "s134",
+        "valid": false
+      }
+    }
+  },
+  "new": {
+    "ssl": {
+      "ssl_ref01": {
+        "cipher": "s190",
+        "days_remaining": "s191",
+        "domain": "s192",
+        "expires_at": "s193",
+        "grade": "s194",
+        "issuer": "s195",
+        "protocol": "s196",
+        "san": [],
+        "subject": "s198",
+        "valid": false
+      }
+    }
+  }
+}

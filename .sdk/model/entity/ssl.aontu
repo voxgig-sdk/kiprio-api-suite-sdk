@@ -1,0 +1,108 @@
+# Entity: ssl
+
+main: kit: entity: ssl: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "cipher"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "days_remaining"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "domain"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "expires_at"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "grade"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "issuer"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "protocol"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "san"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "subject"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "valid"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+  ]
+
+  name: "ssl"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "example.com"
+                kind: "query"
+                name: "domain"
+                orig: "domain"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: 443
+                kind: "query"
+                name: "port"
+                orig: "port"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/ssl"
+          parts: [
+            "ssl"
+          ]
+          select: {
+            exist: [
+              "domain"
+              "port"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,45 @@
+{
+  "existing": {
+    "redact": {
+      "REDACT00": {
+        "count": {},
+        "entity": [],
+        "original_length": "s3e",
+        "redact": "s3f",
+        "redacted": "s40",
+        "text": "s41",
+        "id": "REDACT00"
+      },
+      "REDACT01": {
+        "count": {},
+        "entity": [],
+        "original_length": "s7a",
+        "redact": "s7b",
+        "redacted": "s7c",
+        "text": "s7d",
+        "id": "REDACT01"
+      },
+      "REDACT02": {
+        "count": {},
+        "entity": [],
+        "original_length": "sb6",
+        "redact": "sb7",
+        "redacted": "sb8",
+        "text": "sb9",
+        "id": "REDACT02"
+      }
+    }
+  },
+  "new": {
+    "redact": {
+      "redact_ref01": {
+        "count": {},
+        "entity": [],
+        "original_length": "sf2",
+        "redact": "sf3",
+        "redacted": "sf4",
+        "text": "sf5"
+      }
+    }
+  }
+}

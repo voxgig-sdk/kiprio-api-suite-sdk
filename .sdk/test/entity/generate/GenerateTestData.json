@@ -1,0 +1,20 @@
+{
+  "existing": {
+    "generate": {
+      "GENERATE00": {
+        "id": "GENERATE00"
+      },
+      "GENERATE01": {
+        "id": "GENERATE01"
+      },
+      "GENERATE02": {
+        "id": "GENERATE02"
+      }
+    }
+  },
+  "new": {
+    "generate": {
+      "generate_ref01": {}
+    }
+  }
+}

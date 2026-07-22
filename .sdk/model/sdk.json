@@ -1,0 +1,1798 @@
+{
+  "def": "kiprio-api-suite_0.1.0.json",
+  "main": {
+    "def": {
+      "desc": ""
+    },
+    "kit": {
+      "config": {
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ],
+        "headers": {
+          "content-type": "application/json"
+        }
+      },
+      "entity": {
+        "dns_result": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "domain",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "record",
+              "req": false,
+              "type": "`$OBJECT`"
+            }
+          ],
+          "name": "dns_result",
+          "op": {
+            "load": {
+              "input": "data",
+              "name": "load",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "query": [
+                      {
+                        "active": true,
+                        "example": "example.com",
+                        "kind": "query",
+                        "name": "domain",
+                        "orig": "domain",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "example": "A,MX,TXT",
+                        "kind": "query",
+                        "name": "type",
+                        "orig": "type",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/dns-lookup",
+                  "parts": [
+                    "dns-lookup"
+                  ],
+                  "select": {
+                    "exist": [
+                      "domain",
+                      "type"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "domain": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "agent",
+              "req": false,
+              "type": "`$OBJECT`"
+            },
+            {
+              "active": true,
+              "name": "sitemap",
+              "req": false,
+              "type": "`$ARRAY`"
+            },
+            {
+              "active": true,
+              "name": "url",
+              "req": false,
+              "type": "`$STRING`"
+            }
+          ],
+          "name": "domain",
+          "op": {
+            "list": {
+              "input": "data",
+              "name": "list",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "query": [
+                      {
+                        "active": true,
+                        "example": "https://example.com",
+                        "kind": "query",
+                        "name": "url",
+                        "orig": "url",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/robots-txt",
+                  "parts": [
+                    "robots-txt"
+                  ],
+                  "select": {
+                    "exist": [
+                      "url"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "email_validate": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "confidence",
+              "req": false,
+              "type": "`$NUMBER`"
+            },
+            {
+              "active": true,
+              "name": "disposable",
+              "req": false,
+              "type": "`$BOOLEAN`"
+            },
+            {
+              "active": true,
+              "name": "email",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "free_provider",
+              "req": false,
+              "type": "`$BOOLEAN`"
+            },
+            {
+              "active": true,
+              "name": "mx_found",
+              "req": false,
+              "type": "`$BOOLEAN`"
+            },
+            {
+              "active": true,
+              "name": "role_based",
+              "req": false,
+              "type": "`$BOOLEAN`"
+            },
+            {
+              "active": true,
+              "name": "suggest",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "syntax_ok",
+              "req": false,
+              "type": "`$BOOLEAN`"
+            },
+            {
+              "active": true,
+              "name": "valid",
+              "req": false,
+              "type": "`$BOOLEAN`"
+            }
+          ],
+          "name": "email_validate",
+          "op": {
+            "load": {
+              "input": "data",
+              "name": "load",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "query": [
+                      {
+                        "active": true,
+                        "example": "user@example.com",
+                        "kind": "query",
+                        "name": "email",
+                        "orig": "email",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/email-validate",
+                  "parts": [
+                    "email-validate"
+                  ],
+                  "select": {
+                    "exist": [
+                      "email"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "generate": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [],
+          "name": "generate",
+          "op": {
+            "load": {
+              "input": "data",
+              "name": "load",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "query": [
+                      {
+                        "active": true,
+                        "example": "#ffffff",
+                        "kind": "query",
+                        "name": "bg",
+                        "orig": "bg",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "example": "M",
+                        "kind": "query",
+                        "name": "ec_level",
+                        "orig": "ec_level",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "example": "#000000",
+                        "kind": "query",
+                        "name": "fg",
+                        "orig": "fg",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "example": "png",
+                        "kind": "query",
+                        "name": "format",
+                        "orig": "format",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "example": 512,
+                        "kind": "query",
+                        "name": "size",
+                        "orig": "size",
+                        "reqd": false,
+                        "type": "`$INTEGER`"
+                      },
+                      {
+                        "active": true,
+                        "example": "https://example.com",
+                        "kind": "query",
+                        "name": "url",
+                        "orig": "url",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/qr",
+                  "parts": [
+                    "qr"
+                  ],
+                  "select": {
+                    "exist": [
+                      "bg",
+                      "ec_level",
+                      "fg",
+                      "format",
+                      "size",
+                      "url"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "active": true,
+                  "args": {
+                    "query": [
+                      {
+                        "active": true,
+                        "example": "HELLO123",
+                        "kind": "query",
+                        "name": "data",
+                        "orig": "data",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "example": "code128",
+                        "kind": "query",
+                        "name": "format",
+                        "orig": "format",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "example": 120,
+                        "kind": "query",
+                        "name": "height",
+                        "orig": "height",
+                        "reqd": false,
+                        "type": "`$INTEGER`"
+                      },
+                      {
+                        "active": true,
+                        "example": "svg",
+                        "kind": "query",
+                        "name": "output",
+                        "orig": "output",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "example": 400,
+                        "kind": "query",
+                        "name": "width",
+                        "orig": "width",
+                        "reqd": false,
+                        "type": "`$INTEGER`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/barcode",
+                  "parts": [
+                    "barcode"
+                  ],
+                  "select": {
+                    "exist": [
+                      "data",
+                      "format",
+                      "height",
+                      "output",
+                      "width"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                },
+                {
+                  "active": true,
+                  "args": {
+                    "query": [
+                      {
+                        "active": true,
+                        "example": true,
+                        "kind": "query",
+                        "name": "full_page",
+                        "orig": "full_page",
+                        "reqd": false,
+                        "type": "`$BOOLEAN`"
+                      },
+                      {
+                        "active": true,
+                        "example": "https://example.com",
+                        "kind": "query",
+                        "name": "url",
+                        "orig": "url",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "example": 1280,
+                        "kind": "query",
+                        "name": "width",
+                        "orig": "width",
+                        "reqd": false,
+                        "type": "`$INTEGER`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/screenshot",
+                  "parts": [
+                    "screenshot"
+                  ],
+                  "select": {
+                    "exist": [
+                      "full_page",
+                      "url",
+                      "width"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "grammar": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "correction",
+              "req": false,
+              "type": "`$ARRAY`"
+            },
+            {
+              "active": true,
+              "name": "correction_count",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "language",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "text",
+              "op": {
+                "create": {
+                  "req": true,
+                  "type": "`$STRING`"
+                }
+              },
+              "req": false,
+              "type": "`$STRING`"
+            }
+          ],
+          "name": "grammar",
+          "op": {
+            "create": {
+              "input": "data",
+              "name": "create",
+              "points": [
+                {
+                  "active": true,
+                  "args": {},
+                  "method": "POST",
+                  "orig": "/grammar",
+                  "parts": [
+                    "grammar"
+                  ],
+                  "select": {},
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "ipn": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "asn",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "city",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "country",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "country_code",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "ip",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "latitude",
+              "req": false,
+              "type": "`$NUMBER`"
+            },
+            {
+              "active": true,
+              "name": "longitude",
+              "req": false,
+              "type": "`$NUMBER`"
+            },
+            {
+              "active": true,
+              "name": "org",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "timezone",
+              "req": false,
+              "type": "`$STRING`"
+            }
+          ],
+          "name": "ipn",
+          "op": {
+            "load": {
+              "input": "data",
+              "name": "load",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "query": [
+                      {
+                        "active": true,
+                        "example": "8.8.8.8",
+                        "kind": "query",
+                        "name": "ip",
+                        "orig": "ip",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/ip",
+                  "parts": [
+                    "ip"
+                  ],
+                  "select": {
+                    "exist": [
+                      "ip"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "redact": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "count",
+              "req": false,
+              "type": "`$OBJECT`"
+            },
+            {
+              "active": true,
+              "name": "entity",
+              "req": false,
+              "type": "`$ARRAY`"
+            },
+            {
+              "active": true,
+              "name": "original_length",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "redact",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "redacted",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "text",
+              "req": true,
+              "type": "`$STRING`"
+            }
+          ],
+          "name": "redact",
+          "op": {
+            "create": {
+              "input": "data",
+              "name": "create",
+              "points": [
+                {
+                  "active": true,
+                  "args": {},
+                  "method": "POST",
+                  "orig": "/redact",
+                  "parts": [
+                    "redact"
+                  ],
+                  "select": {},
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "ssl": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "cipher",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "days_remaining",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "domain",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "expires_at",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "grade",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "issuer",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "protocol",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "san",
+              "req": false,
+              "type": "`$ARRAY`"
+            },
+            {
+              "active": true,
+              "name": "subject",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "valid",
+              "req": false,
+              "type": "`$BOOLEAN`"
+            }
+          ],
+          "name": "ssl",
+          "op": {
+            "list": {
+              "input": "data",
+              "name": "list",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "query": [
+                      {
+                        "active": true,
+                        "example": "example.com",
+                        "kind": "query",
+                        "name": "domain",
+                        "orig": "domain",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "example": 443,
+                        "kind": "query",
+                        "name": "port",
+                        "orig": "port",
+                        "reqd": false,
+                        "type": "`$INTEGER`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/ssl",
+                  "parts": [
+                    "ssl"
+                  ],
+                  "select": {
+                    "exist": [
+                      "domain",
+                      "port"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "utility": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "algo",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "hash",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "input",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "length",
+              "req": false,
+              "type": "`$INTEGER`"
+            }
+          ],
+          "name": "utility",
+          "op": {
+            "load": {
+              "input": "data",
+              "name": "load",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "query": [
+                      {
+                        "active": true,
+                        "example": "sha256",
+                        "kind": "query",
+                        "name": "algo",
+                        "orig": "algo",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "example": "hello world",
+                        "kind": "query",
+                        "name": "input",
+                        "orig": "input",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/hash",
+                  "parts": [
+                    "hash"
+                  ],
+                  "select": {
+                    "exist": [
+                      "algo",
+                      "input"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "whoi": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "created",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "domain",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "expire",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "nameserver",
+              "req": false,
+              "type": "`$ARRAY`"
+            },
+            {
+              "active": true,
+              "name": "registered",
+              "req": false,
+              "type": "`$BOOLEAN`"
+            },
+            {
+              "active": true,
+              "name": "registrar",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "status",
+              "req": false,
+              "type": "`$ARRAY`"
+            },
+            {
+              "active": true,
+              "name": "updated",
+              "req": false,
+              "type": "`$STRING`"
+            }
+          ],
+          "name": "whoi",
+          "op": {
+            "list": {
+              "input": "data",
+              "name": "list",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "query": [
+                      {
+                        "active": true,
+                        "example": "example.com",
+                        "kind": "query",
+                        "name": "domain",
+                        "orig": "domain",
+                        "reqd": true,
+                        "type": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/whois",
+                  "parts": [
+                    "whois"
+                  ],
+                  "select": {
+                    "exist": [
+                      "domain"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        }
+      },
+      "feature": {
+        "test": {
+          "active": true,
+          "config": {
+            "options": {
+              "active": false
+            }
+          },
+          "hook": {
+            "GetData": {
+              "active": true,
+              "await": false
+            },
+            "GetMatch": {
+              "active": true,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": true,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": true,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PrePoint": {
+              "active": true,
+              "await": false
+            },
+            "PreRequest": {
+              "active": true,
+              "await": false
+            },
+            "PreResponse": {
+              "active": true,
+              "await": false
+            },
+            "PreResult": {
+              "active": true,
+              "await": false
+            },
+            "PreSpec": {
+              "active": true,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": true,
+              "await": false
+            },
+            "SetMatch": {
+              "active": true,
+              "await": false
+            }
+          },
+          "name": "test",
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "In-memory mock transport for testing without a live server",
+          "version": "0.0.1"
+        }
+      },
+      "flow": {
+        "BasicDnsResultFlow": {
+          "active": true,
+          "entity": "dns_result",
+          "key$": "BasicDnsResultFlow",
+          "kind": "basic",
+          "name": "BasicDnsResultFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "dns_result_ref01",
+                "srcdatavar": "dns_result_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {},
+              "op": "load",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-dns_result_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicDomainFlow": {
+          "active": true,
+          "entity": "domain",
+          "key$": "BasicDomainFlow",
+          "kind": "basic",
+          "name": "BasicDomainFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {},
+              "match": {},
+              "op": "list",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "domain_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicEmailValidateFlow": {
+          "active": true,
+          "entity": "email_validate",
+          "key$": "BasicEmailValidateFlow",
+          "kind": "basic",
+          "name": "BasicEmailValidateFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "email_validate_ref01",
+                "srcdatavar": "email_validate_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {},
+              "op": "load",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-email_validate_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicGenerateFlow": {
+          "active": true,
+          "entity": "generate",
+          "key$": "BasicGenerateFlow",
+          "kind": "basic",
+          "name": "BasicGenerateFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "generate_ref01",
+                "srcdatavar": "generate_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {},
+              "op": "load",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-generate_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicGrammarFlow": {
+          "active": true,
+          "entity": "grammar",
+          "key$": "BasicGrammarFlow",
+          "kind": "basic",
+          "name": "BasicGrammarFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "grammar_ref01"
+              },
+              "match": {},
+              "op": "create",
+              "spec": [],
+              "valid": []
+            }
+          ]
+        },
+        "BasicIpnFlow": {
+          "active": true,
+          "entity": "ipn",
+          "key$": "BasicIpnFlow",
+          "kind": "basic",
+          "name": "BasicIpnFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "ipn_ref01",
+                "srcdatavar": "ipn_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {},
+              "op": "load",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-ipn_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicRedactFlow": {
+          "active": true,
+          "entity": "redact",
+          "key$": "BasicRedactFlow",
+          "kind": "basic",
+          "name": "BasicRedactFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "redact_ref01"
+              },
+              "match": {},
+              "op": "create",
+              "spec": [],
+              "valid": []
+            }
+          ]
+        },
+        "BasicSslFlow": {
+          "active": true,
+          "entity": "ssl",
+          "key$": "BasicSslFlow",
+          "kind": "basic",
+          "name": "BasicSslFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {},
+              "match": {},
+              "op": "list",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "ssl_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicUtilityFlow": {
+          "active": true,
+          "entity": "utility",
+          "key$": "BasicUtilityFlow",
+          "kind": "basic",
+          "name": "BasicUtilityFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "utility_ref01",
+                "srcdatavar": "utility_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {},
+              "op": "load",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-utility_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicWhoiFlow": {
+          "active": true,
+          "entity": "whoi",
+          "key$": "BasicWhoiFlow",
+          "kind": "basic",
+          "name": "BasicWhoiFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {},
+              "match": {},
+              "op": "list",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "whoi_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "info": {
+        "contact": {
+          "email": "support@kiprio.com",
+          "name": "Kiprio",
+          "url": "https://kiprio.com"
+        },
+        "description": "30+ utility APIs for domain intelligence, email validation, SSL inspection, image generation, content processing, and more. Free tier included — no credit card required.\n\nBase URL: `https://kiprio.com/v1`\n\nAuthentication: Pass your API key in the `X-API-Key` header. Get a free key at https://kiprio.com/signup",
+        "license": {
+          "name": "Commercial",
+          "url": "https://kiprio.com/terms"
+        },
+        "meta_source": "https://www.freepublicapis.com",
+        "security": {
+          "in": "header",
+          "name": "X-API-Key",
+          "prefix": "",
+          "scheme": "ApiKeyHeader",
+          "type": "apiKey"
+        },
+        "servers": [
+          {
+            "description": "Production",
+            "url": "https://kiprio.com/v1"
+          }
+        ],
+        "summary": "30+ utility APIs for domain intelligence, email validation, SSL inspection, image generation, content processing, and more.",
+        "title": "Kiprio API",
+        "version": "1.0.0",
+        "website": "https://kiprio.com/docs",
+        "x-logo": {
+          "url": "https://kiprio.com/logo.png"
+        }
+      },
+      "option": {},
+      "target": {
+        "go": {
+          "active": true,
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "go",
+          "module": {
+            "name": "kiprio-api-suite"
+          },
+          "name": "go",
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "",
+              "package": "",
+              "state": "pending",
+              "url": "",
+              "vault": {
+                "alias": "",
+                "env": "",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            }
+          },
+          "srcfeature": false,
+          "title": "Golang"
+        },
+        "go-cli": {
+          "active": true,
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "go",
+          "module": {
+            "name": "kiprio-api-suite"
+          },
+          "name": "go-cli",
+          "phase": {
+            "agentguide": {
+              "active": false
+            },
+            "entity": {
+              "active": false
+            },
+            "feature": {
+              "active": false
+            },
+            "readme": {
+              "active": false
+            },
+            "test": {
+              "active": false
+            }
+          },
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "",
+              "package": "",
+              "state": "pending",
+              "url": "",
+              "vault": {
+                "alias": "",
+                "env": "",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "root"
+            }
+          },
+          "title": "Go CLI"
+        },
+        "go-mcp": {
+          "active": true,
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "go",
+          "module": {
+            "name": "kiprio-api-suite"
+          },
+          "name": "go-mcp",
+          "phase": {
+            "agentguide": {
+              "active": false
+            },
+            "entity": {
+              "active": false
+            },
+            "feature": {
+              "active": false
+            },
+            "readme": {
+              "active": false
+            },
+            "test": {
+              "active": false
+            }
+          },
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "",
+              "package": "",
+              "state": "pending",
+              "url": "",
+              "vault": {
+                "alias": "",
+                "env": "",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "root"
+            }
+          },
+          "title": "Go MCP server"
+        },
+        "lua": {
+          "active": true,
+          "comment": {
+            "line": "--"
+          },
+          "deps": {
+            "dkjson": {
+              "active": true,
+              "kind": "prod",
+              "version": "2.5"
+            }
+          },
+          "ext": "lua",
+          "module": {
+            "name": "kiprio-api-suite"
+          },
+          "name": "lua",
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "luarocks",
+              "package": "",
+              "state": "pending",
+              "url": "https://luarocks.org",
+              "vault": {
+                "alias": "luarocks",
+                "env": "LUAROCKS_API_KEY",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            }
+          },
+          "srcfeature": false,
+          "title": "Lua"
+        },
+        "php": {
+          "active": true,
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "php",
+          "module": {
+            "name": "kiprio-api-suite"
+          },
+          "name": "php",
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "packagist",
+              "package": "",
+              "state": "pending",
+              "url": "https://packagist.org",
+              "vault": {
+                "alias": "packagist",
+                "env": "PACKAGIST_API_TOKEN",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            }
+          },
+          "srcfeature": false,
+          "title": "PHP"
+        },
+        "py": {
+          "active": true,
+          "comment": {
+            "line": "#"
+          },
+          "deps": {
+            "requests": {
+              "active": true,
+              "kind": "prod",
+              "version": "2.33"
+            }
+          },
+          "ext": "py",
+          "module": {
+            "name": "kiprio-api-suite"
+          },
+          "name": "py",
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "pypi",
+              "package": "",
+              "state": "pending",
+              "url": "https://pypi.org",
+              "vault": {
+                "alias": "pypi",
+                "env": "",
+                "recipe": "pypi"
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            }
+          },
+          "srcfeature": false,
+          "title": "Python"
+        },
+        "rb": {
+          "active": true,
+          "comment": {
+            "line": "#"
+          },
+          "deps": {
+            "json": {
+              "active": true,
+              "kind": "prod",
+              "version": "0"
+            },
+            "voxgig-struct": {
+              "active": true,
+              "kind": "prod",
+              "version": "0.0.10"
+            }
+          },
+          "ext": "rb",
+          "module": {
+            "name": "kiprio-api-suite"
+          },
+          "name": "rb",
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "rubygems",
+              "package": "",
+              "state": "pending",
+              "url": "https://rubygems.org",
+              "vault": {
+                "alias": "gem",
+                "env": "",
+                "recipe": "gem"
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            }
+          },
+          "srcfeature": false,
+          "title": "Ruby"
+        },
+        "ts": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {
+            "@types/node": {
+              "active": true,
+              "kind": "dev",
+              "version": "^25.6.0"
+            },
+            "dotenv": {
+              "active": true,
+              "kind": "dev",
+              "version": "^17.4.2"
+            },
+            "typescript": {
+              "active": true,
+              "kind": "dev",
+              "version": "^5.9.3"
+            }
+          },
+          "ext": "ts",
+          "module": {
+            "name": "kiprio-api-suite"
+          },
+          "name": "ts",
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "npm",
+              "package": "",
+              "state": "pending",
+              "url": "https://registry.npmjs.org",
+              "vault": {
+                "alias": "npm",
+                "env": "",
+                "recipe": "npm"
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            }
+          },
+          "title": "TypeScript"
+        }
+      }
+    }
+  },
+  "name": "kiprio-api-suite",
+  "origin": "voxgig-sdk"
+}

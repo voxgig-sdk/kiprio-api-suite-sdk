@@ -1,0 +1,58 @@
+# Entity: grammar
+
+main: kit: entity: grammar: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "correction"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "correction_count"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "language"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "text"
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "grammar"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/grammar"
+          parts: [
+            "grammar"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

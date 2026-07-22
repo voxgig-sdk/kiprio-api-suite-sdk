@@ -1,0 +1,30 @@
+{
+  "existing": {
+    "domain": {
+      "DOMAIN00": {
+        "agent": {},
+        "sitemap": [],
+        "url": "s20"
+      },
+      "DOMAIN01": {
+        "agent": {},
+        "sitemap": [],
+        "url": "s3e"
+      },
+      "DOMAIN02": {
+        "agent": {},
+        "sitemap": [],
+        "url": "s5c"
+      }
+    }
+  },
+  "new": {
+    "domain": {
+      "domain_ref01": {
+        "agent": {},
+        "sitemap": [],
+        "url": "s7a"
+      }
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "existing": {
+    "whoi": {
+      "WHOI00": {
+        "created": "s50",
+        "domain": "s51",
+        "expire": "s52",
+        "nameserver": [],
+        "registered": true,
+        "registrar": "s55",
+        "status": [],
+        "updated": "s57"
+      },
+      "WHOI01": {
+        "created": "sa0",
+        "domain": "sa1",
+        "expire": "sa2",
+        "nameserver": [],
+        "registered": true,
+        "registrar": "sa5",
+        "status": [],
+        "updated": "sa7"
+      },
+      "WHOI02": {
+        "created": "sf0",
+        "domain": "sf1",
+        "expire": "sf2",
+        "nameserver": [],
+        "registered": true,
+        "registrar": "sf5",
+        "status": [],
+        "updated": "sf7"
+      }
+    }
+  },
+  "new": {
+    "whoi": {
+      "whoi_ref01": {
+        "created": "s140",
+        "domain": "s141",
+        "expire": "s142",
+        "nameserver": [],
+        "registered": true,
+        "registrar": "s145",
+        "status": [],
+        "updated": "s147"
+      }
+    }
+  }
+}

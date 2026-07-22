@@ -1,0 +1,94 @@
+# Entity: ipn
+
+main: kit: entity: ipn: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "asn"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "city"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "country"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "country_code"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "ip"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "latitude"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "longitude"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "org"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "timezone"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "ipn"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "8.8.8.8"
+                kind: "query"
+                name: "ip"
+                orig: "ip"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/ip"
+          parts: [
+            "ip"
+          ]
+          select: {
+            exist: [
+              "ip"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

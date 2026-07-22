@@ -1,0 +1,64 @@
+# Entity: domain
+
+main: kit: entity: domain: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "agent"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "sitemap"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "url"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "domain"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "https://example.com"
+                kind: "query"
+                name: "url"
+                orig: "url"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/robots-txt"
+          parts: [
+            "robots-txt"
+          ]
+          select: {
+            exist: [
+              "url"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

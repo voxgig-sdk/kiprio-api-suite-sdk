@@ -1,0 +1,18 @@
+# BasicGrammarFlow
+
+main: kit: flow: BasicGrammarFlow:
+{
+  entity: "grammar",
+  kind: "basic",
+  name: "BasicGrammarFlow",
+  step: [
+    {
+      input: {
+        ref: "grammar_ref01"
+      }
+
+      op: "create"
+    }
+  ],
+  "key$": "BasicGrammarFlow"
+}

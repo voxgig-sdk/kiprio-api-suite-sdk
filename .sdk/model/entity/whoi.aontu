@@ -1,0 +1,89 @@
+# Entity: whoi
+
+main: kit: entity: whoi: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "created"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "domain"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "expire"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "nameserver"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "registered"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "registrar"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "status"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "updated"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "whoi"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "example.com"
+                kind: "query"
+                name: "domain"
+                orig: "domain"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/whois"
+          parts: [
+            "whois"
+          ]
+          select: {
+            exist: [
+              "domain"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

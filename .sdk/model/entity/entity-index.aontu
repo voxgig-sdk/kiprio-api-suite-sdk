@@ -1,0 +1,12 @@
+# Entity Models
+
+@"dns_result.aontu"
+@"domain.aontu"
+@"email_validate.aontu"
+@"generate.aontu"
+@"grammar.aontu"
+@"ipn.aontu"
+@"redact.aontu"
+@"ssl.aontu"
+@"utility.aontu"
+@"whoi.aontu"

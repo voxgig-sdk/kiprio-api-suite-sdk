@@ -1,0 +1,201 @@
+# Entity: generate
+
+main: kit: entity: generate: {
+
+  alias: field: {}
+
+  name: "generate"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "#ffffff"
+                kind: "query"
+                name: "bg"
+                orig: "bg"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "M"
+                kind: "query"
+                name: "ec_level"
+                orig: "ec_level"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "#000000"
+                kind: "query"
+                name: "fg"
+                orig: "fg"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "png"
+                kind: "query"
+                name: "format"
+                orig: "format"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 512
+                kind: "query"
+                name: "size"
+                orig: "size"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: "https://example.com"
+                kind: "query"
+                name: "url"
+                orig: "url"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/qr"
+          parts: [
+            "qr"
+          ]
+          select: {
+            exist: [
+              "bg"
+              "ec_level"
+              "fg"
+              "format"
+              "size"
+              "url"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                example: "HELLO123"
+                kind: "query"
+                name: "data"
+                orig: "data"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "code128"
+                kind: "query"
+                name: "format"
+                orig: "format"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 120
+                kind: "query"
+                name: "height"
+                orig: "height"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: "svg"
+                kind: "query"
+                name: "output"
+                orig: "output"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 400
+                kind: "query"
+                name: "width"
+                orig: "width"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/barcode"
+          parts: [
+            "barcode"
+          ]
+          select: {
+            exist: [
+              "data"
+              "format"
+              "height"
+              "output"
+              "width"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            query: [
+              {
+                example: true
+                kind: "query"
+                name: "full_page"
+                orig: "full_page"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                example: "https://example.com"
+                kind: "query"
+                name: "url"
+                orig: "url"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: 1280
+                kind: "query"
+                name: "width"
+                orig: "width"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/screenshot"
+          parts: [
+            "screenshot"
+          ]
+          select: {
+            exist: [
+              "full_page"
+              "url"
+              "width"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,44 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        email: "support@kiprio.com"
+        name: "Kiprio"
+        url: "https://kiprio.com"
+      }
+      description: `30+ utility APIs for domain intelligence, email validation, SSL inspection, image generation, content processing, and more. Free tier included — no credit card required.
+
+Base URL: \`https://kiprio.com/v1\`
+
+Authentication: Pass your API key in the \`X-API-Key\` header. Get a free key at https://kiprio.com/signup`
+      license: {
+        name: "Commercial"
+        url: "https://kiprio.com/terms"
+      }
+      security: {
+        in: "header"
+        name: "X-API-Key"
+        prefix: ""
+        scheme: "ApiKeyHeader"
+        type: "apiKey"
+      }
+      servers: [
+        {
+          description: "Production"
+          url: "https://kiprio.com/v1"
+        }
+      ]
+      summary: "30+ utility APIs for domain intelligence, email validation, SSL inspection, image generation, content processing, and more."
+      title: "Kiprio API"
+      version: "1.0.0"
+      website: "https://kiprio.com/docs"
+      "x-logo": {
+        url: "https://kiprio.com/logo.png"
+      }
+    }
+  }
+}
+

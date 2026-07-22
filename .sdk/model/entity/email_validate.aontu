@@ -1,0 +1,94 @@
+# Entity: email_validate
+
+main: kit: entity: email_validate: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "confidence"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "disposable"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "email"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "free_provider"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "mx_found"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "role_based"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "suggest"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "syntax_ok"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "valid"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+  ]
+
+  name: "email_validate"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "user@example.com"
+                kind: "query"
+                name: "email"
+                orig: "email"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/email-validate"
+          parts: [
+            "email-validate"
+          ]
+          select: {
+            exist: [
+              "email"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

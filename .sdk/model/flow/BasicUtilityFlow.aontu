@@ -1,0 +1,28 @@
+# BasicUtilityFlow
+
+main: kit: flow: BasicUtilityFlow:
+{
+  entity: "utility",
+  kind: "basic",
+  name: "BasicUtilityFlow",
+  step: [
+    {
+      input: {
+        ref: "utility_ref01",
+        srcdatavar: "utility_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-utility_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicUtilityFlow"
+}
