@@ -8,20 +8,20 @@
 
 ---@class DnsResult
 ---@field domain? string
----@field record? table
+---@field records? table
 
 ---@class DnsResultLoadMatch
 ---@field domain? string
----@field record? table
+---@field records? table
 
 ---@class Domain
----@field agent? table
----@field sitemap? table
+---@field agents? table
+---@field sitemaps? table
 ---@field url? string
 
 ---@class DomainListMatch
----@field agent? table
----@field sitemap? table
+---@field agents? table
+---@field sitemaps? table
 ---@field url? string
 
 ---@class EmailValidate
@@ -51,14 +51,14 @@
 ---@class GenerateLoadMatch
 
 ---@class Grammar
----@field correction? table
 ---@field correction_count? number
+---@field corrections? table
 ---@field language? string
 ---@field text? string
 
 ---@class GrammarCreateData
----@field correction? table
 ---@field correction_count? number
+---@field corrections? table
 ---@field language? string
 ---@field text? string
 
@@ -85,16 +85,16 @@
 ---@field timezone? string
 
 ---@class Redact
----@field count? table
----@field entity? table
+---@field counts? table
+---@field entities? table
 ---@field original_length? number
 ---@field redact? string
 ---@field redacted? string
 ---@field text string
 
 ---@class RedactCreateData
----@field count? table
----@field entity? table
+---@field counts? table
+---@field entities? table
 ---@field original_length? number
 ---@field redact? string
 ---@field redacted? string
@@ -108,7 +108,7 @@
 ---@field grade? string
 ---@field issuer? string
 ---@field protocol? string
----@field san? table
+---@field sans? table
 ---@field subject? string
 ---@field valid? boolean
 
@@ -120,7 +120,7 @@
 ---@field grade? string
 ---@field issuer? string
 ---@field protocol? string
----@field san? table
+---@field sans? table
 ---@field subject? string
 ---@field valid? boolean
 
@@ -139,8 +139,8 @@
 ---@class Whoi
 ---@field created? string
 ---@field domain? string
----@field expire? string
----@field nameserver? table
+---@field expires? string
+---@field nameservers? table
 ---@field registered? boolean
 ---@field registrar? string
 ---@field status? table
@@ -149,8 +149,8 @@
 ---@class WhoiListMatch
 ---@field created? string
 ---@field domain? string
----@field expire? string
----@field nameserver? table
+---@field expires? string
+---@field nameservers? table
 ---@field registered? boolean
 ---@field registrar? string
 ---@field status? table

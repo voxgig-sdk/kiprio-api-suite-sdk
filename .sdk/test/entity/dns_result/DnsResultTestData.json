@@ -3,17 +3,17 @@
     "dns_result": {
       "DNS_RESULT00": {
         "domain": "s14",
-        "record": {},
+        "records": {},
         "id": "DNS_RESULT00"
       },
       "DNS_RESULT01": {
         "domain": "s28",
-        "record": {},
+        "records": {},
         "id": "DNS_RESULT01"
       },
       "DNS_RESULT02": {
         "domain": "s3c",
-        "record": {},
+        "records": {},
         "id": "DNS_RESULT02"
       }
     }
@@ -22,7 +22,7 @@
     "dns_result": {
       "dns_result_ref01": {
         "domain": "s50",
-        "record": {}
+        "records": {}
       }
     }
   }

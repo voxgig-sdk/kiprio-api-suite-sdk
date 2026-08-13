@@ -8,6 +8,7 @@ guide: {
   entity: dns_result: {
     path: "/dns-lookup": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.records`")|top
     }
   }
 
@@ -50,12 +51,14 @@ guide: {
   entity: redact: {
     path: "/redact": {
       op: create: method: *POST
+      op: create: transform: req: "redact": *("`reqdata`")|top
     }
   }
 
   entity: ssl: {
     path: "/ssl": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.sans`")|top
     }
   }
 

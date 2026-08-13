@@ -11,7 +11,7 @@ main: kit: entity: dns_result: {
       type: "`$STRING`"
     }
     {
-      name: "record"
+      name: "records"
       req: false
       type: "`$OBJECT`"
     }
@@ -56,7 +56,7 @@ main: kit: entity: dns_result: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.records`"
           }
         }
       ]

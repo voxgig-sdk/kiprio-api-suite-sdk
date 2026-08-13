@@ -131,7 +131,7 @@ dns_result = client.DnsResult
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `domain` | `String` | No |  |
-| `record` | `Hash` | No |  |
+| `records` | `Hash` | No |  |
 
 ### Operations
 
@@ -183,8 +183,8 @@ domain = client.Domain
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `agent` | `Hash` | No |  |
-| `sitemap` | `Array` | No |  |
+| `agents` | `Hash` | No |  |
+| `sitemaps` | `Array` | No |  |
 | `url` | `String` | No |  |
 
 ### Operations
@@ -343,8 +343,8 @@ grammar = client.Grammar
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `correction` | `Array` | No |  |
 | `correction_count` | `Integer` | No |  |
+| `corrections` | `Array` | No |  |
 | `language` | `String` | No |  |
 | `text` | `String` | No |  |
 
@@ -352,8 +352,8 @@ grammar = client.Grammar
 
 | Field | create |
 | --- | --- |
-| `correction` | - |
 | `correction_count` | - |
+| `corrections` | - |
 | `language` | - |
 | `text` | Yes |
 
@@ -468,8 +468,8 @@ redact = client.Redact
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `count` | `Hash` | No |  |
-| `entity` | `Array` | No |  |
+| `counts` | `Hash` | No |  |
+| `entities` | `Array` | No |  |
 | `original_length` | `Integer` | No |  |
 | `redact` | `String` | No |  |
 | `redacted` | `String` | No |  |
@@ -534,7 +534,7 @@ ssl = client.Ssl
 | `grade` | `String` | No |  |
 | `issuer` | `String` | No |  |
 | `protocol` | `String` | No |  |
-| `san` | `Array` | No |  |
+| `sans` | `Array` | No |  |
 | `subject` | `String` | No |  |
 | `valid` | `Boolean` | No |  |
 
@@ -645,8 +645,8 @@ whoi = client.Whoi
 | --- | --- | --- | --- |
 | `created` | `String` | No |  |
 | `domain` | `String` | No |  |
-| `expire` | `String` | No |  |
-| `nameserver` | `Array` | No |  |
+| `expires` | `String` | No |  |
+| `nameservers` | `Array` | No |  |
 | `registered` | `Boolean` | No |  |
 | `registrar` | `String` | No |  |
 | `status` | `Array` | No |  |

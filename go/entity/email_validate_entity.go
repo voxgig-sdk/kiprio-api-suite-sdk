@@ -14,6 +14,7 @@ type EmailValidateEntity struct {
 	data    map[string]any
 	match   map[string]any
 	entctx  *core.Context
+	deleted bool
 }
 
 func NewEmailValidateEntity(client *core.KiprioApiSuiteSDK, entopts map[string]any) *EmailValidateEntity {
@@ -48,6 +49,21 @@ func NewEmailValidateEntity(client *core.KiprioApiSuiteSDK, entopts map[string]a
 }
 
 func (e *EmailValidateEntity) GetName() string { return e.name }
+
+// Deleted marks this instance as removed. `Remove` resolves to the entity
+// like every other operation, and the instance KEEPS the data it held — a
+// caller can still read what was deleted — but it is no longer a live
+// record. See AGENTS.md "Entity operations return ENTITIES".
+func (e *EmailValidateEntity) MarkDeleted() {
+	e.deleted = true
+}
+
+
+// Deleted reports whether a successful Remove has resolved on this instance.
+func (e *EmailValidateEntity) Deleted() bool {
+	return e.deleted
+}
+
 
 func (e *EmailValidateEntity) Make() core.Entity {
 	opts := map[string]any{}
@@ -339,5 +355,30 @@ func (e *EmailValidateEntity) runOp(ctx *core.Context, postDone func()) (any, er
 	utility.FeatureHook(ctx, "PreDone")
 	postDone()
 
-	return utility.Done(ctx)
+	out, doneErr := utility.Done(ctx)
+	if doneErr != nil {
+		return out, doneErr
+	}
+
+	// An operation resolves to the ENTITY, not the raw data. Entities are
+	// stateful: post_done has just absorbed resdata/resmatch into this
+	// instance, and the caller reaches the record through data(). Two
+	// structural exceptions: `list` resolves to the ARRAY of entity
+	// instances make_result built, and a failed op with throwing disabled
+	// hands back the error payload unchanged. `remove` additionally marks
+	// the entity deleted; it KEEPS its data, so a caller can still read
+	// what was removed. See AGENTS.md "Entity operations return ENTITIES".
+	opname := ""
+	if ctx.Op != nil {
+		opname = ctx.Op.Name
+	}
+
+	if ctx.Result != nil && ctx.Result.Ok && opname != "list" {
+		if opname == "remove" {
+			e.MarkDeleted()
+		}
+		return e, nil
+	}
+
+	return out, nil
 }

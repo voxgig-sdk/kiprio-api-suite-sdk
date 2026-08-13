@@ -128,7 +128,7 @@ local dns_result = client:DnsResult(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `domain` | `string` | No |  |
-| `record` | `table` | No |  |
+| `records` | `table` | No |  |
 
 ### Operations
 
@@ -180,8 +180,8 @@ local domain = client:Domain(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `agent` | `table` | No |  |
-| `sitemap` | `table` | No |  |
+| `agents` | `table` | No |  |
+| `sitemaps` | `table` | No |  |
 | `url` | `string` | No |  |
 
 ### Operations
@@ -340,8 +340,8 @@ local grammar = client:Grammar(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `correction` | `table` | No |  |
 | `correction_count` | `number` | No |  |
+| `corrections` | `table` | No |  |
 | `language` | `string` | No |  |
 | `text` | `string` | No |  |
 
@@ -349,8 +349,8 @@ local grammar = client:Grammar(nil)
 
 | Field | create |
 | --- | --- |
-| `correction` | - |
 | `correction_count` | - |
+| `corrections` | - |
 | `language` | - |
 | `text` | Yes |
 
@@ -465,8 +465,8 @@ local redact = client:Redact(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `count` | `table` | No |  |
-| `entity` | `table` | No |  |
+| `counts` | `table` | No |  |
+| `entities` | `table` | No |  |
 | `original_length` | `number` | No |  |
 | `redact` | `string` | No |  |
 | `redacted` | `string` | No |  |
@@ -531,7 +531,7 @@ local ssl = client:Ssl(nil)
 | `grade` | `string` | No |  |
 | `issuer` | `string` | No |  |
 | `protocol` | `string` | No |  |
-| `san` | `table` | No |  |
+| `sans` | `table` | No |  |
 | `subject` | `string` | No |  |
 | `valid` | `boolean` | No |  |
 
@@ -642,8 +642,8 @@ local whoi = client:Whoi(nil)
 | --- | --- | --- | --- |
 | `created` | `string` | No |  |
 | `domain` | `string` | No |  |
-| `expire` | `string` | No |  |
-| `nameserver` | `table` | No |  |
+| `expires` | `string` | No |  |
+| `nameservers` | `table` | No |  |
 | `registered` | `boolean` | No |  |
 | `registrar` | `string` | No |  |
 | `status` | `table` | No |  |

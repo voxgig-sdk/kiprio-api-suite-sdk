@@ -92,7 +92,7 @@ func TestDomainEntity(t *testing.T) {
 		// The basic flow consumes synthetic IDs from the fixture. In live mode
 		// without an *_ENTID env override, those IDs hit the live API and 4xx.
 		if setup.syntheticOnly {
-			t.Skip("live entity test uses synthetic IDs from fixture — set KIPRIOAPISUITE_TEST_DOMAIN_ENTID JSON to run live")
+			t.Skip("live entity test uses synthetic IDs from fixture — set KIPRIO_API_SUITE_TEST_DOMAIN_ENTID JSON to run live")
 			return
 		}
 		client := setup.client
@@ -160,38 +160,38 @@ func domainBasicSetup(extra map[string]any) *entityTestSetup {
 	// Detect ENTID env override before envOverride consumes it. When live
 	// mode is on without a real override, the basic test runs against synthetic
 	// IDs from the fixture and 4xx's. Surface this so the test can skip.
-	entidEnvRaw := os.Getenv("KIPRIOAPISUITE_TEST_DOMAIN_ENTID")
+	entidEnvRaw := os.Getenv("KIPRIO_API_SUITE_TEST_DOMAIN_ENTID")
 	idmapOverridden := entidEnvRaw != "" && strings.HasPrefix(strings.TrimSpace(entidEnvRaw), "{")
 
 	env := envOverride(map[string]any{
-		"KIPRIOAPISUITE_TEST_DOMAIN_ENTID": idmap,
-		"KIPRIOAPISUITE_TEST_LIVE":      "FALSE",
-		"KIPRIOAPISUITE_TEST_EXPLAIN":   "FALSE",
-		"KIPRIOAPISUITE_APIKEY":         "NONE",
+		"KIPRIO_API_SUITE_TEST_DOMAIN_ENTID": idmap,
+		"KIPRIO_API_SUITE_TEST_LIVE":      "FALSE",
+		"KIPRIO_API_SUITE_TEST_EXPLAIN":   "FALSE",
+		"KIPRIO_API_SUITE_APIKEY":         "NONE",
 	})
 
-	idmapResolved := core.ToMapAny(env["KIPRIOAPISUITE_TEST_DOMAIN_ENTID"])
+	idmapResolved := core.ToMapAny(env["KIPRIO_API_SUITE_TEST_DOMAIN_ENTID"])
 	if idmapResolved == nil {
 		idmapResolved = core.ToMapAny(idmap)
 	}
 
-	if env["KIPRIOAPISUITE_TEST_LIVE"] == "TRUE" {
+	if env["KIPRIO_API_SUITE_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["KIPRIOAPISUITE_APIKEY"],
+				"apikey": env["KIPRIO_API_SUITE_APIKEY"],
 			},
 			extra,
 		})
 		client = sdk.NewKiprioApiSuiteSDK(core.ToMapAny(mergedOpts))
 	}
 
-	live := env["KIPRIOAPISUITE_TEST_LIVE"] == "TRUE"
+	live := env["KIPRIO_API_SUITE_TEST_LIVE"] == "TRUE"
 	return &entityTestSetup{
 		client:        client,
 		data:          entityData,
 		idmap:         idmapResolved,
 		env:           env,
-		explain:       env["KIPRIOAPISUITE_TEST_EXPLAIN"] == "TRUE",
+		explain:       env["KIPRIO_API_SUITE_TEST_EXPLAIN"] == "TRUE",
 		live:          live,
 		syntheticOnly: live && !idmapOverridden,
 		now:           time.Now().UnixMilli(),

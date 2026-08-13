@@ -26,8 +26,8 @@ import {
 describe('DomainEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when KIPRIOAPISUITE_TEST_LIVE=TRUE.
-  afterEach(liveDelay('KIPRIOAPISUITE_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when KIPRIO_API_SUITE_TEST_LIVE=TRUE.
+  afterEach(liveDelay('KIPRIO_API_SUITE_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = KiprioApiSuiteSDK.test()
@@ -63,7 +63,7 @@ describe('DomainEntity', async () => {
     const domain_ref01_ent = client.Domain()
     const domain_ref01_match: any = {}
 
-    const domain_ref01_list = await domain_ref01_ent.list(domain_ref01_match)
+    const domain_ref01_list = (await domain_ref01_ent.list(domain_ref01_match)).map((e: any) => e.data())
 
 
   })

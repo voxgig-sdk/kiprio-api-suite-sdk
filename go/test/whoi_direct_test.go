@@ -36,9 +36,10 @@ func TestWhoiDirect(t *testing.T) {
 			"params": map[string]any{},
 		})
 		if setup.live {
-			// Live mode is lenient: synthetic IDs frequently 4xx and the
-			// list-response shape varies wildly across public APIs. Skip
-			// rather than fail when the call doesn't return a usable list.
+			// Live-mode leniency is a model decision
+			// (main.kit.test.live.strict): synthetic IDs 4xx constantly
+			// against an arbitrary public API, so the default SKIPS here.
+			// A project that owns its test server sets strict and FAILS.
 			if err != nil {
 				t.Skipf("list call failed (likely synthetic IDs against live API): %v", err)
 			}
@@ -91,21 +92,21 @@ func whoiDirectSetup(mockres any) *whoiDirectSetupResult {
 	calls := &[]map[string]any{}
 
 	env := envOverride(map[string]any{
-		"KIPRIOAPISUITE_TEST_WHOI_ENTID": map[string]any{},
-		"KIPRIOAPISUITE_TEST_LIVE":    "FALSE",
-		"KIPRIOAPISUITE_APIKEY":       "NONE",
+		"KIPRIO_API_SUITE_TEST_WHOI_ENTID": map[string]any{},
+		"KIPRIO_API_SUITE_TEST_LIVE":    "FALSE",
+		"KIPRIO_API_SUITE_APIKEY":       "NONE",
 	})
 
-	live := env["KIPRIOAPISUITE_TEST_LIVE"] == "TRUE"
+	live := env["KIPRIO_API_SUITE_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["KIPRIOAPISUITE_APIKEY"],
+			"apikey": env["KIPRIO_API_SUITE_APIKEY"],
 		}
 		client := sdk.NewKiprioApiSuiteSDK(mergedOpts)
 
 		idmap := map[string]any{}
-		if entidRaw, ok := env["KIPRIOAPISUITE_TEST_WHOI_ENTID"]; ok {
+		if entidRaw, ok := env["KIPRIO_API_SUITE_TEST_WHOI_ENTID"]; ok {
 			if entidStr, ok := entidRaw.(string); ok && strings.HasPrefix(entidStr, "{") {
 				json.Unmarshal([]byte(entidStr), &idmap)
 			} else if entidMap, ok := entidRaw.(map[string]any); ok {

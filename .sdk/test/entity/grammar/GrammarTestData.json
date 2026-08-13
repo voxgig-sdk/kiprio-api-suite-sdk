@@ -2,22 +2,22 @@
   "existing": {
     "grammar": {
       "GRAMMAR00": {
-        "correction": [],
-        "correction_count": "s29",
+        "correction_count": "s28",
+        "corrections": [],
         "language": "s2a",
         "text": "s2b",
         "id": "GRAMMAR00"
       },
       "GRAMMAR01": {
-        "correction": [],
-        "correction_count": "s51",
+        "correction_count": "s50",
+        "corrections": [],
         "language": "s52",
         "text": "s53",
         "id": "GRAMMAR01"
       },
       "GRAMMAR02": {
-        "correction": [],
-        "correction_count": "s79",
+        "correction_count": "s78",
+        "corrections": [],
         "language": "s7a",
         "text": "s7b",
         "id": "GRAMMAR02"
@@ -27,8 +27,8 @@
   "new": {
     "grammar": {
       "grammar_ref01": {
-        "correction": [],
-        "correction_count": "sa1",
+        "correction_count": "sa0",
+        "corrections": [],
         "language": "sa2",
         "text": "sa3"
       }

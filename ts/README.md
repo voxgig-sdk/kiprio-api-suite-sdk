@@ -55,8 +55,8 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const dnsresult = await client.DnsResult().load()
-  console.log(dnsresult)
+  const utility = await client.Utility().load()
+  console.log(utility)
 } catch (err) {
   console.error('load failed:', err)
 }
@@ -122,9 +122,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = KiprioApiSuiteSDK.test()
 
-const dnsresult = await client.DnsResult().load()
-// dnsresult is a bare entity populated with mock response data
-console.log(dnsresult)
+const utility = await client.Utility().load()
+// utility is the entity, populated with mock response data
+// — call utility.data() for the record itself
+console.log(utility)
 ```
 
 You can also use the instance method:
@@ -139,7 +140,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.DnsResult()
+const entity = client.Utility()
 
 // First call runs the operation and stores its result
 await entity.load()
@@ -304,7 +305,7 @@ The `prepare()` method returns:
 | Field | Description |
 | --- | --- |
 | `domain` |  |
-| `record` |  |
+| `records` |  |
 
 Operations: load.
 
@@ -314,8 +315,8 @@ API path: `/dns-lookup`
 
 | Field | Description |
 | --- | --- |
-| `agent` |  |
-| `sitemap` |  |
+| `agents` |  |
+| `sitemaps` |  |
 | `url` |  |
 
 Operations: list.
@@ -353,8 +354,8 @@ API path: `/qr`
 
 | Field | Description |
 | --- | --- |
-| `correction` |  |
 | `correction_count` |  |
+| `corrections` |  |
 | `language` |  |
 | `text` |  |
 
@@ -384,8 +385,8 @@ API path: `/ip`
 
 | Field | Description |
 | --- | --- |
-| `count` |  |
-| `entity` |  |
+| `counts` |  |
+| `entities` |  |
 | `original_length` |  |
 | `redact` |  |
 | `redacted` |  |
@@ -406,7 +407,7 @@ API path: `/redact`
 | `grade` |  |
 | `issuer` |  |
 | `protocol` |  |
-| `san` |  |
+| `sans` |  |
 | `subject` |  |
 | `valid` |  |
 
@@ -433,8 +434,8 @@ API path: `/hash`
 | --- | --- |
 | `created` |  |
 | `domain` |  |
-| `expire` |  |
-| `nameserver` |  |
+| `expires` |  |
+| `nameservers` |  |
 | `registered` |  |
 | `registrar` |  |
 | `status` |  |
@@ -464,7 +465,7 @@ Create an instance: `const dns_result = client.DnsResult()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `domain` | `string` |  |
-| `record` | `Record<string, any>` |  |
+| `records` | `Record<string, any>` |  |
 
 #### Example: Load
 
@@ -487,8 +488,8 @@ Create an instance: `const domain = client.Domain()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `agent` | `Record<string, any>` |  |
-| `sitemap` | `any[]` |  |
+| `agents` | `Record<string, any>` |  |
+| `sitemaps` | `any[]` |  |
 | `url` | `string` |  |
 
 #### Example: List
@@ -560,8 +561,8 @@ Create an instance: `const grammar = client.Grammar()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `correction` | `any[]` |  |
 | `correction_count` | `number` |  |
+| `corrections` | `any[]` |  |
 | `language` | `string` |  |
 | `text` | `string` |  |
 
@@ -618,8 +619,8 @@ Create an instance: `const redact = client.Redact()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `count` | `Record<string, any>` |  |
-| `entity` | `any[]` |  |
+| `counts` | `Record<string, any>` |  |
+| `entities` | `any[]` |  |
 | `original_length` | `number` |  |
 | `redact` | `string` |  |
 | `redacted` | `string` |  |
@@ -655,7 +656,7 @@ Create an instance: `const ssl = client.Ssl()`
 | `grade` | `string` |  |
 | `issuer` | `string` |  |
 | `protocol` | `string` |  |
-| `san` | `any[]` |  |
+| `sans` | `any[]` |  |
 | `subject` | `string` |  |
 | `valid` | `boolean` |  |
 
@@ -708,8 +709,8 @@ Create an instance: `const whoi = client.Whoi()`
 | --- | --- | --- |
 | `created` | `string` |  |
 | `domain` | `string` |  |
-| `expire` | `string` |  |
-| `nameserver` | `any[]` |  |
+| `expires` | `string` |  |
+| `nameservers` | `any[]` |  |
 | `registered` | `boolean` |  |
 | `registrar` | `string` |  |
 | `status` | `any[]` |  |
@@ -791,11 +792,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const dnsresult = client.DnsResult()
-await dnsresult.load()
+const utility = client.Utility()
+await utility.load()
 
-// dnsresult.data() now returns the dnsresult data from the last `load`
-// dnsresult.match() returns the last match criteria
+// utility.data() now returns the utility data from the last `load`
+// utility.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

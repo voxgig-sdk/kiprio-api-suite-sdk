@@ -5,6 +5,10 @@
       "desc": ""
     },
     "kit": {
+      "author": {
+        "name": "",
+        "url": ""
+      },
       "config": {
         "docs_order": [
           "ts",
@@ -18,6 +22,7 @@
           "content-type": "application/json"
         }
       },
+      "contributor": {},
       "entity": {
         "dns_result": {
           "active": true,
@@ -33,7 +38,7 @@
             },
             {
               "active": true,
-              "name": "record",
+              "name": "records",
               "req": false,
               "type": "`$OBJECT`"
             }
@@ -68,6 +73,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/dns-lookup",
                   "parts": [
@@ -81,7 +87,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.records`"
                   }
                 }
               ]
@@ -99,13 +105,13 @@
           "fields": [
             {
               "active": true,
-              "name": "agent",
+              "name": "agents",
               "req": false,
               "type": "`$OBJECT`"
             },
             {
               "active": true,
-              "name": "sitemap",
+              "name": "sitemaps",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -137,6 +143,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/robots-txt",
                   "parts": [
@@ -241,6 +248,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/email-validate",
                   "parts": [
@@ -335,6 +343,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/qr",
                   "parts": [
@@ -406,6 +415,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/barcode",
                   "parts": [
@@ -458,6 +468,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/screenshot",
                   "parts": [
@@ -490,15 +501,15 @@
           "fields": [
             {
               "active": true,
-              "name": "correction",
-              "req": false,
-              "type": "`$ARRAY`"
-            },
-            {
-              "active": true,
               "name": "correction_count",
               "req": false,
               "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "corrections",
+              "req": false,
+              "type": "`$ARRAY`"
             },
             {
               "active": true,
@@ -528,6 +539,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/grammar",
                   "parts": [
@@ -628,6 +640,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/ip",
                   "parts": [
@@ -658,13 +671,13 @@
           "fields": [
             {
               "active": true,
-              "name": "count",
+              "name": "counts",
               "req": false,
               "type": "`$OBJECT`"
             },
             {
               "active": true,
-              "name": "entity",
+              "name": "entities",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -702,6 +715,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/redact",
                   "parts": [
@@ -709,7 +723,9 @@
                   ],
                   "select": {},
                   "transform": {
-                    "req": "`reqdata`",
+                    "req": {
+                      "redact": "`reqdata`"
+                    },
                     "res": "`body`"
                   }
                 }
@@ -770,7 +786,7 @@
             },
             {
               "active": true,
-              "name": "san",
+              "name": "sans",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -817,6 +833,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/ssl",
                   "parts": [
@@ -830,7 +847,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.sans`"
                   }
                 }
               ]
@@ -901,6 +918,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/hash",
                   "parts": [
@@ -944,13 +962,13 @@
             },
             {
               "active": true,
-              "name": "expire",
+              "name": "expires",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "nameserver",
+              "name": "nameservers",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -1000,6 +1018,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/whois",
                   "parts": [
@@ -1422,18 +1441,41 @@
         }
       },
       "option": {},
+      "repo": {
+        "host": "github.com",
+        "path": ""
+      },
       "target": {
         "go": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [
+              "test/feature_test.go"
+            ],
+            "trim": true
+          },
           "module": {
-            "name": "kiprio-api-suite"
+            "goversion": "",
+            "name": "kiprio-api-suite",
+            "package": "",
+            "path": ""
           },
           "name": "go",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1455,22 +1497,40 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Golang"
         },
         "go-cli": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "kiprio-api-suite"
+            "goversion": "",
+            "name": "kiprio-api-suite",
+            "package": "",
+            "path": ""
           },
           "name": "go-cli",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "phase": {
             "agentguide": {
               "active": false
@@ -1509,21 +1569,39 @@
                 "recipe": "github"
               },
               "via": "root"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "Go CLI"
         },
         "go-mcp": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "kiprio-api-suite"
+            "goversion": "",
+            "name": "kiprio-api-suite",
+            "package": "",
+            "path": ""
           },
           "name": "go-mcp",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "phase": {
             "agentguide": {
               "active": false
@@ -1562,12 +1640,17 @@
                 "recipe": "github"
               },
               "via": "root"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "Go MCP server"
         },
         "lua": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "--"
           },
@@ -1579,10 +1662,23 @@
             }
           },
           "ext": "lua",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "kiprio-api-suite"
+            "goversion": "",
+            "name": "kiprio-api-suite",
+            "package": "",
+            "path": ""
           },
           "name": "lua",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1604,22 +1700,40 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Lua"
         },
         "php": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "php",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "kiprio-api-suite"
+            "goversion": "",
+            "name": "kiprio-api-suite",
+            "package": "",
+            "path": ""
           },
           "name": "php",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1641,13 +1755,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "PHP"
         },
         "py": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "#"
           },
@@ -1659,10 +1778,23 @@
             }
           },
           "ext": "py",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "kiprio-api-suite"
+            "goversion": "",
+            "name": "kiprio-api-suite",
+            "package": "",
+            "path": ""
           },
           "name": "py",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1684,13 +1816,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Python"
         },
         "rb": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "#"
           },
@@ -1707,10 +1844,23 @@
             }
           },
           "ext": "rb",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "kiprio-api-suite"
+            "goversion": "",
+            "name": "kiprio-api-suite",
+            "package": "",
+            "path": ""
           },
           "name": "rb",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1732,13 +1882,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Ruby"
         },
         "ts": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "comment": {
             "line": "//"
@@ -1761,10 +1916,23 @@
             }
           },
           "ext": "ts",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "kiprio-api-suite"
+            "goversion": "",
+            "name": "kiprio-api-suite",
+            "package": "",
+            "path": ""
           },
           "name": "ts",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1786,9 +1954,17 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "TypeScript"
+        }
+      },
+      "test": {
+        "live": {
+          "app": false,
+          "base": "",
+          "strict": false
         }
       }
     }

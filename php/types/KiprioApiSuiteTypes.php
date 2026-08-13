@@ -16,29 +16,29 @@ declare(strict_types=1);
 class DnsResult
 {
     public ?string $domain = null;
-    public ?array $record = null;
+    public ?array $records = null;
 }
 
 /** Request payload for DnsResult#load. */
 class DnsResultLoadMatch
 {
     public ?string $domain = null;
-    public ?array $record = null;
+    public ?array $records = null;
 }
 
 /** Domain entity data model. */
 class Domain
 {
-    public ?array $agent = null;
-    public ?array $sitemap = null;
+    public ?array $agents = null;
+    public ?array $sitemaps = null;
     public ?string $url = null;
 }
 
 /** Request payload for Domain#list. */
 class DomainListMatch
 {
-    public ?array $agent = null;
-    public ?array $sitemap = null;
+    public ?array $agents = null;
+    public ?array $sitemaps = null;
     public ?string $url = null;
 }
 
@@ -83,8 +83,8 @@ class GenerateLoadMatch
 /** Grammar entity data model. */
 class Grammar
 {
-    public ?array $correction = null;
     public ?int $correction_count = null;
+    public ?array $corrections = null;
     public ?string $language = null;
     public ?string $text = null;
 }
@@ -92,8 +92,8 @@ class Grammar
 /** Request payload for Grammar#create. */
 class GrammarCreateData
 {
-    public ?array $correction = null;
     public ?int $correction_count = null;
+    public ?array $corrections = null;
     public ?string $language = null;
     public ?string $text = null;
 }
@@ -129,8 +129,8 @@ class IpnLoadMatch
 /** Redact entity data model. */
 class Redact
 {
-    public ?array $count = null;
-    public ?array $entity = null;
+    public ?array $counts = null;
+    public ?array $entities = null;
     public ?int $original_length = null;
     public ?string $redact = null;
     public ?string $redacted = null;
@@ -140,8 +140,8 @@ class Redact
 /** Request payload for Redact#create. */
 class RedactCreateData
 {
-    public ?array $count = null;
-    public ?array $entity = null;
+    public ?array $counts = null;
+    public ?array $entities = null;
     public ?int $original_length = null;
     public ?string $redact = null;
     public ?string $redacted = null;
@@ -158,7 +158,7 @@ class Ssl
     public ?string $grade = null;
     public ?string $issuer = null;
     public ?string $protocol = null;
-    public ?array $san = null;
+    public ?array $sans = null;
     public ?string $subject = null;
     public ?bool $valid = null;
 }
@@ -173,7 +173,7 @@ class SslListMatch
     public ?string $grade = null;
     public ?string $issuer = null;
     public ?string $protocol = null;
-    public ?array $san = null;
+    public ?array $sans = null;
     public ?string $subject = null;
     public ?bool $valid = null;
 }
@@ -201,8 +201,8 @@ class Whoi
 {
     public ?string $created = null;
     public ?string $domain = null;
-    public ?string $expire = null;
-    public ?array $nameserver = null;
+    public ?string $expires = null;
+    public ?array $nameservers = null;
     public ?bool $registered = null;
     public ?string $registrar = null;
     public ?array $status = null;
@@ -214,8 +214,8 @@ class WhoiListMatch
 {
     public ?string $created = null;
     public ?string $domain = null;
-    public ?string $expire = null;
-    public ?array $nameserver = null;
+    public ?string $expires = null;
+    public ?array $nameservers = null;
     public ?bool $registered = null;
     public ?string $registrar = null;
     public ?array $status = null;

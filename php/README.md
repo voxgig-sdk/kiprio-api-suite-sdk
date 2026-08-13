@@ -37,7 +37,7 @@ $client = new KiprioApiSuiteSDK([
 
 ```php
 try {
-    // load() returns the bare DnsResult record (throws on error).
+    // load() returns the ENTITY — call data_get() for the DnsResult record (throws on error).
     $dnsresult = $client->DnsResult()->load();
     print_r($dnsresult);
 } catch (\Throwable $err) {
@@ -53,7 +53,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $dnsresult = $client->DnsResult()->load();
+    $utility = $client->Utility()->load();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -125,9 +125,10 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = KiprioApiSuiteSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
-$dnsresult = $client->DnsResult()->load();
-print_r($dnsresult);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$utility = $client->Utility()->load();
+print_r($utility);
 ```
 
 ### Use a custom fetch function
@@ -237,7 +238,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -260,7 +261,7 @@ On error, `ok` is `false` and `$err` contains the error value.
 | Field | Description |
 | --- | --- |
 | `domain` |  |
-| `record` |  |
+| `records` |  |
 
 Operations: Load.
 
@@ -270,8 +271,8 @@ API path: `/dns-lookup`
 
 | Field | Description |
 | --- | --- |
-| `agent` |  |
-| `sitemap` |  |
+| `agents` |  |
+| `sitemaps` |  |
 | `url` |  |
 
 Operations: List.
@@ -309,8 +310,8 @@ API path: `/qr`
 
 | Field | Description |
 | --- | --- |
-| `correction` |  |
 | `correction_count` |  |
+| `corrections` |  |
 | `language` |  |
 | `text` |  |
 
@@ -340,8 +341,8 @@ API path: `/ip`
 
 | Field | Description |
 | --- | --- |
-| `count` |  |
-| `entity` |  |
+| `counts` |  |
+| `entities` |  |
 | `original_length` |  |
 | `redact` |  |
 | `redacted` |  |
@@ -362,7 +363,7 @@ API path: `/redact`
 | `grade` |  |
 | `issuer` |  |
 | `protocol` |  |
-| `san` |  |
+| `sans` |  |
 | `subject` |  |
 | `valid` |  |
 
@@ -389,8 +390,8 @@ API path: `/hash`
 | --- | --- |
 | `created` |  |
 | `domain` |  |
-| `expire` |  |
-| `nameserver` |  |
+| `expires` |  |
+| `nameservers` |  |
 | `registered` |  |
 | `registrar` |  |
 | `status` |  |
@@ -420,12 +421,12 @@ Create an instance: `$dns_result = $client->DnsResult();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `domain` | `string` |  |
-| `record` | `array` |  |
+| `records` | `array` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare DnsResult record (throws on error).
+// load() returns the ENTITY — call data_get() for the DnsResult record (throws on error).
 $dns_result = $client->DnsResult()->load();
 ```
 
@@ -444,8 +445,8 @@ Create an instance: `$domain = $client->Domain();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `agent` | `array` |  |
-| `sitemap` | `array` |  |
+| `agents` | `array` |  |
+| `sitemaps` | `array` |  |
 | `url` | `string` |  |
 
 #### Example: List
@@ -483,7 +484,7 @@ Create an instance: `$email_validate = $client->EmailValidate();`
 #### Example: Load
 
 ```php
-// load() returns the bare EmailValidate record (throws on error).
+// load() returns the ENTITY — call data_get() for the EmailValidate record (throws on error).
 $email_validate = $client->EmailValidate()->load();
 ```
 
@@ -501,7 +502,7 @@ Create an instance: `$generate = $client->Generate();`
 #### Example: Load
 
 ```php
-// load() returns the bare Generate record (throws on error).
+// load() returns the ENTITY — call data_get() for the Generate record (throws on error).
 $generate = $client->Generate()->load();
 ```
 
@@ -520,8 +521,8 @@ Create an instance: `$grammar = $client->Grammar();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `correction` | `array` |  |
 | `correction_count` | `int` |  |
+| `corrections` | `array` |  |
 | `language` | `string` |  |
 | `text` | `string` |  |
 
@@ -560,7 +561,7 @@ Create an instance: `$ipn = $client->Ipn();`
 #### Example: Load
 
 ```php
-// load() returns the bare Ipn record (throws on error).
+// load() returns the ENTITY — call data_get() for the Ipn record (throws on error).
 $ipn = $client->Ipn()->load();
 ```
 
@@ -579,8 +580,8 @@ Create an instance: `$redact = $client->Redact();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `count` | `array` |  |
-| `entity` | `array` |  |
+| `counts` | `array` |  |
+| `entities` | `array` |  |
 | `original_length` | `int` |  |
 | `redact` | `string` |  |
 | `redacted` | `string` |  |
@@ -616,7 +617,7 @@ Create an instance: `$ssl = $client->Ssl();`
 | `grade` | `string` |  |
 | `issuer` | `string` |  |
 | `protocol` | `string` |  |
-| `san` | `array` |  |
+| `sans` | `array` |  |
 | `subject` | `string` |  |
 | `valid` | `bool` |  |
 
@@ -650,7 +651,7 @@ Create an instance: `$utility = $client->Utility();`
 #### Example: Load
 
 ```php
-// load() returns the bare Utility record (throws on error).
+// load() returns the ENTITY — call data_get() for the Utility record (throws on error).
 $utility = $client->Utility()->load();
 ```
 
@@ -671,8 +672,8 @@ Create an instance: `$whoi = $client->Whoi();`
 | --- | --- | --- |
 | `created` | `string` |  |
 | `domain` | `string` |  |
-| `expire` | `string` |  |
-| `nameserver` | `array` |  |
+| `expires` | `string` |  |
+| `nameservers` | `array` |  |
 | `registered` | `bool` |  |
 | `registrar` | `string` |  |
 | `status` | `array` |  |
@@ -762,11 +763,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$dnsresult = $client->DnsResult();
-$dnsresult->load();
+$utility = $client->Utility();
+$utility->load();
 
-// $dnsresult->data_get() now returns the dnsresult data from the last load
-// $dnsresult->match_get() returns the last match criteria
+// $utility->data_get() now returns the utility data from the last load
+// $utility->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

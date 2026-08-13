@@ -2,18 +2,18 @@
   "existing": {
     "domain": {
       "DOMAIN00": {
-        "agent": {},
-        "sitemap": [],
+        "agents": {},
+        "sitemaps": [],
         "url": "s20"
       },
       "DOMAIN01": {
-        "agent": {},
-        "sitemap": [],
+        "agents": {},
+        "sitemaps": [],
         "url": "s3e"
       },
       "DOMAIN02": {
-        "agent": {},
-        "sitemap": [],
+        "agents": {},
+        "sitemaps": [],
         "url": "s5c"
       }
     }
@@ -21,8 +21,8 @@
   "new": {
     "domain": {
       "domain_ref01": {
-        "agent": {},
-        "sitemap": [],
+        "agents": {},
+        "sitemaps": [],
         "url": "s7a"
       }
     }

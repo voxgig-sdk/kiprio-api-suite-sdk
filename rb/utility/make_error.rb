@@ -32,6 +32,10 @@ module KiprioApiSuiteUtilities
     sdk_err = KiprioApiSuiteError.new("", msg, ctx)
     sdk_err.result = ctx.utility.clean.call(ctx, result)
     sdk_err.spec = ctx.utility.clean.call(ctx, spec)
+
+    # Promote the HTTP status to the top level, so a consumer can branch on
+    # `err.status` / `err.not_found?` instead of reaching into `err.result`.
+    sdk_err.status = result.status.nil? ? -1 : result.status
     sdk_err.code = err.code if err.is_a?(KiprioApiSuiteError)
 
     ctx.ctrl.err = sdk_err

@@ -45,7 +45,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "record",
+            ["name"] = "records",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
             ["index$"] = 1,
@@ -81,6 +81,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/dns-lookup",
                 ["parts"] = {
@@ -94,7 +95,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.records`",
                 },
                 ["index$"] = 0,
               },
@@ -110,14 +111,14 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "agent",
+            ["name"] = "agents",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
             ["index$"] = 0,
           },
           {
             ["active"] = true,
-            ["name"] = "sitemap",
+            ["name"] = "sitemaps",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 1,
@@ -151,6 +152,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/robots-txt",
                 ["parts"] = {
@@ -262,6 +264,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/email-validate",
                 ["parts"] = {
@@ -354,6 +357,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/qr",
                 ["parts"] = {
@@ -426,6 +430,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/barcode",
                 ["parts"] = {
@@ -479,6 +484,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/screenshot",
                 ["parts"] = {
@@ -509,16 +515,16 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "correction",
+            ["name"] = "correction_count",
             ["req"] = false,
-            ["type"] = "`$ARRAY`",
+            ["type"] = "`$INTEGER`",
             ["index$"] = 0,
           },
           {
             ["active"] = true,
-            ["name"] = "correction_count",
+            ["name"] = "corrections",
             ["req"] = false,
-            ["type"] = "`$INTEGER`",
+            ["type"] = "`$ARRAY`",
             ["index$"] = 1,
           },
           {
@@ -551,6 +557,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/grammar",
                 ["parts"] = {
@@ -658,6 +665,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/ip",
                 ["parts"] = {
@@ -686,14 +694,14 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "count",
+            ["name"] = "counts",
             ["req"] = false,
             ["type"] = "`$OBJECT`",
             ["index$"] = 0,
           },
           {
             ["active"] = true,
-            ["name"] = "entity",
+            ["name"] = "entities",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 1,
@@ -736,6 +744,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/redact",
                 ["parts"] = {
@@ -743,7 +752,9 @@ local function make_config()
                 },
                 ["select"] = {},
                 ["transform"] = {
-                  ["req"] = "`reqdata`",
+                  ["req"] = {
+                    ["redact"] = "`reqdata`",
+                  },
                   ["res"] = "`body`",
                 },
                 ["index$"] = 0,
@@ -809,7 +820,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "san",
+            ["name"] = "sans",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 7,
@@ -859,6 +870,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/ssl",
                 ["parts"] = {
@@ -872,7 +884,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.sans`",
                 },
                 ["index$"] = 0,
               },
@@ -945,6 +957,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/hash",
                 ["parts"] = {
@@ -988,14 +1001,14 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "expire",
+            ["name"] = "expires",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 2,
           },
           {
             ["active"] = true,
-            ["name"] = "nameserver",
+            ["name"] = "nameservers",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 3,
@@ -1050,6 +1063,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/whois",
                 ["parts"] = {

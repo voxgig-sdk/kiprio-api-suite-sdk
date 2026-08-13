@@ -43,8 +43,8 @@ class KiprioApiSuiteTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('KIPRIOAPISUITE_TEST_LIVE');
-        $override = self::getenv('KIPRIOAPISUITE_TEST_OVERRIDE');
+        $live = self::getenv('KIPRIO_API_SUITE_TEST_LIVE');
+        $override = self::getenv('KIPRIO_API_SUITE_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class KiprioApiSuiteTestRunner
             }
         }
 
-        $explain = self::getenv('KIPRIOAPISUITE_TEST_EXPLAIN');
+        $explain = self::getenv('KIPRIO_API_SUITE_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['KIPRIOAPISUITE_TEST_EXPLAIN'] = $explain;
+            $m['KIPRIO_API_SUITE_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

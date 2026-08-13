@@ -36,7 +36,7 @@ client = KiprioApiSuiteSDK.new({
 
 ```ruby
 begin
-  # load returns the bare DnsResult record (raises on error).
+  # load returns the ENTITY — call data_get for the DnsResult record (raises on error).
   dnsresult = client.DnsResult.load()
   puts dnsresult
 rescue => err
@@ -51,7 +51,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  dnsresult = client.DnsResult.load()
+  utility = client.Utility.load()
 rescue => err
   warn "load failed: #{err}"
 end
@@ -119,9 +119,10 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = KiprioApiSuiteSDK.test
 
-# Entity ops return the bare mock record (raises on error).
-dnsresult = client.DnsResult.load()
-puts dnsresult
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+utility = client.Utility.load()
+puts utility
 ```
 
 ### Use a custom fetch function
@@ -250,7 +251,7 @@ returns a result `Hash` with these keys:
 | Field | Description |
 | --- | --- |
 | `domain` |  |
-| `record` |  |
+| `records` |  |
 
 Operations: Load.
 
@@ -260,8 +261,8 @@ API path: `/dns-lookup`
 
 | Field | Description |
 | --- | --- |
-| `agent` |  |
-| `sitemap` |  |
+| `agents` |  |
+| `sitemaps` |  |
 | `url` |  |
 
 Operations: List.
@@ -299,8 +300,8 @@ API path: `/qr`
 
 | Field | Description |
 | --- | --- |
-| `correction` |  |
 | `correction_count` |  |
+| `corrections` |  |
 | `language` |  |
 | `text` |  |
 
@@ -330,8 +331,8 @@ API path: `/ip`
 
 | Field | Description |
 | --- | --- |
-| `count` |  |
-| `entity` |  |
+| `counts` |  |
+| `entities` |  |
 | `original_length` |  |
 | `redact` |  |
 | `redacted` |  |
@@ -352,7 +353,7 @@ API path: `/redact`
 | `grade` |  |
 | `issuer` |  |
 | `protocol` |  |
-| `san` |  |
+| `sans` |  |
 | `subject` |  |
 | `valid` |  |
 
@@ -379,8 +380,8 @@ API path: `/hash`
 | --- | --- |
 | `created` |  |
 | `domain` |  |
-| `expire` |  |
-| `nameserver` |  |
+| `expires` |  |
+| `nameservers` |  |
 | `registered` |  |
 | `registrar` |  |
 | `status` |  |
@@ -410,12 +411,12 @@ Create an instance: `dns_result = client.DnsResult`
 | Field | Type | Description |
 | --- | --- | --- |
 | `domain` | `String` |  |
-| `record` | `Hash` |  |
+| `records` | `Hash` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare DnsResult record (raises on error).
+# load returns the ENTITY — call data_get for the DnsResult record (raises on error).
 dns_result = client.DnsResult.load()
 ```
 
@@ -434,8 +435,8 @@ Create an instance: `domain = client.Domain`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `agent` | `Hash` |  |
-| `sitemap` | `Array` |  |
+| `agents` | `Hash` |  |
+| `sitemaps` | `Array` |  |
 | `url` | `String` |  |
 
 #### Example: List
@@ -473,7 +474,7 @@ Create an instance: `email_validate = client.EmailValidate`
 #### Example: Load
 
 ```ruby
-# load returns the bare EmailValidate record (raises on error).
+# load returns the ENTITY — call data_get for the EmailValidate record (raises on error).
 email_validate = client.EmailValidate.load()
 ```
 
@@ -491,7 +492,7 @@ Create an instance: `generate = client.Generate`
 #### Example: Load
 
 ```ruby
-# load returns the bare Generate record (raises on error).
+# load returns the ENTITY — call data_get for the Generate record (raises on error).
 generate = client.Generate.load()
 ```
 
@@ -510,8 +511,8 @@ Create an instance: `grammar = client.Grammar`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `correction` | `Array` |  |
 | `correction_count` | `Integer` |  |
+| `corrections` | `Array` |  |
 | `language` | `String` |  |
 | `text` | `String` |  |
 
@@ -550,7 +551,7 @@ Create an instance: `ipn = client.Ipn`
 #### Example: Load
 
 ```ruby
-# load returns the bare Ipn record (raises on error).
+# load returns the ENTITY — call data_get for the Ipn record (raises on error).
 ipn = client.Ipn.load()
 ```
 
@@ -569,8 +570,8 @@ Create an instance: `redact = client.Redact`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `count` | `Hash` |  |
-| `entity` | `Array` |  |
+| `counts` | `Hash` |  |
+| `entities` | `Array` |  |
 | `original_length` | `Integer` |  |
 | `redact` | `String` |  |
 | `redacted` | `String` |  |
@@ -606,7 +607,7 @@ Create an instance: `ssl = client.Ssl`
 | `grade` | `String` |  |
 | `issuer` | `String` |  |
 | `protocol` | `String` |  |
-| `san` | `Array` |  |
+| `sans` | `Array` |  |
 | `subject` | `String` |  |
 | `valid` | `Boolean` |  |
 
@@ -640,7 +641,7 @@ Create an instance: `utility = client.Utility`
 #### Example: Load
 
 ```ruby
-# load returns the bare Utility record (raises on error).
+# load returns the ENTITY — call data_get for the Utility record (raises on error).
 utility = client.Utility.load()
 ```
 
@@ -661,8 +662,8 @@ Create an instance: `whoi = client.Whoi`
 | --- | --- | --- |
 | `created` | `String` |  |
 | `domain` | `String` |  |
-| `expire` | `String` |  |
-| `nameserver` | `Array` |  |
+| `expires` | `String` |  |
+| `nameservers` | `Array` |  |
 | `registered` | `Boolean` |  |
 | `registrar` | `String` |  |
 | `status` | `Array` |  |
@@ -752,11 +753,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-dnsresult = client.DnsResult
-dnsresult.load()
+utility = client.Utility
+utility.load()
 
-# dnsresult.data_get now returns the dnsresult data from the last load
-# dnsresult.match_get returns the last match criteria
+# utility.data_get now returns the utility data from the last load
+# utility.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

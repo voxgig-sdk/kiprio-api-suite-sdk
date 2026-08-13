@@ -166,7 +166,41 @@ class KiprioApiSuiteSDK
         return $fetchdef;
     }
 
+    // Raw endpoint access is operator-controllable, like every entity op.
+    // Blocking it means denying BOTH the 'direct' and 'graphql' tokens,
+    // since either one reaches the same endpoint.
     public function direct(array $fetchargs = []): mixed
+    {
+        if (!$this->op_allowed("direct")) {
+            return $this->op_denied("direct");
+        }
+
+        return $this->raw_request($fetchargs);
+    }
+
+    // Is this raw-access op permitted by the SDK's allow.op option?
+    private function op_allowed(string $op): bool
+    {
+        $allow_op = Struct::getpath($this->options, "allow.op");
+        return is_string($allow_op) && str_contains($allow_op, $op);
+    }
+
+    private function op_denied(string $op): array
+    {
+        $allow_op = Struct::getpath($this->options, "allow.op");
+        return [
+            "ok" => false,
+            "err" => new KiprioApiSuiteError($op . "_allow",
+                "KiprioApiSuiteSDK: " . $op . ": operation not allowed by" .
+                " SDK option allow.op value: \"" . (string)$allow_op . "\""),
+        ];
+    }
+
+    // Ungated request path shared by direct and graphql, each of which
+    // checks its own allow.op token first. Private, rather than a flag on
+    // fetchargs: a caller-supplied marker would let anyone opt straight back
+    // out of the gate by passing it.
+    private function raw_request(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
 
@@ -235,6 +269,58 @@ class KiprioApiSuiteSDK
             "ok" => false,
             "err" => $ctx->make_error("direct_invalid", "invalid response type"),
         ];
+    }
+
+    // Raw GraphQL access: the pressure valve that makes the generated
+    // surface's deliberate omissions (per-call selection sets, typed filter
+    // builders, batching, subscriptions) livable — the whole schema stays
+    // reachable.
+    //
+    // Thin wrapper over the same prepare/fetch path direct uses, with the
+    // one thing raw direct cannot do for GraphQL: a GraphQL failure rides
+    // HTTP 200 as a top-level `errors` array, so status alone would report
+    // a failed query as ok.
+    //
+    // NOTE: like direct, this bypasses the feature pipeline — no retry,
+    // ratelimit or paging features apply.
+    public function graphql(string $query, ?array $variables = null, ?array $ctrl = null): mixed
+    {
+        if (!$this->op_allowed("graphql")) {
+            return $this->op_denied("graphql");
+        }
+
+        $res = $this->raw_request([
+            "method" => "POST",
+            "headers" => ["content-type" => "application/json"],
+            "body" => ["query" => $query, "variables" => $variables ?? []],
+            "ctrl" => $ctrl ?? [],
+        ]);
+
+        if (!is_array($res)) {
+            return $res;
+        }
+
+        // Errors are read BEFORE any status check: a GraphQL parse or
+        // validation failure comes back as HTTP 400 carrying the standard
+        // { errors: [...] } body, and the raw path represents a non-2xx as
+        // ok:false with no err — so returning early on status would discard
+        // the server's own diagnostics, which are the only useful part of
+        // that response.
+        $errors = Struct::getpath($res, "data.errors");
+
+        if (is_array($errors) && 0 < count($errors)) {
+            $first = is_array($errors[0]) ? $errors[0] : [];
+            $msg = $first["message"] ?? "";
+            if (!is_string($msg) || "" === $msg) {
+                $msg = "graphql error";
+            }
+            $res["ok"] = false;
+            $res["err"] = new KiprioApiSuiteError("graphql_error",
+                "KiprioApiSuiteSDK: graphql: " . $msg);
+            $res["graphql"] = $errors;
+        }
+
+        return $res;
     }
 
 
@@ -382,7 +468,7 @@ class KiprioApiSuiteSDK
     }
 
 
-    private $_utility = null;
+    private $_utility_ = null;
 
     // Canonical facade: $client->Utility()->list() / ->load(["id" => ...]).
     // PHP method names are case-insensitive, so lowercase $client->utility()
@@ -391,10 +477,10 @@ class KiprioApiSuiteSDK
     {
         require_once __DIR__ . '/entity/utility_entity.php';
         if ($data === null) {
-            if ($this->_utility === null) {
-                $this->_utility = new UtilityEntity($this, null);
+            if ($this->_utility_ === null) {
+                $this->_utility_ = new UtilityEntity($this, null);
             }
-            return $this->_utility;
+            return $this->_utility_;
         }
         return new UtilityEntity($this, $data);
     }

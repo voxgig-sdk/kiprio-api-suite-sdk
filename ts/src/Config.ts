@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'KiprioApiSuite',
   }
 
 
@@ -94,7 +94,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "record",
+          "name": "records",
           "req": false,
           "type": "`$OBJECT`",
           "index$": 1
@@ -130,6 +130,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/dns-lookup",
               "parts": [
@@ -143,7 +144,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.records`"
               },
               "index$": 0
             }
@@ -159,14 +160,14 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "agent",
+          "name": "agents",
           "req": false,
           "type": "`$OBJECT`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "sitemap",
+          "name": "sitemaps",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 1
@@ -200,6 +201,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/robots-txt",
               "parts": [
@@ -311,6 +313,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/email-validate",
               "parts": [
@@ -403,6 +406,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/qr",
               "parts": [
@@ -475,6 +479,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/barcode",
               "parts": [
@@ -528,6 +533,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/screenshot",
               "parts": [
@@ -558,16 +564,16 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "correction",
+          "name": "correction_count",
           "req": false,
-          "type": "`$ARRAY`",
+          "type": "`$INTEGER`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "correction_count",
+          "name": "corrections",
           "req": false,
-          "type": "`$INTEGER`",
+          "type": "`$ARRAY`",
           "index$": 1
         },
         {
@@ -600,6 +606,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "POST",
               "orig": "/grammar",
               "parts": [
@@ -707,6 +714,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/ip",
               "parts": [
@@ -735,14 +743,14 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "count",
+          "name": "counts",
           "req": false,
           "type": "`$OBJECT`",
           "index$": 0
         },
         {
           "active": true,
-          "name": "entity",
+          "name": "entities",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 1
@@ -785,6 +793,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "POST",
               "orig": "/redact",
               "parts": [
@@ -792,7 +801,9 @@ class Config {
               ],
               "select": {},
               "transform": {
-                "req": "`reqdata`",
+                "req": {
+                  "redact": "`reqdata`"
+                },
                 "res": "`body`"
               },
               "index$": 0
@@ -858,7 +869,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "san",
+          "name": "sans",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 7
@@ -908,6 +919,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/ssl",
               "parts": [
@@ -921,7 +933,7 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.sans`"
               },
               "index$": 0
             }
@@ -994,6 +1006,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/hash",
               "parts": [
@@ -1037,14 +1050,14 @@ class Config {
         },
         {
           "active": true,
-          "name": "expire",
+          "name": "expires",
           "req": false,
           "type": "`$STRING`",
           "index$": 2
         },
         {
           "active": true,
-          "name": "nameserver",
+          "name": "nameservers",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 3
@@ -1099,6 +1112,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/whois",
               "parts": [

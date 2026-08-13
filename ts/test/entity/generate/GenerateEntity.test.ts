@@ -26,8 +26,8 @@ import {
 describe('GenerateEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when KIPRIOAPISUITE_TEST_LIVE=TRUE.
-  afterEach(liveDelay('KIPRIOAPISUITE_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when KIPRIO_API_SUITE_TEST_LIVE=TRUE.
+  afterEach(liveDelay('KIPRIO_API_SUITE_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = KiprioApiSuiteSDK.test()
@@ -62,7 +62,7 @@ describe('GenerateEntity', async () => {
     // LOAD
     const generate_ref01_ent = client.Generate()
     const generate_ref01_match_dt0: any = {}
-    const generate_ref01_data_dt0 = await generate_ref01_ent.load(generate_ref01_match_dt0)
+    const generate_ref01_data_dt0 = (await generate_ref01_ent.load(generate_ref01_match_dt0)).data()
     assert(null != generate_ref01_data_dt0)
 
 

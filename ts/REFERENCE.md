@@ -226,7 +226,7 @@ const dns_result = client.DnsResult()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `domain` | `string` | No |  |
-| `record` | `Record<string, any>` | No |  |
+| `records` | `Record<string, any>` | No |  |
 
 ### Operations
 
@@ -276,8 +276,8 @@ const domain = client.Domain()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `agent` | `Record<string, any>` | No |  |
-| `sitemap` | `any[]` | No |  |
+| `agents` | `Record<string, any>` | No |  |
+| `sitemaps` | `any[]` | No |  |
 | `url` | `string` | No |  |
 
 ### Operations
@@ -430,8 +430,8 @@ const grammar = client.Grammar()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `correction` | `any[]` | No |  |
 | `correction_count` | `number` | No |  |
+| `corrections` | `any[]` | No |  |
 | `language` | `string` | No |  |
 | `text` | `string` | No |  |
 
@@ -439,8 +439,8 @@ const grammar = client.Grammar()
 
 | Field | create |
 | --- | --- |
-| `correction` | - |
 | `correction_count` | - |
+| `corrections` | - |
 | `language` | - |
 | `text` | Yes |
 
@@ -551,8 +551,8 @@ const redact = client.Redact()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `count` | `Record<string, any>` | No |  |
-| `entity` | `any[]` | No |  |
+| `counts` | `Record<string, any>` | No |  |
+| `entities` | `any[]` | No |  |
 | `original_length` | `number` | No |  |
 | `redact` | `string` | No |  |
 | `redacted` | `string` | No |  |
@@ -615,7 +615,7 @@ const ssl = client.Ssl()
 | `grade` | `string` | No |  |
 | `issuer` | `string` | No |  |
 | `protocol` | `string` | No |  |
-| `san` | `any[]` | No |  |
+| `sans` | `any[]` | No |  |
 | `subject` | `string` | No |  |
 | `valid` | `boolean` | No |  |
 
@@ -722,8 +722,8 @@ const whoi = client.Whoi()
 | --- | --- | --- | --- |
 | `created` | `string` | No |  |
 | `domain` | `string` | No |  |
-| `expire` | `string` | No |  |
-| `nameserver` | `any[]` | No |  |
+| `expires` | `string` | No |  |
+| `nameservers` | `any[]` | No |  |
 | `registered` | `boolean` | No |  |
 | `registrar` | `string` | No |  |
 | `status` | `any[]` | No |  |

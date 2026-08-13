@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from kiprioapisuite_sdk.utility.voxgig_struct import voxgig_struct as vs
 from kiprioapisuite_sdk import KiprioApiSuiteSDK
-from core import helpers
+from kiprioapisuite_sdk.core import helpers
 from test import runner
 
 
@@ -58,16 +58,16 @@ def _ssl_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "KIPRIOAPISUITE_TEST_SSL_ENTID": {},
-        "KIPRIOAPISUITE_TEST_LIVE": "FALSE",
-        "KIPRIOAPISUITE_APIKEY": "NONE",
+        "KIPRIO_API_SUITE_TEST_SSL_ENTID": {},
+        "KIPRIO_API_SUITE_TEST_LIVE": "FALSE",
+        "KIPRIO_API_SUITE_APIKEY": "NONE",
     })
 
-    live = env.get("KIPRIOAPISUITE_TEST_LIVE") == "TRUE"
+    live = env.get("KIPRIO_API_SUITE_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("KIPRIOAPISUITE_APIKEY"),
+            "apikey": env.get("KIPRIO_API_SUITE_APIKEY"),
         }
         client = KiprioApiSuiteSDK(merged_opts)
         return {

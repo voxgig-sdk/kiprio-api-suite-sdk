@@ -4,8 +4,8 @@
       "WHOI00": {
         "created": "s50",
         "domain": "s51",
-        "expire": "s52",
-        "nameserver": [],
+        "expires": "s52",
+        "nameservers": [],
         "registered": true,
         "registrar": "s55",
         "status": [],
@@ -14,8 +14,8 @@
       "WHOI01": {
         "created": "sa0",
         "domain": "sa1",
-        "expire": "sa2",
-        "nameserver": [],
+        "expires": "sa2",
+        "nameservers": [],
         "registered": true,
         "registrar": "sa5",
         "status": [],
@@ -24,8 +24,8 @@
       "WHOI02": {
         "created": "sf0",
         "domain": "sf1",
-        "expire": "sf2",
-        "nameserver": [],
+        "expires": "sf2",
+        "nameservers": [],
         "registered": true,
         "registrar": "sf5",
         "status": [],
@@ -38,8 +38,8 @@
       "whoi_ref01": {
         "created": "s140",
         "domain": "s141",
-        "expire": "s142",
-        "nameserver": [],
+        "expires": "s142",
+        "nameservers": [],
         "registered": true,
         "registrar": "s145",
         "status": [],

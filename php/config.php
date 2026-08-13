@@ -51,7 +51,7 @@ class KiprioApiSuiteConfig
             ],
             [
               'active' => true,
-              'name' => 'record',
+              'name' => 'records',
               'req' => false,
               'type' => '`$OBJECT`',
               'index$' => 1,
@@ -87,6 +87,7 @@ class KiprioApiSuiteConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/dns-lookup',
                   'parts' => [
@@ -100,7 +101,7 @@ class KiprioApiSuiteConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.records`',
                   ],
                   'index$' => 0,
                 ],
@@ -116,14 +117,14 @@ class KiprioApiSuiteConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'agent',
+              'name' => 'agents',
               'req' => false,
               'type' => '`$OBJECT`',
               'index$' => 0,
             ],
             [
               'active' => true,
-              'name' => 'sitemap',
+              'name' => 'sitemaps',
               'req' => false,
               'type' => '`$ARRAY`',
               'index$' => 1,
@@ -157,6 +158,7 @@ class KiprioApiSuiteConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/robots-txt',
                   'parts' => [
@@ -268,6 +270,7 @@ class KiprioApiSuiteConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/email-validate',
                   'parts' => [
@@ -360,6 +363,7 @@ class KiprioApiSuiteConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/qr',
                   'parts' => [
@@ -432,6 +436,7 @@ class KiprioApiSuiteConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/barcode',
                   'parts' => [
@@ -485,6 +490,7 @@ class KiprioApiSuiteConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/screenshot',
                   'parts' => [
@@ -515,16 +521,16 @@ class KiprioApiSuiteConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'correction',
+              'name' => 'correction_count',
               'req' => false,
-              'type' => '`$ARRAY`',
+              'type' => '`$INTEGER`',
               'index$' => 0,
             ],
             [
               'active' => true,
-              'name' => 'correction_count',
+              'name' => 'corrections',
               'req' => false,
-              'type' => '`$INTEGER`',
+              'type' => '`$ARRAY`',
               'index$' => 1,
             ],
             [
@@ -557,6 +563,7 @@ class KiprioApiSuiteConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/grammar',
                   'parts' => [
@@ -664,6 +671,7 @@ class KiprioApiSuiteConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/ip',
                   'parts' => [
@@ -692,14 +700,14 @@ class KiprioApiSuiteConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'count',
+              'name' => 'counts',
               'req' => false,
               'type' => '`$OBJECT`',
               'index$' => 0,
             ],
             [
               'active' => true,
-              'name' => 'entity',
+              'name' => 'entities',
               'req' => false,
               'type' => '`$ARRAY`',
               'index$' => 1,
@@ -742,6 +750,7 @@ class KiprioApiSuiteConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/redact',
                   'parts' => [
@@ -749,7 +758,9 @@ class KiprioApiSuiteConfig
                   ],
                   'select' => [],
                   'transform' => [
-                    'req' => '`reqdata`',
+                    'req' => [
+                      'redact' => '`reqdata`',
+                    ],
                     'res' => '`body`',
                   ],
                   'index$' => 0,
@@ -815,7 +826,7 @@ class KiprioApiSuiteConfig
             ],
             [
               'active' => true,
-              'name' => 'san',
+              'name' => 'sans',
               'req' => false,
               'type' => '`$ARRAY`',
               'index$' => 7,
@@ -865,6 +876,7 @@ class KiprioApiSuiteConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/ssl',
                   'parts' => [
@@ -878,7 +890,7 @@ class KiprioApiSuiteConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.sans`',
                   ],
                   'index$' => 0,
                 ],
@@ -951,6 +963,7 @@ class KiprioApiSuiteConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/hash',
                   'parts' => [
@@ -994,14 +1007,14 @@ class KiprioApiSuiteConfig
             ],
             [
               'active' => true,
-              'name' => 'expire',
+              'name' => 'expires',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 2,
             ],
             [
               'active' => true,
-              'name' => 'nameserver',
+              'name' => 'nameservers',
               'req' => false,
               'type' => '`$ARRAY`',
               'index$' => 3,
@@ -1056,6 +1069,7 @@ class KiprioApiSuiteConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/whois',
                   'parts' => [

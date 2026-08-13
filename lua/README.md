@@ -50,7 +50,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local dnsresult, err = client:DnsResult():load()
+local utility, err = client:Utility():load()
 if err then error(err) end
 ```
 
@@ -108,7 +108,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:DnsResult():load()
+local result, err = client:Utility():load()
 -- result is the returned data; err is set on failure
 ```
 
@@ -242,7 +242,7 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | Field | Description |
 | --- | --- |
 | `domain` |  |
-| `record` |  |
+| `records` |  |
 
 Operations: Load.
 
@@ -252,8 +252,8 @@ API path: `/dns-lookup`
 
 | Field | Description |
 | --- | --- |
-| `agent` |  |
-| `sitemap` |  |
+| `agents` |  |
+| `sitemaps` |  |
 | `url` |  |
 
 Operations: List.
@@ -291,8 +291,8 @@ API path: `/qr`
 
 | Field | Description |
 | --- | --- |
-| `correction` |  |
 | `correction_count` |  |
+| `corrections` |  |
 | `language` |  |
 | `text` |  |
 
@@ -322,8 +322,8 @@ API path: `/ip`
 
 | Field | Description |
 | --- | --- |
-| `count` |  |
-| `entity` |  |
+| `counts` |  |
+| `entities` |  |
 | `original_length` |  |
 | `redact` |  |
 | `redacted` |  |
@@ -344,7 +344,7 @@ API path: `/redact`
 | `grade` |  |
 | `issuer` |  |
 | `protocol` |  |
-| `san` |  |
+| `sans` |  |
 | `subject` |  |
 | `valid` |  |
 
@@ -371,8 +371,8 @@ API path: `/hash`
 | --- | --- |
 | `created` |  |
 | `domain` |  |
-| `expire` |  |
-| `nameserver` |  |
+| `expires` |  |
+| `nameservers` |  |
 | `registered` |  |
 | `registrar` |  |
 | `status` |  |
@@ -402,7 +402,7 @@ Create an instance: `local dns_result = client:DnsResult(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `domain` | `string` |  |
-| `record` | `table` |  |
+| `records` | `table` |  |
 
 #### Example: Load
 
@@ -425,8 +425,8 @@ Create an instance: `local domain = client:Domain(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `agent` | `table` |  |
-| `sitemap` | `table` |  |
+| `agents` | `table` |  |
+| `sitemaps` | `table` |  |
 | `url` | `string` |  |
 
 #### Example: List
@@ -498,8 +498,8 @@ Create an instance: `local grammar = client:Grammar(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `correction` | `table` |  |
 | `correction_count` | `number` |  |
+| `corrections` | `table` |  |
 | `language` | `string` |  |
 | `text` | `string` |  |
 
@@ -556,8 +556,8 @@ Create an instance: `local redact = client:Redact(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `count` | `table` |  |
-| `entity` | `table` |  |
+| `counts` | `table` |  |
+| `entities` | `table` |  |
 | `original_length` | `number` |  |
 | `redact` | `string` |  |
 | `redacted` | `string` |  |
@@ -593,7 +593,7 @@ Create an instance: `local ssl = client:Ssl(nil)`
 | `grade` | `string` |  |
 | `issuer` | `string` |  |
 | `protocol` | `string` |  |
-| `san` | `table` |  |
+| `sans` | `table` |  |
 | `subject` | `string` |  |
 | `valid` | `boolean` |  |
 
@@ -646,8 +646,8 @@ Create an instance: `local whoi = client:Whoi(nil)`
 | --- | --- | --- |
 | `created` | `string` |  |
 | `domain` | `string` |  |
-| `expire` | `string` |  |
-| `nameserver` | `table` |  |
+| `expires` | `string` |  |
+| `nameservers` | `table` |  |
 | `registered` | `boolean` |  |
 | `registrar` | `string` |  |
 | `status` | `table` |  |
@@ -736,11 +736,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local dnsresult = client:DnsResult()
-dnsresult:load()
+local utility = client:Utility()
+utility:load()
 
--- dnsresult:data_get() now returns the dnsresult data from the last load
--- dnsresult:match_get() returns the last match criteria
+-- utility:data_get() now returns the utility data from the last load
+-- utility:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

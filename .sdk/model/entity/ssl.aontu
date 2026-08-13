@@ -41,7 +41,7 @@ main: kit: entity: ssl: {
       type: "`$STRING`"
     }
     {
-      name: "san"
+      name: "sans"
       req: false
       type: "`$ARRAY`"
     }
@@ -96,7 +96,7 @@ main: kit: entity: ssl: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.sans`"
           }
         }
       ]

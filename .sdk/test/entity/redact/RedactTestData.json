@@ -2,8 +2,8 @@
   "existing": {
     "redact": {
       "REDACT00": {
-        "count": {},
-        "entity": [],
+        "counts": {},
+        "entities": [],
         "original_length": "s3e",
         "redact": "s3f",
         "redacted": "s40",
@@ -11,8 +11,8 @@
         "id": "REDACT00"
       },
       "REDACT01": {
-        "count": {},
-        "entity": [],
+        "counts": {},
+        "entities": [],
         "original_length": "s7a",
         "redact": "s7b",
         "redacted": "s7c",
@@ -20,8 +20,8 @@
         "id": "REDACT01"
       },
       "REDACT02": {
-        "count": {},
-        "entity": [],
+        "counts": {},
+        "entities": [],
         "original_length": "sb6",
         "redact": "sb7",
         "redacted": "sb8",
@@ -33,8 +33,8 @@
   "new": {
     "redact": {
       "redact_ref01": {
-        "count": {},
-        "entity": [],
+        "counts": {},
+        "entities": [],
         "original_length": "sf2",
         "redact": "sf3",
         "redacted": "sf4",

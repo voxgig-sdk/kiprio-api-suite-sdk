@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import KiprioApiSuiteSDK
-from core.error import KiprioApiSuiteError
-from core.result import KiprioApiSuiteResult
-from core.response import KiprioApiSuiteResponse
-from core.spec import KiprioApiSuiteSpec
-from feature.base_feature import KiprioApiSuiteBaseFeature
+from projectname_sdk.core.error import KiprioApiSuiteError
+from projectname_sdk.core.result import KiprioApiSuiteResult
+from projectname_sdk.core.response import KiprioApiSuiteResponse
+from projectname_sdk.core.spec import KiprioApiSuiteSpec
+from projectname_sdk.feature.base_feature import KiprioApiSuiteBaseFeature
 
 
 def _client():

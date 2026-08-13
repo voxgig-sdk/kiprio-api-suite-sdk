@@ -7,23 +7,23 @@
 
 export interface DnsResult {
   domain?: string
-  record?: Record<string, any>
+  records?: Record<string, any>
 }
 
 export interface DnsResultLoadMatch {
   domain?: string
-  record?: Record<string, any>
+  records?: Record<string, any>
 }
 
 export interface Domain {
-  agent?: Record<string, any>
-  sitemap?: any[]
+  agents?: Record<string, any>
+  sitemaps?: any[]
   url?: string
 }
 
 export interface DomainListMatch {
-  agent?: Record<string, any>
-  sitemap?: any[]
+  agents?: Record<string, any>
+  sitemaps?: any[]
   url?: string
 }
 
@@ -58,15 +58,15 @@ export interface GenerateLoadMatch {
 }
 
 export interface Grammar {
-  correction?: any[]
   correction_count?: number
+  corrections?: any[]
   language?: string
   text?: string
 }
 
 export interface GrammarCreateData {
-  correction?: any[]
   correction_count?: number
+  corrections?: any[]
   language?: string
   text?: string
 }
@@ -96,8 +96,8 @@ export interface IpnLoadMatch {
 }
 
 export interface Redact {
-  count?: Record<string, any>
-  entity?: any[]
+  counts?: Record<string, any>
+  entities?: any[]
   original_length?: number
   redact?: string
   redacted?: string
@@ -105,8 +105,8 @@ export interface Redact {
 }
 
 export interface RedactCreateData {
-  count?: Record<string, any>
-  entity?: any[]
+  counts?: Record<string, any>
+  entities?: any[]
   original_length?: number
   redact?: string
   redacted?: string
@@ -121,7 +121,7 @@ export interface Ssl {
   grade?: string
   issuer?: string
   protocol?: string
-  san?: any[]
+  sans?: any[]
   subject?: string
   valid?: boolean
 }
@@ -134,7 +134,7 @@ export interface SslListMatch {
   grade?: string
   issuer?: string
   protocol?: string
-  san?: any[]
+  sans?: any[]
   subject?: string
   valid?: boolean
 }
@@ -156,8 +156,8 @@ export interface UtilityLoadMatch {
 export interface Whoi {
   created?: string
   domain?: string
-  expire?: string
-  nameserver?: any[]
+  expires?: string
+  nameservers?: any[]
   registered?: boolean
   registrar?: string
   status?: any[]
@@ -167,8 +167,8 @@ export interface Whoi {
 export interface WhoiListMatch {
   created?: string
   domain?: string
-  expire?: string
-  nameserver?: any[]
+  expires?: string
+  nameservers?: any[]
   registered?: boolean
   registrar?: string
   status?: any[]

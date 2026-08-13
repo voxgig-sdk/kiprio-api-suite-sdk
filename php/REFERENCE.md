@@ -130,7 +130,7 @@ $dns_result = $client->DnsResult();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `domain` | `string` | No |  |
-| `record` | `array` | No |  |
+| `records` | `array` | No |  |
 
 ### Operations
 
@@ -182,8 +182,8 @@ $domain = $client->Domain();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `agent` | `array` | No |  |
-| `sitemap` | `array` | No |  |
+| `agents` | `array` | No |  |
+| `sitemaps` | `array` | No |  |
 | `url` | `string` | No |  |
 
 ### Operations
@@ -342,8 +342,8 @@ $grammar = $client->Grammar();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `correction` | `array` | No |  |
 | `correction_count` | `int` | No |  |
+| `corrections` | `array` | No |  |
 | `language` | `string` | No |  |
 | `text` | `string` | No |  |
 
@@ -351,8 +351,8 @@ $grammar = $client->Grammar();
 
 | Field | create |
 | --- | --- |
-| `correction` | - |
 | `correction_count` | - |
+| `corrections` | - |
 | `language` | - |
 | `text` | Yes |
 
@@ -467,8 +467,8 @@ $redact = $client->Redact();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `count` | `array` | No |  |
-| `entity` | `array` | No |  |
+| `counts` | `array` | No |  |
+| `entities` | `array` | No |  |
 | `original_length` | `int` | No |  |
 | `redact` | `string` | No |  |
 | `redacted` | `string` | No |  |
@@ -533,7 +533,7 @@ $ssl = $client->Ssl();
 | `grade` | `string` | No |  |
 | `issuer` | `string` | No |  |
 | `protocol` | `string` | No |  |
-| `san` | `array` | No |  |
+| `sans` | `array` | No |  |
 | `subject` | `string` | No |  |
 | `valid` | `bool` | No |  |
 
@@ -644,8 +644,8 @@ $whoi = $client->Whoi();
 | --- | --- | --- | --- |
 | `created` | `string` | No |  |
 | `domain` | `string` | No |  |
-| `expire` | `string` | No |  |
-| `nameserver` | `array` | No |  |
+| `expires` | `string` | No |  |
+| `nameservers` | `array` | No |  |
 | `registered` | `bool` | No |  |
 | `registrar` | `string` | No |  |
 | `status` | `array` | No |  |

@@ -69,12 +69,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-dnsresult, err := client.DnsResult(nil).Load(nil, nil)
+utility, err := client.Utility(nil).Load(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = dnsresult
+_ = utility
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -138,13 +138,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-dnsResult, err := client.DnsResult(nil).Load(
+utility, err := client.Utility(nil).Load(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(dnsResult) // the returned mock data
+fmt.Println(utility) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -276,7 +276,7 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | Field | Description |
 | --- | --- |
 | `"domain"` |  |
-| `"record"` |  |
+| `"records"` |  |
 
 Operations: Load.
 
@@ -286,8 +286,8 @@ API path: `/dns-lookup`
 
 | Field | Description |
 | --- | --- |
-| `"agent"` |  |
-| `"sitemap"` |  |
+| `"agents"` |  |
+| `"sitemaps"` |  |
 | `"url"` |  |
 
 Operations: List.
@@ -325,8 +325,8 @@ API path: `/qr`
 
 | Field | Description |
 | --- | --- |
-| `"correction"` |  |
 | `"correction_count"` |  |
+| `"corrections"` |  |
 | `"language"` |  |
 | `"text"` |  |
 
@@ -356,8 +356,8 @@ API path: `/ip`
 
 | Field | Description |
 | --- | --- |
-| `"count"` |  |
-| `"entity"` |  |
+| `"counts"` |  |
+| `"entities"` |  |
 | `"original_length"` |  |
 | `"redact"` |  |
 | `"redacted"` |  |
@@ -378,7 +378,7 @@ API path: `/redact`
 | `"grade"` |  |
 | `"issuer"` |  |
 | `"protocol"` |  |
-| `"san"` |  |
+| `"sans"` |  |
 | `"subject"` |  |
 | `"valid"` |  |
 
@@ -405,8 +405,8 @@ API path: `/hash`
 | --- | --- |
 | `"created"` |  |
 | `"domain"` |  |
-| `"expire"` |  |
-| `"nameserver"` |  |
+| `"expires"` |  |
+| `"nameservers"` |  |
 | `"registered"` |  |
 | `"registrar"` |  |
 | `"status"` |  |
@@ -436,7 +436,7 @@ Create an instance: `dnsResult := client.DnsResult(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `domain` | `string` |  |
-| `record` | `map[string]any` |  |
+| `records` | `map[string]any` |  |
 
 #### Example: Load
 
@@ -463,8 +463,8 @@ Create an instance: `domain := client.Domain(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `agent` | `map[string]any` |  |
-| `sitemap` | `[]any` |  |
+| `agents` | `map[string]any` |  |
+| `sitemaps` | `[]any` |  |
 | `url` | `string` |  |
 
 #### Example: List
@@ -548,8 +548,8 @@ Create an instance: `grammar := client.Grammar(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `correction` | `[]any` |  |
 | `correction_count` | `int` |  |
+| `corrections` | `[]any` |  |
 | `language` | `string` |  |
 | `text` | `string` |  |
 
@@ -614,8 +614,8 @@ Create an instance: `redact := client.Redact(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `count` | `map[string]any` |  |
-| `entity` | `[]any` |  |
+| `counts` | `map[string]any` |  |
+| `entities` | `[]any` |  |
 | `original_length` | `int` |  |
 | `redact` | `string` |  |
 | `redacted` | `string` |  |
@@ -655,7 +655,7 @@ Create an instance: `ssl := client.Ssl(nil)`
 | `grade` | `string` |  |
 | `issuer` | `string` |  |
 | `protocol` | `string` |  |
-| `san` | `[]any` |  |
+| `sans` | `[]any` |  |
 | `subject` | `string` |  |
 | `valid` | `bool` |  |
 
@@ -716,8 +716,8 @@ Create an instance: `whoi := client.Whoi(nil)`
 | --- | --- | --- |
 | `created` | `string` |  |
 | `domain` | `string` |  |
-| `expire` | `string` |  |
-| `nameserver` | `[]any` |  |
+| `expires` | `string` |  |
+| `nameservers` | `[]any` |  |
 | `registered` | `bool` |  |
 | `registrar` | `string` |  |
 | `status` | `[]any` |  |
@@ -807,11 +807,11 @@ Entity instances are stateful. After a successful `Load`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-dnsresult := client.DnsResult(nil)
-dnsresult.Load(nil, nil)
+utility := client.Utility(nil)
+utility.Load(nil, nil)
 
-// dnsresult.Data() now returns the dnsresult data from the last load
-// dnsresult.Match() returns the last match criteria
+// utility.Data() now returns the utility data from the last load
+// utility.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

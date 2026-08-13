@@ -33,7 +33,7 @@ class RedactEntityTest extends TestCase
         // The basic flow consumes synthetic IDs from the fixture. In live mode
         // without an *_ENTID env override, those IDs hit the live API and 4xx.
         if (!empty($setup["synthetic_only"])) {
-            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set KIPRIOAPISUITE_TEST_REDACT_ENTID JSON to run live");
+            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set KIPRIO_API_SUITE_TEST_REDACT_ENTID JSON to run live");
             return;
         }
         $client = $setup["client"];
@@ -44,7 +44,7 @@ class RedactEntityTest extends TestCase
             Vs::getpath($setup["data"], "new.redact"), "redact_ref01"));
 
         $redact_ref01_data_result = $redact_ref01_ent->create($redact_ref01_data, null);
-        $redact_ref01_data = Helpers::to_map($redact_ref01_data_result);
+        $redact_ref01_data = Helpers::to_map(is_object($redact_ref01_data_result) && method_exists($redact_ref01_data_result, 'data_get') ? $redact_ref01_data_result->data_get() : $redact_ref01_data_result);
         $this->assertNotNull($redact_ref01_data);
 
     }
@@ -72,39 +72,39 @@ function redact_basic_setup($extra)
     // Detect ENTID env override before envOverride consumes it. When live
     // mode is on without a real override, the basic test runs against synthetic
     // IDs from the fixture and 4xx's. Surface this so the test can skip.
-    $entid_env_raw = getenv("KIPRIOAPISUITE_TEST_REDACT_ENTID");
+    $entid_env_raw = getenv("KIPRIO_API_SUITE_TEST_REDACT_ENTID");
     $idmap_overridden = $entid_env_raw !== false && str_starts_with(trim($entid_env_raw), "{");
 
     $env = Runner::env_override([
-        "KIPRIOAPISUITE_TEST_REDACT_ENTID" => $idmap,
-        "KIPRIOAPISUITE_TEST_LIVE" => "FALSE",
-        "KIPRIOAPISUITE_TEST_EXPLAIN" => "FALSE",
-        "KIPRIOAPISUITE_APIKEY" => "NONE",
+        "KIPRIO_API_SUITE_TEST_REDACT_ENTID" => $idmap,
+        "KIPRIO_API_SUITE_TEST_LIVE" => "FALSE",
+        "KIPRIO_API_SUITE_TEST_EXPLAIN" => "FALSE",
+        "KIPRIO_API_SUITE_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
-        $env["KIPRIOAPISUITE_TEST_REDACT_ENTID"]);
+        $env["KIPRIO_API_SUITE_TEST_REDACT_ENTID"]);
     if ($idmap_resolved === null) {
         $idmap_resolved = Helpers::to_map($idmap);
     }
 
-    if ($env["KIPRIOAPISUITE_TEST_LIVE"] === "TRUE") {
+    if ($env["KIPRIO_API_SUITE_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["KIPRIOAPISUITE_APIKEY"],
+                "apikey" => $env["KIPRIO_API_SUITE_APIKEY"],
             ],
             $extra ?? [],
         ]);
         $client = new KiprioApiSuiteSDK(Helpers::to_map($merged_opts));
     }
 
-    $live = $env["KIPRIOAPISUITE_TEST_LIVE"] === "TRUE";
+    $live = $env["KIPRIO_API_SUITE_TEST_LIVE"] === "TRUE";
     return [
         "client" => $client,
         "data" => $entity_data,
         "idmap" => $idmap_resolved,
         "env" => $env,
-        "explain" => $env["KIPRIOAPISUITE_TEST_EXPLAIN"] === "TRUE",
+        "explain" => $env["KIPRIO_API_SUITE_TEST_EXPLAIN"] === "TRUE",
         "live" => $live,
         "synthetic_only" => $live && !$idmap_overridden,
         "now" => (int)(microtime(true) * 1000),

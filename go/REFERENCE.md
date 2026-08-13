@@ -136,7 +136,7 @@ fmt.Println(dnsResult.GetName()) // "dns_result"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `domain` | `string` | No |  |
-| `record` | `map[string]any` | No |  |
+| `records` | `map[string]any` | No |  |
 
 ### Operations
 
@@ -187,8 +187,8 @@ fmt.Println(domain.GetName()) // "domain"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `agent` | `map[string]any` | No |  |
-| `sitemap` | `[]any` | No |  |
+| `agents` | `map[string]any` | No |  |
+| `sitemaps` | `[]any` | No |  |
 | `url` | `string` | No |  |
 
 ### Operations
@@ -344,8 +344,8 @@ fmt.Println(grammar.GetName()) // "grammar"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `correction` | `[]any` | No |  |
 | `correction_count` | `int` | No |  |
+| `corrections` | `[]any` | No |  |
 | `language` | `string` | No |  |
 | `text` | `string` | No |  |
 
@@ -353,8 +353,8 @@ fmt.Println(grammar.GetName()) // "grammar"
 
 | Field | create |
 | --- | --- |
-| `correction` | - |
 | `correction_count` | - |
+| `corrections` | - |
 | `language` | - |
 | `text` | Yes |
 
@@ -467,8 +467,8 @@ fmt.Println(redact.GetName()) // "redact"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `count` | `map[string]any` | No |  |
-| `entity` | `[]any` | No |  |
+| `counts` | `map[string]any` | No |  |
+| `entities` | `[]any` | No |  |
 | `original_length` | `int` | No |  |
 | `redact` | `string` | No |  |
 | `redacted` | `string` | No |  |
@@ -532,7 +532,7 @@ fmt.Println(ssl.GetName()) // "ssl"
 | `grade` | `string` | No |  |
 | `issuer` | `string` | No |  |
 | `protocol` | `string` | No |  |
-| `san` | `[]any` | No |  |
+| `sans` | `[]any` | No |  |
 | `subject` | `string` | No |  |
 | `valid` | `bool` | No |  |
 
@@ -641,8 +641,8 @@ fmt.Println(whoi.GetName()) // "whoi"
 | --- | --- | --- | --- |
 | `created` | `string` | No |  |
 | `domain` | `string` | No |  |
-| `expire` | `string` | No |  |
-| `nameserver` | `[]any` | No |  |
+| `expires` | `string` | No |  |
+| `nameservers` | `[]any` | No |  |
 | `registered` | `bool` | No |  |
 | `registrar` | `string` | No |  |
 | `status` | `[]any` | No |  |

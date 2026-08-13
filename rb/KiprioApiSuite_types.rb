@@ -13,11 +13,11 @@
 # @!attribute [rw] domain
 #   @return [String, nil]
 #
-# @!attribute [rw] record
+# @!attribute [rw] records
 #   @return [Hash, nil]
 DnsResult = Struct.new(
   :domain,
-  :record,
+  :records,
   keyword_init: true
 )
 
@@ -26,44 +26,44 @@ DnsResult = Struct.new(
 # @!attribute [rw] domain
 #   @return [String, nil]
 #
-# @!attribute [rw] record
+# @!attribute [rw] records
 #   @return [Hash, nil]
 DnsResultLoadMatch = Struct.new(
   :domain,
-  :record,
+  :records,
   keyword_init: true
 )
 
 # Domain entity data model.
 #
-# @!attribute [rw] agent
+# @!attribute [rw] agents
 #   @return [Hash, nil]
 #
-# @!attribute [rw] sitemap
+# @!attribute [rw] sitemaps
 #   @return [Array, nil]
 #
 # @!attribute [rw] url
 #   @return [String, nil]
 Domain = Struct.new(
-  :agent,
-  :sitemap,
+  :agents,
+  :sitemaps,
   :url,
   keyword_init: true
 )
 
 # Request payload for Domain#list.
 #
-# @!attribute [rw] agent
+# @!attribute [rw] agents
 #   @return [Hash, nil]
 #
-# @!attribute [rw] sitemap
+# @!attribute [rw] sitemaps
 #   @return [Array, nil]
 #
 # @!attribute [rw] url
 #   @return [String, nil]
 DomainListMatch = Struct.new(
-  :agent,
-  :sitemap,
+  :agents,
+  :sitemaps,
   :url,
   keyword_init: true
 )
@@ -160,11 +160,11 @@ end
 
 # Grammar entity data model.
 #
-# @!attribute [rw] correction
-#   @return [Array, nil]
-#
 # @!attribute [rw] correction_count
 #   @return [Integer, nil]
+#
+# @!attribute [rw] corrections
+#   @return [Array, nil]
 #
 # @!attribute [rw] language
 #   @return [String, nil]
@@ -172,8 +172,8 @@ end
 # @!attribute [rw] text
 #   @return [String, nil]
 Grammar = Struct.new(
-  :correction,
   :correction_count,
+  :corrections,
   :language,
   :text,
   keyword_init: true
@@ -181,11 +181,11 @@ Grammar = Struct.new(
 
 # Request payload for Grammar#create.
 #
-# @!attribute [rw] correction
-#   @return [Array, nil]
-#
 # @!attribute [rw] correction_count
 #   @return [Integer, nil]
+#
+# @!attribute [rw] corrections
+#   @return [Array, nil]
 #
 # @!attribute [rw] language
 #   @return [String, nil]
@@ -193,8 +193,8 @@ Grammar = Struct.new(
 # @!attribute [rw] text
 #   @return [String, nil]
 GrammarCreateData = Struct.new(
-  :correction,
   :correction_count,
+  :corrections,
   :language,
   :text,
   keyword_init: true
@@ -284,10 +284,10 @@ IpnLoadMatch = Struct.new(
 
 # Redact entity data model.
 #
-# @!attribute [rw] count
+# @!attribute [rw] counts
 #   @return [Hash, nil]
 #
-# @!attribute [rw] entity
+# @!attribute [rw] entities
 #   @return [Array, nil]
 #
 # @!attribute [rw] original_length
@@ -302,8 +302,8 @@ IpnLoadMatch = Struct.new(
 # @!attribute [rw] text
 #   @return [String]
 Redact = Struct.new(
-  :count,
-  :entity,
+  :counts,
+  :entities,
   :original_length,
   :redact,
   :redacted,
@@ -313,10 +313,10 @@ Redact = Struct.new(
 
 # Request payload for Redact#create.
 #
-# @!attribute [rw] count
+# @!attribute [rw] counts
 #   @return [Hash, nil]
 #
-# @!attribute [rw] entity
+# @!attribute [rw] entities
 #   @return [Array, nil]
 #
 # @!attribute [rw] original_length
@@ -331,8 +331,8 @@ Redact = Struct.new(
 # @!attribute [rw] text
 #   @return [String]
 RedactCreateData = Struct.new(
-  :count,
-  :entity,
+  :counts,
+  :entities,
   :original_length,
   :redact,
   :redacted,
@@ -363,7 +363,7 @@ RedactCreateData = Struct.new(
 # @!attribute [rw] protocol
 #   @return [String, nil]
 #
-# @!attribute [rw] san
+# @!attribute [rw] sans
 #   @return [Array, nil]
 #
 # @!attribute [rw] subject
@@ -379,7 +379,7 @@ Ssl = Struct.new(
   :grade,
   :issuer,
   :protocol,
-  :san,
+  :sans,
   :subject,
   :valid,
   keyword_init: true
@@ -408,7 +408,7 @@ Ssl = Struct.new(
 # @!attribute [rw] protocol
 #   @return [String, nil]
 #
-# @!attribute [rw] san
+# @!attribute [rw] sans
 #   @return [Array, nil]
 #
 # @!attribute [rw] subject
@@ -424,7 +424,7 @@ SslListMatch = Struct.new(
   :grade,
   :issuer,
   :protocol,
-  :san,
+  :sans,
   :subject,
   :valid,
   keyword_init: true
@@ -480,10 +480,10 @@ UtilityLoadMatch = Struct.new(
 # @!attribute [rw] domain
 #   @return [String, nil]
 #
-# @!attribute [rw] expire
+# @!attribute [rw] expires
 #   @return [String, nil]
 #
-# @!attribute [rw] nameserver
+# @!attribute [rw] nameservers
 #   @return [Array, nil]
 #
 # @!attribute [rw] registered
@@ -500,8 +500,8 @@ UtilityLoadMatch = Struct.new(
 Whoi = Struct.new(
   :created,
   :domain,
-  :expire,
-  :nameserver,
+  :expires,
+  :nameservers,
   :registered,
   :registrar,
   :status,
@@ -517,10 +517,10 @@ Whoi = Struct.new(
 # @!attribute [rw] domain
 #   @return [String, nil]
 #
-# @!attribute [rw] expire
+# @!attribute [rw] expires
 #   @return [String, nil]
 #
-# @!attribute [rw] nameserver
+# @!attribute [rw] nameservers
 #   @return [Array, nil]
 #
 # @!attribute [rw] registered
@@ -537,8 +537,8 @@ Whoi = Struct.new(
 WhoiListMatch = Struct.new(
   :created,
   :domain,
-  :expire,
-  :nameserver,
+  :expires,
+  :nameservers,
   :registered,
   :registrar,
   :status,

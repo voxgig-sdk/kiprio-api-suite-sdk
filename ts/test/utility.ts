@@ -62,8 +62,8 @@ function makeCtrl(explain: boolean) {
 // Overrides configuration values with environment variables if available
 function envOverride(m: Record<string, any>) {
   if (
-    'TRUE' === process.env.KIPRIOAPISUITE_TEST_LIVE ||
-    'TRUE' === process.env.KIPRIOAPISUITE_TEST_OVERRIDE
+    'TRUE' === process.env.KIPRIO_API_SUITE_TEST_LIVE ||
+    'TRUE' === process.env.KIPRIO_API_SUITE_TEST_OVERRIDE
   ) {
     Object.entries(m).map(n => {
       let envval = process.env[n[0]]
@@ -74,7 +74,7 @@ function envOverride(m: Record<string, any>) {
     })
   }
 
-  m.KIPRIOAPISUITE_TEST_EXPLAIN = process.env.KIPRIOAPISUITE_TEST_EXPLAIN || m.KIPRIOAPISUITE_TEST_EXPLAIN
+  m.KIPRIO_API_SUITE_TEST_EXPLAIN = process.env.KIPRIO_API_SUITE_TEST_EXPLAIN || m.KIPRIO_API_SUITE_TEST_EXPLAIN
 
   return m
 }

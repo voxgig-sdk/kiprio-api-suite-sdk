@@ -23,8 +23,8 @@ module KiprioApiSuiteTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("KIPRIOAPISUITE_TEST_LIVE")
-    override = getenv("KIPRIOAPISUITE_TEST_OVERRIDE")
+    live = getenv("KIPRIO_API_SUITE_TEST_LIVE")
+    override = getenv("KIPRIO_API_SUITE_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module KiprioApiSuiteTestRunner
       end
     end
 
-    explain = getenv("KIPRIOAPISUITE_TEST_EXPLAIN")
-    m["KIPRIOAPISUITE_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("KIPRIO_API_SUITE_TEST_EXPLAIN")
+    m["KIPRIO_API_SUITE_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

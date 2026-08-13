@@ -6,14 +6,14 @@ main: kit: entity: grammar: {
 
   fields: [
     {
-      name: "correction"
-      req: false
-      type: "`$ARRAY`"
-    }
-    {
       name: "correction_count"
       req: false
       type: "`$INTEGER`"
+    }
+    {
+      name: "corrections"
+      req: false
+      type: "`$ARRAY`"
     }
     {
       name: "language"

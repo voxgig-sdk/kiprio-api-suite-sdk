@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import KiprioApiSuiteControl
-from core.error import KiprioApiSuiteError
-from core.result import KiprioApiSuiteResult
-from core.spec import KiprioApiSuiteSpec
+from kiprioapisuite_sdk.config import make_config
+from kiprioapisuite_sdk.features import _make_feature
+from kiprioapisuite_sdk.core.control import KiprioApiSuiteControl
+from kiprioapisuite_sdk.core.error import KiprioApiSuiteError
+from kiprioapisuite_sdk.core.result import KiprioApiSuiteResult
+from kiprioapisuite_sdk.core.spec import KiprioApiSuiteSpec
 
 
 # True when this SDK was generated with the named feature.

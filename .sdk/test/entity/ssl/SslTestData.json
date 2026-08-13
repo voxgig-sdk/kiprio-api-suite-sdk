@@ -9,7 +9,7 @@
         "grade": "s68",
         "issuer": "s69",
         "protocol": "s6a",
-        "san": [],
+        "sans": [],
         "subject": "s6c",
         "valid": false
       },
@@ -21,7 +21,7 @@
         "grade": "scc",
         "issuer": "scd",
         "protocol": "sce",
-        "san": [],
+        "sans": [],
         "subject": "sd0",
         "valid": false
       },
@@ -33,7 +33,7 @@
         "grade": "s130",
         "issuer": "s131",
         "protocol": "s132",
-        "san": [],
+        "sans": [],
         "subject": "s134",
         "valid": false
       }
@@ -49,7 +49,7 @@
         "grade": "s194",
         "issuer": "s195",
         "protocol": "s196",
-        "san": [],
+        "sans": [],
         "subject": "s198",
         "valid": false
       }

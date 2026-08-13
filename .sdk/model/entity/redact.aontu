@@ -6,12 +6,12 @@ main: kit: entity: redact: {
 
   fields: [
     {
-      name: "count"
+      name: "counts"
       req: false
       type: "`$OBJECT`"
     }
     {
-      name: "entity"
+      name: "entities"
       req: false
       type: "`$ARRAY`"
     }
@@ -49,7 +49,9 @@ main: kit: entity: redact: {
             "redact"
           ]
           transform: {
-            req: "`reqdata`"
+            req: {
+              redact: "`reqdata`"
+            }
             res: "`body`"
           }
         }

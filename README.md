@@ -38,18 +38,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = KiprioApiSuiteSDK.test()
-const dnsresult = await client.DnsResult().load()
-// dnsresult is a bare DnsResult populated with mock data
-console.log(dnsresult)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = KiprioApiSuiteSDK.test({
+  entity: {
+    utility: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const utility = await client.Utility().load()
+// utility is the Utility entity, populated with mock data
+// — call utility.data() for the record itself
+console.log(utility)
 ```
 
 ### Python
 
 ```python
 client = KiprioApiSuiteSDK.test()
-dnsresult = client.DnsResult().load()
-print(dnsresult)
+utility = client.Utility().load()
+print(utility)
 ```
 
 ### PHP
@@ -57,16 +66,16 @@ print(dnsresult)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = KiprioApiSuiteSDK::test([
-    "entity" => ["dnsresult" => ["test01" => []]],
+    "entity" => ["utility" => ["test01" => []]],
 ]);
-$dnsresult = $client->DnsResult()->load();
+$utility = $client->Utility()->load();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.DnsResult(nil).Load(
+result, err := client.Utility(nil).Load(
     nil, nil,
 )
 ```
@@ -76,16 +85,16 @@ result, err := client.DnsResult(nil).Load(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = KiprioApiSuiteSDK.test({
-  "entity" => { "dnsresult" => { "test01" => {} } },
+  "entity" => { "utility" => { "test01" => {} } },
 })
-dnsresult = client.DnsResult.load()
+utility = client.Utility.load()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:DnsResult():load()
+local result, err = client:Utility():load()
 ```
 
 ## Packages
@@ -198,7 +207,7 @@ $client = new KiprioApiSuiteSDK([
 ]);
 
 
-// Load a specific dnsresult (returns the bare record; throws on error)
+// Load a specific dnsresult (returns the ENTITY; call data_get() for the record; throws on error)
 $dnsresult = $client->DnsResult()->load();
 print_r($dnsresult);
 ```
@@ -230,7 +239,7 @@ client = KiprioApiSuiteSDK.new({
 })
 
 
-# Load a specific dnsresult (returns the bare record; raises on error)
+# Load a specific dnsresult (returns the ENTITY; call data_get for the record)
 dnsresult = client.DnsResult.load()
 puts dnsresult
 ```
@@ -366,6 +375,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://kiprio.com](https://kiprio.com)
 

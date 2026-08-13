@@ -65,16 +65,16 @@ def utility_direct_setup(mockres)
   calls = []
 
   env = Runner.env_override({
-    "KIPRIOAPISUITE_TEST_UTILITY_ENTID" => {},
-    "KIPRIOAPISUITE_TEST_LIVE" => "FALSE",
-    "KIPRIOAPISUITE_APIKEY" => "NONE",
+    "KIPRIO_API_SUITE_TEST_UTILITY_ENTID" => {},
+    "KIPRIO_API_SUITE_TEST_LIVE" => "FALSE",
+    "KIPRIO_API_SUITE_APIKEY" => "NONE",
   })
 
-  live = env["KIPRIOAPISUITE_TEST_LIVE"] == "TRUE"
+  live = env["KIPRIO_API_SUITE_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
-      "apikey" => env["KIPRIOAPISUITE_APIKEY"],
+      "apikey" => env["KIPRIO_API_SUITE_APIKEY"],
     }
     client = KiprioApiSuiteSDK.new(merged_opts)
     return {

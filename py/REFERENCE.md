@@ -125,7 +125,7 @@ dns_result = client.DnsResult()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `domain` | `str` | No |  |
-| `record` | `dict` | No |  |
+| `records` | `dict` | No |  |
 
 ### Operations
 
@@ -176,8 +176,8 @@ domain = client.Domain()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `agent` | `dict` | No |  |
-| `sitemap` | `list` | No |  |
+| `agents` | `dict` | No |  |
+| `sitemaps` | `list` | No |  |
 | `url` | `str` | No |  |
 
 ### Operations
@@ -335,8 +335,8 @@ grammar = client.Grammar()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `correction` | `list` | No |  |
 | `correction_count` | `int` | No |  |
+| `corrections` | `list` | No |  |
 | `language` | `str` | No |  |
 | `text` | `str` | No |  |
 
@@ -344,8 +344,8 @@ grammar = client.Grammar()
 
 | Field | create |
 | --- | --- |
-| `correction` | - |
 | `correction_count` | - |
+| `corrections` | - |
 | `language` | - |
 | `text` | Yes |
 
@@ -458,8 +458,8 @@ redact = client.Redact()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `count` | `dict` | No |  |
-| `entity` | `list` | No |  |
+| `counts` | `dict` | No |  |
+| `entities` | `list` | No |  |
 | `original_length` | `int` | No |  |
 | `redact` | `str` | No |  |
 | `redacted` | `str` | No |  |
@@ -523,7 +523,7 @@ ssl = client.Ssl()
 | `grade` | `str` | No |  |
 | `issuer` | `str` | No |  |
 | `protocol` | `str` | No |  |
-| `san` | `list` | No |  |
+| `sans` | `list` | No |  |
 | `subject` | `str` | No |  |
 | `valid` | `bool` | No |  |
 
@@ -634,8 +634,8 @@ whoi = client.Whoi()
 | --- | --- | --- | --- |
 | `created` | `str` | No |  |
 | `domain` | `str` | No |  |
-| `expire` | `str` | No |  |
-| `nameserver` | `list` | No |  |
+| `expires` | `str` | No |  |
+| `nameservers` | `list` | No |  |
 | `registered` | `bool` | No |  |
 | `registrar` | `str` | No |  |
 | `status` | `list` | No |  |

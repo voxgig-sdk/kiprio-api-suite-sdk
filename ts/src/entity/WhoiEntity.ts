@@ -37,7 +37,7 @@ class WhoiEntity extends KiprioApiSuiteEntityBase<Whoi> {
 
 
 
-  async list(this: any, reqmatch?: WhoiListMatch, ctrl?: Control): Promise<Whoi[]> {
+  async list(this: any, reqmatch?: WhoiListMatch, ctrl?: Control): Promise<WhoiEntity[]> {
 
     const utility = this._utility
 

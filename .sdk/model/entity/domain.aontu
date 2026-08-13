@@ -6,12 +6,12 @@ main: kit: entity: domain: {
 
   fields: [
     {
-      name: "agent"
+      name: "agents"
       req: false
       type: "`$OBJECT`"
     }
     {
-      name: "sitemap"
+      name: "sitemaps"
       req: false
       type: "`$ARRAY`"
     }

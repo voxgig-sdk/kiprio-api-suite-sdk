@@ -155,8 +155,29 @@ class KiprioApiSuiteSDK {
   }
 
 
+  // Raw endpoint access is operator-controllable, like every entity op.
+  // Blocking it means denying BOTH the 'direct' and 'graphql' tokens, since
+  // either one reaches the same endpoint.
   async direct(fetchargs?: any) {
+    if (!this._options.allow.op.includes('direct')) {
+      return {
+        ok: false,
+        err: new Error('KiprioApiSuiteSDK: direct: operation not allowed by' +
+          ' SDK option allow.op value: "' + this._options.allow.op + '"'),
+      }
+    }
+
+    return this._rawRequest(fetchargs)
+  }
+
+
+  // Ungated request path shared by direct() and graphql(), each of which
+  // checks its own allow.op token first. Private, rather than a flag on
+  // fetchargs: a caller-supplied marker would let anyone opt straight back
+  // out of the gate by passing it.
+  async _rawRequest(fetchargs?: any) {
     const utility = this._utility
+
     const fetcher = utility.fetcher
     const makeContext = utility.makeContext
 
@@ -217,73 +238,147 @@ class KiprioApiSuiteSDK {
 
 
 
+  // Raw GraphQL access: the pressure valve that makes the generated
+  // surface's deliberate omissions (per-call selection sets, typed filter
+  // builders, batching, subscriptions) livable — the whole schema stays
+  // reachable.
+  //
+  // Thin wrapper over the same prepare/fetch path `direct` uses, with the
+  // one thing raw `direct` cannot do for GraphQL: a GraphQL failure rides
+  // HTTP 200 as a top-level `errors` array, so status alone would report a
+  // failed query as ok.
+  //
+  // NOTE: like `direct`, this bypasses the feature pipeline — no retry,
+  // ratelimit or paging features apply.
+  async graphql(query: string, variables?: any, ctrl?: any) {
+    const options = this._options
+
+    if (!options.allow.op.includes('graphql')) {
+      return {
+        ok: false,
+        err: new Error('KiprioApiSuiteSDK: graphql: operation not allowed by' +
+          ' SDK option allow.op value: "' + options.allow.op + '"'),
+      }
+    }
+
+    const res: any = await this._rawRequest({
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: { query, variables: variables || {} },
+      ctrl,
+    })
+
+    if (res instanceof Error) {
+      return res
+    }
+
+    // Errors are read BEFORE any status check: a GraphQL parse or validation
+    // failure comes back as HTTP 400 carrying the standard { errors: [...] }
+    // body, and the raw path represents a non-2xx as { ok: false } with no
+    // err — so returning early on status would discard the server's own
+    // diagnostics, which are the only useful part of that response.
+    const errors = null == res.data ? undefined : res.data.errors
+
+    if (null != errors && Array.isArray(errors) && 0 < errors.length) {
+      const first = errors[0] || {}
+      const err: any = new Error('KiprioApiSuiteSDK: graphql: ' +
+        (first.message || 'graphql error'))
+      err.graphql = errors
+      return { ok: false, status: res.status, headers: res.headers, err, data: res.data }
+    }
+
+    return res
+  }
+
+
+
   // Entity access: `client.DnsResult().list()` / `client.DnsResult().load({ id })`.
-  DnsResult(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  DnsResult(entopts?: Record<string, any>) {
     const self = this
-    return new DnsResultEntity(self,data)
+    return new DnsResultEntity(self, entopts)
   }
 
 
   // Entity access: `client.Domain().list()` / `client.Domain().load({ id })`.
-  Domain(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Domain(entopts?: Record<string, any>) {
     const self = this
-    return new DomainEntity(self,data)
+    return new DomainEntity(self, entopts)
   }
 
 
   // Entity access: `client.EmailValidate().list()` / `client.EmailValidate().load({ id })`.
-  EmailValidate(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  EmailValidate(entopts?: Record<string, any>) {
     const self = this
-    return new EmailValidateEntity(self,data)
+    return new EmailValidateEntity(self, entopts)
   }
 
 
   // Entity access: `client.Generate().list()` / `client.Generate().load({ id })`.
-  Generate(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Generate(entopts?: Record<string, any>) {
     const self = this
-    return new GenerateEntity(self,data)
+    return new GenerateEntity(self, entopts)
   }
 
 
   // Entity access: `client.Grammar().list()` / `client.Grammar().load({ id })`.
-  Grammar(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Grammar(entopts?: Record<string, any>) {
     const self = this
-    return new GrammarEntity(self,data)
+    return new GrammarEntity(self, entopts)
   }
 
 
   // Entity access: `client.Ipn().list()` / `client.Ipn().load({ id })`.
-  Ipn(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Ipn(entopts?: Record<string, any>) {
     const self = this
-    return new IpnEntity(self,data)
+    return new IpnEntity(self, entopts)
   }
 
 
   // Entity access: `client.Redact().list()` / `client.Redact().load({ id })`.
-  Redact(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Redact(entopts?: Record<string, any>) {
     const self = this
-    return new RedactEntity(self,data)
+    return new RedactEntity(self, entopts)
   }
 
 
   // Entity access: `client.Ssl().list()` / `client.Ssl().load({ id })`.
-  Ssl(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Ssl(entopts?: Record<string, any>) {
     const self = this
-    return new SslEntity(self,data)
+    return new SslEntity(self, entopts)
   }
 
 
   // Entity access: `client.Utility().list()` / `client.Utility().load({ id })`.
-  Utility(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Utility(entopts?: Record<string, any>) {
     const self = this
-    return new UtilityEntity(self,data)
+    return new UtilityEntity(self, entopts)
   }
 
 
   // Entity access: `client.Whoi().list()` / `client.Whoi().load({ id })`.
-  Whoi(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Whoi(entopts?: Record<string, any>) {
     const self = this
-    return new WhoiEntity(self,data)
+    return new WhoiEntity(self, entopts)
   }
 
 

@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# KiprioApiSuite SDK exists test
 
 import pytest
 from kiprioapisuite_sdk import KiprioApiSuiteSDK

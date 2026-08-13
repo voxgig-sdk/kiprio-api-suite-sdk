@@ -41,7 +41,7 @@ client = KiprioApiSuiteSDK({
 
 ### 3. Load a dnsresult
 
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -58,8 +58,8 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    dnsresult = client.DnsResult().load()
-    print(dnsresult)
+    utility = client.Utility().load()
+    print(utility)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -125,9 +125,10 @@ Create a mock client for unit testing — no server required:
 ```python
 client = KiprioApiSuiteSDK.test()
 
-# Entity ops return the bare record and raise on error.
-dnsresult = client.DnsResult().load()
-# dnsresult contains the mock response record
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+utility = client.Utility().load()
+# utility contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -234,7 +235,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -257,7 +258,7 @@ On error, `ok` is `False` and `err` contains the error value.
 | Field | Description |
 | --- | --- |
 | `domain` |  |
-| `record` |  |
+| `records` |  |
 
 Operations: Load.
 
@@ -267,8 +268,8 @@ API path: `/dns-lookup`
 
 | Field | Description |
 | --- | --- |
-| `agent` |  |
-| `sitemap` |  |
+| `agents` |  |
+| `sitemaps` |  |
 | `url` |  |
 
 Operations: List.
@@ -306,8 +307,8 @@ API path: `/qr`
 
 | Field | Description |
 | --- | --- |
-| `correction` |  |
 | `correction_count` |  |
+| `corrections` |  |
 | `language` |  |
 | `text` |  |
 
@@ -337,8 +338,8 @@ API path: `/ip`
 
 | Field | Description |
 | --- | --- |
-| `count` |  |
-| `entity` |  |
+| `counts` |  |
+| `entities` |  |
 | `original_length` |  |
 | `redact` |  |
 | `redacted` |  |
@@ -359,7 +360,7 @@ API path: `/redact`
 | `grade` |  |
 | `issuer` |  |
 | `protocol` |  |
-| `san` |  |
+| `sans` |  |
 | `subject` |  |
 | `valid` |  |
 
@@ -386,8 +387,8 @@ API path: `/hash`
 | --- | --- |
 | `created` |  |
 | `domain` |  |
-| `expire` |  |
-| `nameserver` |  |
+| `expires` |  |
+| `nameservers` |  |
 | `registered` |  |
 | `registrar` |  |
 | `status` |  |
@@ -417,7 +418,7 @@ Create an instance: `dns_result = client.DnsResult()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `domain` | `str` |  |
-| `record` | `dict` |  |
+| `records` | `dict` |  |
 
 #### Example: Load
 
@@ -440,8 +441,8 @@ Create an instance: `domain = client.Domain()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `agent` | `dict` |  |
-| `sitemap` | `list` |  |
+| `agents` | `dict` |  |
+| `sitemaps` | `list` |  |
 | `url` | `str` |  |
 
 #### Example: List
@@ -513,8 +514,8 @@ Create an instance: `grammar = client.Grammar()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `correction` | `list` |  |
 | `correction_count` | `int` |  |
+| `corrections` | `list` |  |
 | `language` | `str` |  |
 | `text` | `str` |  |
 
@@ -571,8 +572,8 @@ Create an instance: `redact = client.Redact()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `count` | `dict` |  |
-| `entity` | `list` |  |
+| `counts` | `dict` |  |
+| `entities` | `list` |  |
 | `original_length` | `int` |  |
 | `redact` | `str` |  |
 | `redacted` | `str` |  |
@@ -608,7 +609,7 @@ Create an instance: `ssl = client.Ssl()`
 | `grade` | `str` |  |
 | `issuer` | `str` |  |
 | `protocol` | `str` |  |
-| `san` | `list` |  |
+| `sans` | `list` |  |
 | `subject` | `str` |  |
 | `valid` | `bool` |  |
 
@@ -661,8 +662,8 @@ Create an instance: `whoi = client.Whoi()`
 | --- | --- | --- |
 | `created` | `str` |  |
 | `domain` | `str` |  |
-| `expire` | `str` |  |
-| `nameserver` | `list` |  |
+| `expires` | `str` |  |
+| `nameservers` | `list` |  |
 | `registered` | `bool` |  |
 | `registrar` | `str` |  |
 | `status` | `list` |  |
@@ -750,11 +751,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-dnsresult = client.DnsResult()
-dnsresult.load()
+utility = client.Utility()
+utility.load()
 
-# dnsresult.data_get() now returns the dnsresult data from the last load
-# dnsresult.match_get() returns the last match criteria
+# utility.data_get() now returns the utility data from the last load
+# utility.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

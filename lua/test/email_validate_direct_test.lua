@@ -66,16 +66,16 @@ function email_validate_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["KIPRIOAPISUITE_TEST_EMAIL_VALIDATE_ENTID"] = {},
-    ["KIPRIOAPISUITE_TEST_LIVE"] = "FALSE",
-    ["KIPRIOAPISUITE_APIKEY"] = "NONE",
+    ["KIPRIO_API_SUITE_TEST_EMAIL_VALIDATE_ENTID"] = {},
+    ["KIPRIO_API_SUITE_TEST_LIVE"] = "FALSE",
+    ["KIPRIO_API_SUITE_APIKEY"] = "NONE",
   })
 
-  local live = env["KIPRIOAPISUITE_TEST_LIVE"] == "TRUE"
+  local live = env["KIPRIO_API_SUITE_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["KIPRIOAPISUITE_APIKEY"],
+      apikey = env["KIPRIO_API_SUITE_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {
