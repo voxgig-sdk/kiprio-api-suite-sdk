@@ -28,7 +28,7 @@ class KiprioApiSuiteSDK
     utility = KiprioApiSuiteUtility.new
     @_utility = utility
 
-    config = KiprioApiSuiteConfig.make_config
+    config = KiprioApiSuiteConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

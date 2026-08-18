@@ -40,7 +40,7 @@ class KiprioApiSuiteSDK
         $utility = new KiprioApiSuiteUtility();
         $this->_utility = $utility;
 
-        $config = KiprioApiSuiteConfig::make_config();
+        $config = KiprioApiSuiteConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

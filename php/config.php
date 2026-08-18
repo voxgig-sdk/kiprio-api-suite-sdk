@@ -5,6 +5,29 @@ declare(strict_types=1);
 
 class KiprioApiSuiteConfig
 {
+    /** @var array<string,mixed>|null */
+    private static ?array $shared_config = null;
+
+    /**
+     * Return the process-wide config, built once on first use. The SDK reads
+     * the config on every request and never writes to it, so one instance is
+     * shared by every client rather than rebuilt per client.
+     *
+     * PHP arrays are copy-on-write, so callers that do mutate the result get
+     * their own copy and cannot disturb the shared one.
+     */
+    public static function shared_config(): array
+    {
+        if (self::$shared_config === null) {
+            self::$shared_config = self::make_config();
+        }
+        return self::$shared_config;
+    }
+
+    /**
+     * Build a fresh, fully materialised config array. Every call rebuilds the
+     * whole structure, so prefer shared_config unless you need a private copy.
+     */
     public static function make_config(): array
     {
         return [
@@ -43,18 +66,12 @@ class KiprioApiSuiteConfig
         'dns_result' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'domain',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'records',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 1,
             ],
           ],
           'name' => 'dns_result',
@@ -64,11 +81,9 @@ class KiprioApiSuiteConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'example.com',
                         'kind' => 'query',
                         'name' => 'domain',
@@ -77,12 +92,10 @@ class KiprioApiSuiteConfig
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'A,MX,TXT',
                         'kind' => 'query',
                         'name' => 'type',
                         'orig' => 'type',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -103,10 +116,8 @@ class KiprioApiSuiteConfig
                     'req' => '`reqdata`',
                     'res' => '`body.records`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -116,25 +127,16 @@ class KiprioApiSuiteConfig
         'domain' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'agents',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'sitemaps',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'url',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
           ],
           'name' => 'domain',
@@ -144,11 +146,9 @@ class KiprioApiSuiteConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'https://example.com',
                         'kind' => 'query',
                         'name' => 'url',
@@ -173,10 +173,8 @@ class KiprioApiSuiteConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [
@@ -186,67 +184,40 @@ class KiprioApiSuiteConfig
         'email_validate' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'confidence',
-              'req' => false,
               'type' => '`$NUMBER`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'disposable',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'email',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'free_provider',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'mx_found',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'role_based',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'suggest',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'syntax_ok',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'valid',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 8,
             ],
           ],
           'name' => 'email_validate',
@@ -256,11 +227,9 @@ class KiprioApiSuiteConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'user@example.com',
                         'kind' => 'query',
                         'name' => 'email',
@@ -285,10 +254,8 @@ class KiprioApiSuiteConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -304,56 +271,44 @@ class KiprioApiSuiteConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => '#ffffff',
                         'kind' => 'query',
                         'name' => 'bg',
                         'orig' => 'bg',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'M',
                         'kind' => 'query',
                         'name' => 'ec_level',
                         'orig' => 'ec_level',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => '#000000',
                         'kind' => 'query',
                         'name' => 'fg',
                         'orig' => 'fg',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'png',
                         'kind' => 'query',
                         'name' => 'format',
                         'orig' => 'format',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 512,
                         'kind' => 'query',
                         'name' => 'size',
                         'orig' => 'size',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'https://example.com',
                         'kind' => 'query',
                         'name' => 'url',
@@ -383,14 +338,11 @@ class KiprioApiSuiteConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'HELLO123',
                         'kind' => 'query',
                         'name' => 'data',
@@ -399,39 +351,31 @@ class KiprioApiSuiteConfig
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'code128',
                         'kind' => 'query',
                         'name' => 'format',
                         'orig' => 'format',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 120,
                         'kind' => 'query',
                         'name' => 'height',
                         'orig' => 'height',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'svg',
                         'kind' => 'query',
                         'name' => 'output',
                         'orig' => 'output',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 400,
                         'kind' => 'query',
                         'name' => 'width',
                         'orig' => 'width',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                     ],
@@ -455,23 +399,18 @@ class KiprioApiSuiteConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 1,
                 ],
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => true,
                         'kind' => 'query',
                         'name' => 'full_page',
                         'orig' => 'full_page',
-                        'reqd' => false,
                         'type' => '`$BOOLEAN`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'https://example.com',
                         'kind' => 'query',
                         'name' => 'url',
@@ -480,12 +419,10 @@ class KiprioApiSuiteConfig
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 1280,
                         'kind' => 'query',
                         'name' => 'width',
                         'orig' => 'width',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                     ],
@@ -507,10 +444,8 @@ class KiprioApiSuiteConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 2,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -520,28 +455,18 @@ class KiprioApiSuiteConfig
         'grammar' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'correction_count',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'corrections',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'language',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'text',
               'op' => [
                 'create' => [
@@ -549,9 +474,7 @@ class KiprioApiSuiteConfig
                   'type' => '`$STRING`',
                 ],
               ],
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
           ],
           'name' => 'grammar',
@@ -561,7 +484,6 @@ class KiprioApiSuiteConfig
               'name' => 'create',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'POST',
@@ -574,10 +496,8 @@ class KiprioApiSuiteConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'create',
             ],
           ],
           'relations' => [
@@ -587,67 +507,40 @@ class KiprioApiSuiteConfig
         'ipn' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'asn',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'city',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'country',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'country_code',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'ip',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'latitude',
-              'req' => false,
               'type' => '`$NUMBER`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'longitude',
-              'req' => false,
               'type' => '`$NUMBER`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'org',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'timezone',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 8,
             ],
           ],
           'name' => 'ipn',
@@ -657,16 +550,13 @@ class KiprioApiSuiteConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => '8.8.8.8',
                         'kind' => 'query',
                         'name' => 'ip',
                         'orig' => 'ip',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -686,10 +576,8 @@ class KiprioApiSuiteConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -699,46 +587,29 @@ class KiprioApiSuiteConfig
         'redact' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'counts',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'entities',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'original_length',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'redact',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'redacted',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'text',
               'req' => true,
               'type' => '`$STRING`',
-              'index$' => 5,
             ],
           ],
           'name' => 'redact',
@@ -748,7 +619,6 @@ class KiprioApiSuiteConfig
               'name' => 'create',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [],
                   'kind' => 'http',
                   'method' => 'POST',
@@ -763,10 +633,8 @@ class KiprioApiSuiteConfig
                     ],
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'create',
             ],
           ],
           'relations' => [
@@ -776,74 +644,44 @@ class KiprioApiSuiteConfig
         'ssl' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'cipher',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'days_remaining',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'domain',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'expires_at',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'grade',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'issuer',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'protocol',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'sans',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'subject',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 8,
             ],
             [
-              'active' => true,
               'name' => 'valid',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 9,
             ],
           ],
           'name' => 'ssl',
@@ -853,11 +691,9 @@ class KiprioApiSuiteConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'example.com',
                         'kind' => 'query',
                         'name' => 'domain',
@@ -866,12 +702,10 @@ class KiprioApiSuiteConfig
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 443,
                         'kind' => 'query',
                         'name' => 'port',
                         'orig' => 'port',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                     ],
@@ -892,10 +726,8 @@ class KiprioApiSuiteConfig
                     'req' => '`reqdata`',
                     'res' => '`body.sans`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [
@@ -905,32 +737,20 @@ class KiprioApiSuiteConfig
         'utility' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'algo',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'hash',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'input',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'length',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 3,
             ],
           ],
           'name' => 'utility',
@@ -940,20 +760,16 @@ class KiprioApiSuiteConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'sha256',
                         'kind' => 'query',
                         'name' => 'algo',
                         'orig' => 'algo',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'hello world',
                         'kind' => 'query',
                         'name' => 'input',
@@ -979,10 +795,8 @@ class KiprioApiSuiteConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -992,60 +806,36 @@ class KiprioApiSuiteConfig
         'whoi' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'created',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'domain',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'expires',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'nameservers',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'registered',
-              'req' => false,
               'type' => '`$BOOLEAN`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'registrar',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'status',
-              'req' => false,
               'type' => '`$ARRAY`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'updated',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 7,
             ],
           ],
           'name' => 'whoi',
@@ -1055,11 +845,9 @@ class KiprioApiSuiteConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'example' => 'example.com',
                         'kind' => 'query',
                         'name' => 'domain',
@@ -1084,10 +872,8 @@ class KiprioApiSuiteConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [
