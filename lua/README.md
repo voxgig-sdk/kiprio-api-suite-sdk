@@ -270,7 +270,7 @@ API path: `/robots-txt`
 | `free_provider` |  |
 | `mx_found` |  |
 | `role_based` |  |
-| `suggest` |  |
+| `suggest` | Suggested correction for typos |
 | `syntax_ok` |  |
 | `valid` |  |
 
@@ -293,8 +293,8 @@ API path: `/qr`
 | --- | --- |
 | `correction_count` |  |
 | `corrections` |  |
-| `language` |  |
-| `text` |  |
+| `language` | BCP 47 language tag |
+| `text` | Text to check |
 
 Operations: Create.
 
@@ -323,11 +323,11 @@ API path: `/ip`
 | Field | Description |
 | --- | --- |
 | `counts` |  |
-| `entities` |  |
+| `entities` | Include detected entity positions in response |
 | `original_length` |  |
-| `redact` |  |
+| `redact` | Comma-separated PII types to redact. |
 | `redacted` |  |
-| `text` |  |
+| `text` | Text to redact |
 
 Operations: Create.
 
@@ -456,7 +456,7 @@ Create an instance: `local email_validate = client:EmailValidate(nil)`
 | `free_provider` | `boolean` |  |
 | `mx_found` | `boolean` |  |
 | `role_based` | `boolean` |  |
-| `suggest` | `string` |  |
+| `suggest` | `string` | Suggested correction for typos |
 | `syntax_ok` | `boolean` |  |
 | `valid` | `boolean` |  |
 
@@ -500,8 +500,8 @@ Create an instance: `local grammar = client:Grammar(nil)`
 | --- | --- | --- |
 | `correction_count` | `number` |  |
 | `corrections` | `table` |  |
-| `language` | `string` |  |
-| `text` | `string` |  |
+| `language` | `string` | BCP 47 language tag |
+| `text` | `string` | Text to check |
 
 #### Example: Create
 
@@ -557,11 +557,11 @@ Create an instance: `local redact = client:Redact(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `counts` | `table` |  |
-| `entities` | `table` |  |
+| `entities` | `table` | Include detected entity positions in response |
 | `original_length` | `number` |  |
-| `redact` | `string` |  |
+| `redact` | `string` | Comma-separated PII types to redact. |
 | `redacted` | `string` |  |
-| `text` | `string` |  |
+| `text` | `string` | Text to redact |
 
 #### Example: Create
 

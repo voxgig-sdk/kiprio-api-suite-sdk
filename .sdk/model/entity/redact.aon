@@ -1,0 +1,67 @@
+# Entity: redact
+
+main: kit: entity: redact: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "counts"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "entities"
+      req: false
+      short: "Include detected entity positions in response"
+      type: "`$ARRAY`"
+    }
+    {
+      name: "original_length"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "redact"
+      req: false
+      short: "Comma-separated PII types to redact."
+      type: "`$STRING`"
+    }
+    {
+      name: "redacted"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "text"
+      req: true
+      short: "Text to redact"
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "redact"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/redact"
+          parts: [
+            "redact"
+          ]
+          transform: {
+            req: {
+              redact: "`reqdata`"
+            }
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

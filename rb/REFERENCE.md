@@ -243,7 +243,7 @@ email_validate = client.EmailValidate
 | `free_provider` | `Boolean` | No |  |
 | `mx_found` | `Boolean` | No |  |
 | `role_based` | `Boolean` | No |  |
-| `suggest` | `String` | No |  |
+| `suggest` | `String` | No | Suggested correction for typos |
 | `syntax_ok` | `Boolean` | No |  |
 | `valid` | `Boolean` | No |  |
 
@@ -345,8 +345,8 @@ grammar = client.Grammar
 | --- | --- | --- | --- |
 | `correction_count` | `Integer` | No |  |
 | `corrections` | `Array` | No |  |
-| `language` | `String` | No |  |
-| `text` | `String` | No |  |
+| `language` | `String` | No | BCP 47 language tag |
+| `text` | `String` | No | Text to check |
 
 ### Field Usage by Operation
 
@@ -469,11 +469,11 @@ redact = client.Redact
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `counts` | `Hash` | No |  |
-| `entities` | `Array` | No |  |
+| `entities` | `Array` | No | Include detected entity positions in response |
 | `original_length` | `Integer` | No |  |
-| `redact` | `String` | No |  |
+| `redact` | `String` | No | Comma-separated PII types to redact. |
 | `redacted` | `String` | No |  |
-| `text` | `String` | Yes |  |
+| `text` | `String` | Yes | Text to redact |
 
 ### Operations
 

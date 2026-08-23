@@ -237,7 +237,7 @@ email_validate = client.EmailValidate()
 | `free_provider` | `bool` | No |  |
 | `mx_found` | `bool` | No |  |
 | `role_based` | `bool` | No |  |
-| `suggest` | `str` | No |  |
+| `suggest` | `str` | No | Suggested correction for typos |
 | `syntax_ok` | `bool` | No |  |
 | `valid` | `bool` | No |  |
 
@@ -337,8 +337,8 @@ grammar = client.Grammar()
 | --- | --- | --- | --- |
 | `correction_count` | `int` | No |  |
 | `corrections` | `list` | No |  |
-| `language` | `str` | No |  |
-| `text` | `str` | No |  |
+| `language` | `str` | No | BCP 47 language tag |
+| `text` | `str` | No | Text to check |
 
 ### Field Usage by Operation
 
@@ -459,11 +459,11 @@ redact = client.Redact()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `counts` | `dict` | No |  |
-| `entities` | `list` | No |  |
+| `entities` | `list` | No | Include detected entity positions in response |
 | `original_length` | `int` | No |  |
-| `redact` | `str` | No |  |
+| `redact` | `str` | No | Comma-separated PII types to redact. |
 | `redacted` | `str` | No |  |
-| `text` | `str` | Yes |  |
+| `text` | `str` | Yes | Text to redact |
 
 ### Operations
 

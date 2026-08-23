@@ -19,9 +19,20 @@ class Config {
     return fi
   }
 
+  // False for a feature added at runtime via options.extend (station's
+  // adopt path) - the constructor uses this to skip makeFeature for names
+  // no generated class backs.
+  hasFeature(this: any, fn: string) {
+    return null != FEATURE_CLASS[fn]
+  }
+
 
   main = {
     name: 'KiprioApiSuite',
+        slug: "kiprio-api-suite",
+    version: "0.0.1",
+    target: "ts",
+
   }
 
 
@@ -229,6 +240,7 @@ class Config {
         },
         {
           "name": "suggest",
+          "short": "Suggested correction for typos",
           "type": "`$STRING`"
         },
         {
@@ -484,6 +496,7 @@ class Config {
         },
         {
           "name": "language",
+          "short": "BCP 47 language tag",
           "type": "`$STRING`"
         },
         {
@@ -494,6 +507,7 @@ class Config {
               "type": "`$STRING`"
             }
           },
+          "short": "Text to check",
           "type": "`$STRING`"
         }
       ],
@@ -612,6 +626,7 @@ class Config {
         },
         {
           "name": "entities",
+          "short": "Include detected entity positions in response",
           "type": "`$ARRAY`"
         },
         {
@@ -620,6 +635,7 @@ class Config {
         },
         {
           "name": "redact",
+          "short": "Comma-separated PII types to redact.",
           "type": "`$STRING`"
         },
         {
@@ -629,6 +645,7 @@ class Config {
         {
           "name": "text",
           "req": true,
+          "short": "Text to redact",
           "type": "`$STRING`"
         }
       ],

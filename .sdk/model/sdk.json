@@ -214,6 +214,7 @@
               "active": true,
               "name": "suggest",
               "req": false,
+              "short": "Suggested correction for typos",
               "type": "`$STRING`"
             },
             {
@@ -517,6 +518,7 @@
               "active": true,
               "name": "language",
               "req": false,
+              "short": "BCP 47 language tag",
               "type": "`$STRING`"
             },
             {
@@ -529,6 +531,7 @@
                 }
               },
               "req": false,
+              "short": "Text to check",
               "type": "`$STRING`"
             }
           ],
@@ -681,6 +684,7 @@
               "active": true,
               "name": "entities",
               "req": false,
+              "short": "Include detected entity positions in response",
               "type": "`$ARRAY`"
             },
             {
@@ -693,6 +697,7 @@
               "active": true,
               "name": "redact",
               "req": false,
+              "short": "Comma-separated PII types to redact.",
               "type": "`$STRING`"
             },
             {
@@ -705,6 +710,7 @@
               "active": true,
               "name": "text",
               "req": true,
+              "short": "Text to redact",
               "type": "`$STRING`"
             }
           ],

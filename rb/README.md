@@ -279,7 +279,7 @@ API path: `/robots-txt`
 | `free_provider` |  |
 | `mx_found` |  |
 | `role_based` |  |
-| `suggest` |  |
+| `suggest` | Suggested correction for typos |
 | `syntax_ok` |  |
 | `valid` |  |
 
@@ -302,8 +302,8 @@ API path: `/qr`
 | --- | --- |
 | `correction_count` |  |
 | `corrections` |  |
-| `language` |  |
-| `text` |  |
+| `language` | BCP 47 language tag |
+| `text` | Text to check |
 
 Operations: Create.
 
@@ -332,11 +332,11 @@ API path: `/ip`
 | Field | Description |
 | --- | --- |
 | `counts` |  |
-| `entities` |  |
+| `entities` | Include detected entity positions in response |
 | `original_length` |  |
-| `redact` |  |
+| `redact` | Comma-separated PII types to redact. |
 | `redacted` |  |
-| `text` |  |
+| `text` | Text to redact |
 
 Operations: Create.
 
@@ -467,7 +467,7 @@ Create an instance: `email_validate = client.EmailValidate`
 | `free_provider` | `Boolean` |  |
 | `mx_found` | `Boolean` |  |
 | `role_based` | `Boolean` |  |
-| `suggest` | `String` |  |
+| `suggest` | `String` | Suggested correction for typos |
 | `syntax_ok` | `Boolean` |  |
 | `valid` | `Boolean` |  |
 
@@ -513,8 +513,8 @@ Create an instance: `grammar = client.Grammar`
 | --- | --- | --- |
 | `correction_count` | `Integer` |  |
 | `corrections` | `Array` |  |
-| `language` | `String` |  |
-| `text` | `String` |  |
+| `language` | `String` | BCP 47 language tag |
+| `text` | `String` | Text to check |
 
 #### Example: Create
 
@@ -571,11 +571,11 @@ Create an instance: `redact = client.Redact`
 | Field | Type | Description |
 | --- | --- | --- |
 | `counts` | `Hash` |  |
-| `entities` | `Array` |  |
+| `entities` | `Array` | Include detected entity positions in response |
 | `original_length` | `Integer` |  |
-| `redact` | `String` |  |
+| `redact` | `String` | Comma-separated PII types to redact. |
 | `redacted` | `String` |  |
-| `text` | `String` |  |
+| `text` | `String` | Text to redact |
 
 #### Example: Create
 

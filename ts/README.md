@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -333,7 +333,7 @@ API path: `/robots-txt`
 | `free_provider` |  |
 | `mx_found` |  |
 | `role_based` |  |
-| `suggest` |  |
+| `suggest` | Suggested correction for typos |
 | `syntax_ok` |  |
 | `valid` |  |
 
@@ -356,8 +356,8 @@ API path: `/qr`
 | --- | --- |
 | `correction_count` |  |
 | `corrections` |  |
-| `language` |  |
-| `text` |  |
+| `language` | BCP 47 language tag |
+| `text` | Text to check |
 
 Operations: create.
 
@@ -386,11 +386,11 @@ API path: `/ip`
 | Field | Description |
 | --- | --- |
 | `counts` |  |
-| `entities` |  |
+| `entities` | Include detected entity positions in response |
 | `original_length` |  |
-| `redact` |  |
+| `redact` | Comma-separated PII types to redact. |
 | `redacted` |  |
-| `text` |  |
+| `text` | Text to redact |
 
 Operations: create.
 
@@ -519,7 +519,7 @@ Create an instance: `const email_validate = client.EmailValidate()`
 | `free_provider` | `boolean` |  |
 | `mx_found` | `boolean` |  |
 | `role_based` | `boolean` |  |
-| `suggest` | `string` |  |
+| `suggest` | `string` | Suggested correction for typos |
 | `syntax_ok` | `boolean` |  |
 | `valid` | `boolean` |  |
 
@@ -563,8 +563,8 @@ Create an instance: `const grammar = client.Grammar()`
 | --- | --- | --- |
 | `correction_count` | `number` |  |
 | `corrections` | `any[]` |  |
-| `language` | `string` |  |
-| `text` | `string` |  |
+| `language` | `string` | BCP 47 language tag |
+| `text` | `string` | Text to check |
 
 #### Example: Create
 
@@ -620,11 +620,11 @@ Create an instance: `const redact = client.Redact()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `counts` | `Record<string, any>` |  |
-| `entities` | `any[]` |  |
+| `entities` | `any[]` | Include detected entity positions in response |
 | `original_length` | `number` |  |
-| `redact` | `string` |  |
+| `redact` | `string` | Comma-separated PII types to redact. |
 | `redacted` | `string` |  |
-| `text` | `string` |  |
+| `text` | `string` | Text to redact |
 
 #### Example: Create
 

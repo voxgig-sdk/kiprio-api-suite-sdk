@@ -7,6 +7,9 @@ local function make_config()
   return {
     main = {
       name = "KiprioApiSuite",
+      slug = "kiprio-api-suite",
+      version = "0.0.1",
+      target = "lua",
     },
     feature = {
       ["test"] = {
@@ -183,6 +186,7 @@ local function make_config()
           },
           {
             ["name"] = "suggest",
+            ["short"] = "Suggested correction for typos",
             ["type"] = "`$STRING`",
           },
           {
@@ -438,6 +442,7 @@ local function make_config()
           },
           {
             ["name"] = "language",
+            ["short"] = "BCP 47 language tag",
             ["type"] = "`$STRING`",
           },
           {
@@ -448,6 +453,7 @@ local function make_config()
                 ["type"] = "`$STRING`",
               },
             },
+            ["short"] = "Text to check",
             ["type"] = "`$STRING`",
           },
         },
@@ -566,6 +572,7 @@ local function make_config()
           },
           {
             ["name"] = "entities",
+            ["short"] = "Include detected entity positions in response",
             ["type"] = "`$ARRAY`",
           },
           {
@@ -574,6 +581,7 @@ local function make_config()
           },
           {
             ["name"] = "redact",
+            ["short"] = "Comma-separated PII types to redact.",
             ["type"] = "`$STRING`",
           },
           {
@@ -583,6 +591,7 @@ local function make_config()
           {
             ["name"] = "text",
             ["req"] = true,
+            ["short"] = "Text to redact",
             ["type"] = "`$STRING`",
           },
         },

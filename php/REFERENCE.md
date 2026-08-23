@@ -242,7 +242,7 @@ $email_validate = $client->EmailValidate();
 | `free_provider` | `bool` | No |  |
 | `mx_found` | `bool` | No |  |
 | `role_based` | `bool` | No |  |
-| `suggest` | `string` | No |  |
+| `suggest` | `string` | No | Suggested correction for typos |
 | `syntax_ok` | `bool` | No |  |
 | `valid` | `bool` | No |  |
 
@@ -344,8 +344,8 @@ $grammar = $client->Grammar();
 | --- | --- | --- | --- |
 | `correction_count` | `int` | No |  |
 | `corrections` | `array` | No |  |
-| `language` | `string` | No |  |
-| `text` | `string` | No |  |
+| `language` | `string` | No | BCP 47 language tag |
+| `text` | `string` | No | Text to check |
 
 ### Field Usage by Operation
 
@@ -468,11 +468,11 @@ $redact = $client->Redact();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `counts` | `array` | No |  |
-| `entities` | `array` | No |  |
+| `entities` | `array` | No | Include detected entity positions in response |
 | `original_length` | `int` | No |  |
-| `redact` | `string` | No |  |
+| `redact` | `string` | No | Comma-separated PII types to redact. |
 | `redacted` | `string` | No |  |
-| `text` | `string` | Yes |  |
+| `text` | `string` | Yes | Text to redact |
 
 ### Operations
 

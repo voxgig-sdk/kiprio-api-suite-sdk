@@ -240,7 +240,7 @@ local email_validate = client:EmailValidate(nil)
 | `free_provider` | `boolean` | No |  |
 | `mx_found` | `boolean` | No |  |
 | `role_based` | `boolean` | No |  |
-| `suggest` | `string` | No |  |
+| `suggest` | `string` | No | Suggested correction for typos |
 | `syntax_ok` | `boolean` | No |  |
 | `valid` | `boolean` | No |  |
 
@@ -342,8 +342,8 @@ local grammar = client:Grammar(nil)
 | --- | --- | --- | --- |
 | `correction_count` | `number` | No |  |
 | `corrections` | `table` | No |  |
-| `language` | `string` | No |  |
-| `text` | `string` | No |  |
+| `language` | `string` | No | BCP 47 language tag |
+| `text` | `string` | No | Text to check |
 
 ### Field Usage by Operation
 
@@ -466,11 +466,11 @@ local redact = client:Redact(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `counts` | `table` | No |  |
-| `entities` | `table` | No |  |
+| `entities` | `table` | No | Include detected entity positions in response |
 | `original_length` | `number` | No |  |
-| `redact` | `string` | No |  |
+| `redact` | `string` | No | Comma-separated PII types to redact. |
 | `redacted` | `string` | No |  |
-| `text` | `string` | Yes |  |
+| `text` | `string` | Yes | Text to redact |
 
 ### Operations
 

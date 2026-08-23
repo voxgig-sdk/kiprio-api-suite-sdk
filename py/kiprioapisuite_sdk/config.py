@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "KiprioApiSuite",
+            "slug": "kiprio-api-suite",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -204,6 +207,7 @@ def make_config():
           },
           {
             "name": "suggest",
+            "short": "Suggested correction for typos",
             "type": "`$STRING`",
           },
           {
@@ -459,6 +463,7 @@ def make_config():
           },
           {
             "name": "language",
+            "short": "BCP 47 language tag",
             "type": "`$STRING`",
           },
           {
@@ -469,6 +474,7 @@ def make_config():
                 "type": "`$STRING`",
               },
             },
+            "short": "Text to check",
             "type": "`$STRING`",
           },
         ],
@@ -587,6 +593,7 @@ def make_config():
           },
           {
             "name": "entities",
+            "short": "Include detected entity positions in response",
             "type": "`$ARRAY`",
           },
           {
@@ -595,6 +602,7 @@ def make_config():
           },
           {
             "name": "redact",
+            "short": "Comma-separated PII types to redact.",
             "type": "`$STRING`",
           },
           {
@@ -604,6 +612,7 @@ def make_config():
           {
             "name": "text",
             "req": True,
+            "short": "Text to redact",
             "type": "`$STRING`",
           },
         ],

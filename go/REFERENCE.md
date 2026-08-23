@@ -246,7 +246,7 @@ fmt.Println(emailValidate.GetName()) // "email_validate"
 | `free_provider` | `bool` | No |  |
 | `mx_found` | `bool` | No |  |
 | `role_based` | `bool` | No |  |
-| `suggest` | `string` | No |  |
+| `suggest` | `string` | No | Suggested correction for typos |
 | `syntax_ok` | `bool` | No |  |
 | `valid` | `bool` | No |  |
 
@@ -346,8 +346,8 @@ fmt.Println(grammar.GetName()) // "grammar"
 | --- | --- | --- | --- |
 | `correction_count` | `int` | No |  |
 | `corrections` | `[]any` | No |  |
-| `language` | `string` | No |  |
-| `text` | `string` | No |  |
+| `language` | `string` | No | BCP 47 language tag |
+| `text` | `string` | No | Text to check |
 
 ### Field Usage by Operation
 
@@ -468,11 +468,11 @@ fmt.Println(redact.GetName()) // "redact"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `counts` | `map[string]any` | No |  |
-| `entities` | `[]any` | No |  |
+| `entities` | `[]any` | No | Include detected entity positions in response |
 | `original_length` | `int` | No |  |
-| `redact` | `string` | No |  |
+| `redact` | `string` | No | Comma-separated PII types to redact. |
 | `redacted` | `string` | No |  |
-| `text` | `string` | Yes |  |
+| `text` | `string` | Yes | Text to redact |
 
 ### Operations
 

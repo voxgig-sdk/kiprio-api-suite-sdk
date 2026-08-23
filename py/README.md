@@ -286,7 +286,7 @@ API path: `/robots-txt`
 | `free_provider` |  |
 | `mx_found` |  |
 | `role_based` |  |
-| `suggest` |  |
+| `suggest` | Suggested correction for typos |
 | `syntax_ok` |  |
 | `valid` |  |
 
@@ -309,8 +309,8 @@ API path: `/qr`
 | --- | --- |
 | `correction_count` |  |
 | `corrections` |  |
-| `language` |  |
-| `text` |  |
+| `language` | BCP 47 language tag |
+| `text` | Text to check |
 
 Operations: Create.
 
@@ -339,11 +339,11 @@ API path: `/ip`
 | Field | Description |
 | --- | --- |
 | `counts` |  |
-| `entities` |  |
+| `entities` | Include detected entity positions in response |
 | `original_length` |  |
-| `redact` |  |
+| `redact` | Comma-separated PII types to redact. |
 | `redacted` |  |
-| `text` |  |
+| `text` | Text to redact |
 
 Operations: Create.
 
@@ -472,7 +472,7 @@ Create an instance: `email_validate = client.EmailValidate()`
 | `free_provider` | `bool` |  |
 | `mx_found` | `bool` |  |
 | `role_based` | `bool` |  |
-| `suggest` | `str` |  |
+| `suggest` | `str` | Suggested correction for typos |
 | `syntax_ok` | `bool` |  |
 | `valid` | `bool` |  |
 
@@ -516,8 +516,8 @@ Create an instance: `grammar = client.Grammar()`
 | --- | --- | --- |
 | `correction_count` | `int` |  |
 | `corrections` | `list` |  |
-| `language` | `str` |  |
-| `text` | `str` |  |
+| `language` | `str` | BCP 47 language tag |
+| `text` | `str` | Text to check |
 
 #### Example: Create
 
@@ -573,11 +573,11 @@ Create an instance: `redact = client.Redact()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `counts` | `dict` |  |
-| `entities` | `list` |  |
+| `entities` | `list` | Include detected entity positions in response |
 | `original_length` | `int` |  |
-| `redact` | `str` |  |
+| `redact` | `str` | Comma-separated PII types to redact. |
 | `redacted` | `str` |  |
-| `text` | `str` |  |
+| `text` | `str` | Text to redact |
 
 #### Example: Create
 

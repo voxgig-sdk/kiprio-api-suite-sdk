@@ -1,57 +1,53 @@
-# Entity: redact
+# Entity: grammar
 
-main: kit: entity: redact: {
+main: kit: entity: grammar: {
 
   alias: field: {}
 
   fields: [
     {
-      name: "counts"
-      req: false
-      type: "`$OBJECT`"
-    }
-    {
-      name: "entities"
-      req: false
-      type: "`$ARRAY`"
-    }
-    {
-      name: "original_length"
+      name: "correction_count"
       req: false
       type: "`$INTEGER`"
     }
     {
-      name: "redact"
+      name: "corrections"
       req: false
-      type: "`$STRING`"
+      type: "`$ARRAY`"
     }
     {
-      name: "redacted"
+      name: "language"
       req: false
+      short: "BCP 47 language tag"
       type: "`$STRING`"
     }
     {
       name: "text"
-      req: true
+      op: {
+        create: {
+          req: true
+          type: "`$STRING`"
+        }
+      }
+      req: false
+      short: "Text to check"
       type: "`$STRING`"
     }
   ]
 
-  name: "redact"
+  name: "grammar"
   op: {
     create: {
       name: "create"
       points: [
         {
           method: "POST"
-          orig: "/redact"
+          orig: "/grammar"
           parts: [
-            "redact"
+            "grammar"
           ]
           transform: {
-            req: {
-              redact: "`reqdata`"
-            }
+            req: "`reqdata`"
             res: "`body`"
           }
         }

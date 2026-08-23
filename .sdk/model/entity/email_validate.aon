@@ -38,6 +38,7 @@ main: kit: entity: email_validate: {
     {
       name: "suggest"
       req: false
+      short: "Suggested correction for typos"
       type: "`$STRING`"
     }
     {
