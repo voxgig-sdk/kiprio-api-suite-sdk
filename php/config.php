@@ -42,6 +42,7 @@ class KiprioApiSuiteConfig
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [
