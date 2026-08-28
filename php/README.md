@@ -38,7 +38,7 @@ $client = new KiprioApiSuiteSDK([
 ```php
 try {
     // load() returns the ENTITY — call data_get() for the DnsResult record (throws on error).
-    $dnsresult = $client->DnsResult()->load();
+    $dnsresult = $client->DnsResult()->load(["domain" => "example_domain"]);
     print_r($dnsresult);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -53,7 +53,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $utility = $client->Utility()->load();
+    $utility = $client->Utility()->load(["input" => "example"]);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -127,7 +127,7 @@ $client = KiprioApiSuiteSDK::test();
 
 // Entity ops return the ENTITY (throws on error);
 // call data_get() for the mock record.
-$utility = $client->Utility()->load();
+$utility = $client->Utility()->load(["input" => "example"]);
 print_r($utility);
 ```
 
@@ -427,7 +427,7 @@ Create an instance: `$dns_result = $client->DnsResult();`
 
 ```php
 // load() returns the ENTITY — call data_get() for the DnsResult record (throws on error).
-$dns_result = $client->DnsResult()->load();
+$dns_result = $client->DnsResult()->load(["domain" => "domain"]);
 ```
 
 
@@ -485,7 +485,7 @@ Create an instance: `$email_validate = $client->EmailValidate();`
 
 ```php
 // load() returns the ENTITY — call data_get() for the EmailValidate record (throws on error).
-$email_validate = $client->EmailValidate()->load();
+$email_validate = $client->EmailValidate()->load(["email" => "email"]);
 ```
 
 
@@ -503,7 +503,7 @@ Create an instance: `$generate = $client->Generate();`
 
 ```php
 // load() returns the ENTITY — call data_get() for the Generate record (throws on error).
-$generate = $client->Generate()->load();
+$generate = $client->Generate()->load(["url" => "url"]);
 ```
 
 
@@ -652,7 +652,7 @@ Create an instance: `$utility = $client->Utility();`
 
 ```php
 // load() returns the ENTITY — call data_get() for the Utility record (throws on error).
-$utility = $client->Utility()->load();
+$utility = $client->Utility()->load(["input" => "input"]);
 ```
 
 
@@ -685,6 +685,29 @@ Create an instance: `$whoi = $client->Whoi();`
 // list() returns an array of Whoi records (throws on error).
 $whois = $client->Whoi()->list();
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced
@@ -764,7 +787,7 @@ stores the returned data and match criteria internally.
 
 ```php
 $utility = $client->Utility();
-$utility->load();
+$utility->load(["input" => "example"]);
 
 // $utility->data_get() now returns the utility data from the last load
 // $utility->match_get() returns the last match criteria

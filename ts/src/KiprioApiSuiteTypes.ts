@@ -11,8 +11,8 @@ export interface DnsResult {
 }
 
 export interface DnsResultLoadMatch {
-  domain?: string
-  records?: Record<string, any>
+  domain: string
+  type?: string
 }
 
 export interface Domain {
@@ -22,9 +22,7 @@ export interface Domain {
 }
 
 export interface DomainListMatch {
-  agents?: Record<string, any>
-  sitemaps?: any[]
-  url?: string
+  url: string
 }
 
 export interface EmailValidate {
@@ -40,21 +38,19 @@ export interface EmailValidate {
 }
 
 export interface EmailValidateLoadMatch {
-  confidence?: number
-  disposable?: boolean
-  email?: string
-  free_provider?: boolean
-  mx_found?: boolean
-  role_based?: boolean
-  suggest?: string
-  syntax_ok?: boolean
-  valid?: boolean
+  email: string
 }
 
 export interface Generate {
 }
 
 export interface GenerateLoadMatch {
+  bg?: string
+  ec_level?: string
+  fg?: string
+  format?: string
+  size?: number
+  url: string
 }
 
 export interface Grammar {
@@ -84,15 +80,7 @@ export interface Ipn {
 }
 
 export interface IpnLoadMatch {
-  asn?: string
-  city?: string
-  country?: string
-  country_code?: string
   ip?: string
-  latitude?: number
-  longitude?: number
-  org?: string
-  timezone?: string
 }
 
 export interface Redact {
@@ -127,16 +115,8 @@ export interface Ssl {
 }
 
 export interface SslListMatch {
-  cipher?: string
-  days_remaining?: number
-  domain?: string
-  expires_at?: string
-  grade?: string
-  issuer?: string
-  protocol?: string
-  sans?: any[]
-  subject?: string
-  valid?: boolean
+  domain: string
+  port?: number
 }
 
 export interface Utility {
@@ -148,9 +128,7 @@ export interface Utility {
 
 export interface UtilityLoadMatch {
   algo?: string
-  hash?: string
-  input?: string
-  length?: number
+  input: string
 }
 
 export interface Whoi {
@@ -165,13 +143,6 @@ export interface Whoi {
 }
 
 export interface WhoiListMatch {
-  created?: string
-  domain?: string
-  expires?: string
-  nameservers?: any[]
-  registered?: boolean
-  registrar?: string
-  status?: any[]
-  updated?: string
+  domain: string
 }
 

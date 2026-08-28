@@ -20,8 +20,8 @@ type DnsResult struct {
 
 // DnsResultLoadMatch is the typed request payload for DnsResult.LoadTyped.
 type DnsResultLoadMatch struct {
-	Domain *string `json:"domain,omitempty"`
-	Records *map[string]any `json:"records,omitempty"`
+	Domain string `json:"domain"`
+	Type *string `json:"type,omitempty"`
 }
 
 // Domain is the typed data model for the domain entity.
@@ -33,9 +33,7 @@ type Domain struct {
 
 // DomainListMatch is the typed request payload for Domain.ListTyped.
 type DomainListMatch struct {
-	Agents *map[string]any `json:"agents,omitempty"`
-	Sitemaps *[]any `json:"sitemaps,omitempty"`
-	Url *string `json:"url,omitempty"`
+	Url string `json:"url"`
 }
 
 // EmailValidate is the typed data model for the email_validate entity.
@@ -53,15 +51,7 @@ type EmailValidate struct {
 
 // EmailValidateLoadMatch is the typed request payload for EmailValidate.LoadTyped.
 type EmailValidateLoadMatch struct {
-	Confidence *float64 `json:"confidence,omitempty"`
-	Disposable *bool `json:"disposable,omitempty"`
-	Email *string `json:"email,omitempty"`
-	FreeProvider *bool `json:"free_provider,omitempty"`
-	MxFound *bool `json:"mx_found,omitempty"`
-	RoleBased *bool `json:"role_based,omitempty"`
-	Suggest *string `json:"suggest,omitempty"`
-	SyntaxOk *bool `json:"syntax_ok,omitempty"`
-	Valid *bool `json:"valid,omitempty"`
+	Email string `json:"email"`
 }
 
 // Generate is the typed data model for the generate entity.
@@ -70,6 +60,12 @@ type Generate struct {
 
 // GenerateLoadMatch is the typed request payload for Generate.LoadTyped.
 type GenerateLoadMatch struct {
+	Bg *string `json:"bg,omitempty"`
+	EcLevel *string `json:"ec_level,omitempty"`
+	Fg *string `json:"fg,omitempty"`
+	Format *string `json:"format,omitempty"`
+	Size *int `json:"size,omitempty"`
+	Url string `json:"url"`
 }
 
 // Grammar is the typed data model for the grammar entity.
@@ -103,15 +99,7 @@ type Ipn struct {
 
 // IpnLoadMatch is the typed request payload for Ipn.LoadTyped.
 type IpnLoadMatch struct {
-	Asn *string `json:"asn,omitempty"`
-	City *string `json:"city,omitempty"`
-	Country *string `json:"country,omitempty"`
-	CountryCode *string `json:"country_code,omitempty"`
 	Ip *string `json:"ip,omitempty"`
-	Latitude *float64 `json:"latitude,omitempty"`
-	Longitude *float64 `json:"longitude,omitempty"`
-	Org *string `json:"org,omitempty"`
-	Timezone *string `json:"timezone,omitempty"`
 }
 
 // Redact is the typed data model for the redact entity.
@@ -150,16 +138,8 @@ type Ssl struct {
 
 // SslListMatch is the typed request payload for Ssl.ListTyped.
 type SslListMatch struct {
-	Cipher *string `json:"cipher,omitempty"`
-	DaysRemaining *int `json:"days_remaining,omitempty"`
-	Domain *string `json:"domain,omitempty"`
-	ExpiresAt *string `json:"expires_at,omitempty"`
-	Grade *string `json:"grade,omitempty"`
-	Issuer *string `json:"issuer,omitempty"`
-	Protocol *string `json:"protocol,omitempty"`
-	Sans *[]any `json:"sans,omitempty"`
-	Subject *string `json:"subject,omitempty"`
-	Valid *bool `json:"valid,omitempty"`
+	Domain string `json:"domain"`
+	Port *int `json:"port,omitempty"`
 }
 
 // Utility is the typed data model for the utility entity.
@@ -173,9 +153,7 @@ type Utility struct {
 // UtilityLoadMatch is the typed request payload for Utility.LoadTyped.
 type UtilityLoadMatch struct {
 	Algo *string `json:"algo,omitempty"`
-	Hash *string `json:"hash,omitempty"`
-	Input *string `json:"input,omitempty"`
-	Length *int `json:"length,omitempty"`
+	Input string `json:"input"`
 }
 
 // Whoi is the typed data model for the whoi entity.
@@ -192,14 +170,7 @@ type Whoi struct {
 
 // WhoiListMatch is the typed request payload for Whoi.ListTyped.
 type WhoiListMatch struct {
-	Created *string `json:"created,omitempty"`
-	Domain *string `json:"domain,omitempty"`
-	Expires *string `json:"expires,omitempty"`
-	Nameservers *[]any `json:"nameservers,omitempty"`
-	Registered *bool `json:"registered,omitempty"`
-	Registrar *string `json:"registrar,omitempty"`
-	Status *[]any `json:"status,omitempty"`
-	Updated *string `json:"updated,omitempty"`
+	Domain string `json:"domain"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

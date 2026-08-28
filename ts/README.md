@@ -41,7 +41,7 @@ const client = new KiprioApiSuiteSDK({
 
 ```ts
 try {
-  const dnsresult = await client.DnsResult().load()
+  const dnsresult = await client.DnsResult().load({ domain: 'example_domain' })
   console.log(dnsresult)
 } catch (err) {
   console.error('load failed:', err)
@@ -55,7 +55,7 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const utility = await client.Utility().load()
+  const utility = await client.Utility().load({ input: "example" })
   console.log(utility)
 } catch (err) {
   console.error('load failed:', err)
@@ -122,7 +122,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = KiprioApiSuiteSDK.test()
 
-const utility = await client.Utility().load()
+const utility = await client.Utility().load({ input: 'example_input' })
 // utility is the entity, populated with mock response data
 // — call utility.data() for the record itself
 console.log(utility)
@@ -143,7 +143,7 @@ Entity instances remember their last match and data:
 const entity = client.Utility()
 
 // First call runs the operation and stores its result
-await entity.load()
+await entity.load({ input: 'example_input' })
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
@@ -470,7 +470,7 @@ Create an instance: `const dns_result = client.DnsResult()`
 #### Example: Load
 
 ```ts
-const dns_result = await client.DnsResult().load()
+const dns_result = await client.DnsResult().load({ domain: 'domain' })
 ```
 
 
@@ -495,7 +495,7 @@ Create an instance: `const domain = client.Domain()`
 #### Example: List
 
 ```ts
-const domains = await client.Domain().list()
+const domains = await client.Domain().list({ url: "example" })
 ```
 
 
@@ -526,7 +526,7 @@ Create an instance: `const email_validate = client.EmailValidate()`
 #### Example: Load
 
 ```ts
-const email_validate = await client.EmailValidate().load()
+const email_validate = await client.EmailValidate().load({ email: 'email' })
 ```
 
 
@@ -543,7 +543,7 @@ Create an instance: `const generate = client.Generate()`
 #### Example: Load
 
 ```ts
-const generate = await client.Generate().load()
+const generate = await client.Generate().load({ url: 'url' })
 ```
 
 
@@ -663,7 +663,7 @@ Create an instance: `const ssl = client.Ssl()`
 #### Example: List
 
 ```ts
-const ssls = await client.Ssl().list()
+const ssls = await client.Ssl().list({ domain: "example" })
 ```
 
 
@@ -689,7 +689,7 @@ Create an instance: `const utility = client.Utility()`
 #### Example: Load
 
 ```ts
-const utility = await client.Utility().load()
+const utility = await client.Utility().load({ input: 'input' })
 ```
 
 
@@ -719,8 +719,31 @@ Create an instance: `const whoi = client.Whoi()`
 #### Example: List
 
 ```ts
-const whois = await client.Whoi().list()
+const whois = await client.Whoi().list({ domain: "example" })
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced
@@ -793,7 +816,7 @@ calls on the same instance can rely on this state.
 
 ```ts
 const utility = client.Utility()
-await utility.load()
+await utility.load({ input: "example" })
 
 // utility.data() now returns the utility data from the last `load`
 // utility.match() returns the last match criteria

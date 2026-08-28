@@ -134,7 +134,7 @@ dns_result = client.DnsResult()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.DnsResult().load()
+result = client.DnsResult().load({"domain": "domain"})
 ```
 
 ### Common Methods
@@ -187,7 +187,7 @@ domain = client.Domain()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Domain().list()
+results = client.Domain().list({"url": "example"})
 for domain in results:
     print(domain)
 ```
@@ -248,7 +248,7 @@ email_validate = client.EmailValidate()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.EmailValidate().load()
+result = client.EmailValidate().load({"email": "email"})
 ```
 
 ### Common Methods
@@ -293,7 +293,7 @@ generate = client.Generate()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Generate().load()
+result = client.Generate().load({"url": "url"})
 ```
 
 ### Common Methods
@@ -534,7 +534,7 @@ ssl = client.Ssl()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Ssl().list()
+results = client.Ssl().list({"domain": "example"})
 for ssl in results:
     print(ssl)
 ```
@@ -590,7 +590,7 @@ utility = client.Utility()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Utility().load()
+result = client.Utility().load({"input": "input"})
 ```
 
 ### Common Methods
@@ -648,7 +648,7 @@ whoi = client.Whoi()
 List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Whoi().list()
+results = client.Whoi().list({"domain": "example"})
 for whoi in results:
     print(whoi)
 ```
@@ -698,4 +698,42 @@ client = KiprioApiSuiteSDK({
     },
 })
 ```
+
+
+### Configuring features
+
+Each feature is inactive until switched on, and an SDK with no feature
+configured does no feature work at all. Every option below keeps its default
+unless you name it.
+
+The array form of \`feature\` is significant: several features wrap the
+transport, and the order you list them in is the order they nest.
+
+#### `test`
+
+In-memory mock transport for testing without a live server.
+
+**Configuration**
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Options above are those the model carries a default for. A feature may
+also accept callback options — a `sink` to receive each record, for
+instance — which have no default and are covered in the full feature
+reference.
+
+**Usage**
+
+Set `feature.test.active` to true in the client options, and override any option above in the same entry. Every option keeps
+its default unless you name it.
+
+**Considerations**
+
+- Attaches to pipeline hooks, not the transport, so activation order does
+  not change what it observes.
+- Installs the BASE transport that the wrapping features wrap, so it must be
+  activated before them.
+- Inactive by default: leaving it out costs nothing at runtime.
 

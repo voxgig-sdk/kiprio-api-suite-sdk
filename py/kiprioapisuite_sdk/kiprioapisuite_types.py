@@ -21,9 +21,12 @@ class DnsResult(TypedDict, total=False):
     records: dict
 
 
-class DnsResultLoadMatch(TypedDict, total=False):
+class DnsResultLoadMatchRequired(TypedDict):
     domain: str
-    records: dict
+
+
+class DnsResultLoadMatch(DnsResultLoadMatchRequired, total=False):
+    type: str
 
 
 class Domain(TypedDict, total=False):
@@ -32,9 +35,7 @@ class Domain(TypedDict, total=False):
     url: str
 
 
-class DomainListMatch(TypedDict, total=False):
-    agents: dict
-    sitemaps: list
+class DomainListMatch(TypedDict):
     url: str
 
 
@@ -50,24 +51,24 @@ class EmailValidate(TypedDict, total=False):
     valid: bool
 
 
-class EmailValidateLoadMatch(TypedDict, total=False):
-    confidence: float
-    disposable: bool
+class EmailValidateLoadMatch(TypedDict):
     email: str
-    free_provider: bool
-    mx_found: bool
-    role_based: bool
-    suggest: str
-    syntax_ok: bool
-    valid: bool
 
 
 class Generate(TypedDict):
     pass
 
 
-class GenerateLoadMatch(TypedDict):
-    pass
+class GenerateLoadMatchRequired(TypedDict):
+    url: str
+
+
+class GenerateLoadMatch(GenerateLoadMatchRequired, total=False):
+    bg: str
+    ec_level: str
+    fg: str
+    format: str
+    size: int
 
 
 class Grammar(TypedDict, total=False):
@@ -97,15 +98,7 @@ class Ipn(TypedDict, total=False):
 
 
 class IpnLoadMatch(TypedDict, total=False):
-    asn: str
-    city: str
-    country: str
-    country_code: str
     ip: str
-    latitude: float
-    longitude: float
-    org: str
-    timezone: str
 
 
 class RedactRequired(TypedDict):
@@ -145,17 +138,12 @@ class Ssl(TypedDict, total=False):
     valid: bool
 
 
-class SslListMatch(TypedDict, total=False):
-    cipher: str
-    days_remaining: int
+class SslListMatchRequired(TypedDict):
     domain: str
-    expires_at: str
-    grade: str
-    issuer: str
-    protocol: str
-    sans: list
-    subject: str
-    valid: bool
+
+
+class SslListMatch(SslListMatchRequired, total=False):
+    port: int
 
 
 class Utility(TypedDict, total=False):
@@ -165,11 +153,12 @@ class Utility(TypedDict, total=False):
     length: int
 
 
-class UtilityLoadMatch(TypedDict, total=False):
-    algo: str
-    hash: str
+class UtilityLoadMatchRequired(TypedDict):
     input: str
-    length: int
+
+
+class UtilityLoadMatch(UtilityLoadMatchRequired, total=False):
+    algo: str
 
 
 class Whoi(TypedDict, total=False):
@@ -183,12 +172,5 @@ class Whoi(TypedDict, total=False):
     updated: str
 
 
-class WhoiListMatch(TypedDict, total=False):
-    created: str
+class WhoiListMatch(TypedDict):
     domain: str
-    expires: str
-    nameservers: list
-    registered: bool
-    registrar: str
-    status: list
-    updated: str

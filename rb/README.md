@@ -37,7 +37,7 @@ client = KiprioApiSuiteSDK.new({
 ```ruby
 begin
   # load returns the ENTITY — call data_get for the DnsResult record (raises on error).
-  dnsresult = client.DnsResult.load()
+  dnsresult = client.DnsResult.load({ "domain" => "example_domain" })
   puts dnsresult
 rescue => err
   warn "load failed: #{err}"
@@ -51,7 +51,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  utility = client.Utility.load()
+  utility = client.Utility.load({ "input" => "example" })
 rescue => err
   warn "load failed: #{err}"
 end
@@ -121,7 +121,7 @@ client = KiprioApiSuiteSDK.test
 
 # Entity ops return the ENTITY (raises on error);
 # call data_get for the mock record.
-utility = client.Utility.load()
+utility = client.Utility.load({ "input" => "example" })
 puts utility
 ```
 
@@ -417,7 +417,7 @@ Create an instance: `dns_result = client.DnsResult`
 
 ```ruby
 # load returns the ENTITY — call data_get for the DnsResult record (raises on error).
-dns_result = client.DnsResult.load()
+dns_result = client.DnsResult.load({ "domain" => "domain" })
 ```
 
 
@@ -475,7 +475,7 @@ Create an instance: `email_validate = client.EmailValidate`
 
 ```ruby
 # load returns the ENTITY — call data_get for the EmailValidate record (raises on error).
-email_validate = client.EmailValidate.load()
+email_validate = client.EmailValidate.load({ "email" => "email" })
 ```
 
 
@@ -493,7 +493,7 @@ Create an instance: `generate = client.Generate`
 
 ```ruby
 # load returns the ENTITY — call data_get for the Generate record (raises on error).
-generate = client.Generate.load()
+generate = client.Generate.load({ "url" => "url" })
 ```
 
 
@@ -642,7 +642,7 @@ Create an instance: `utility = client.Utility`
 
 ```ruby
 # load returns the ENTITY — call data_get for the Utility record (raises on error).
-utility = client.Utility.load()
+utility = client.Utility.load({ "input" => "input" })
 ```
 
 
@@ -675,6 +675,29 @@ Create an instance: `whoi = client.Whoi`
 # list returns an Array of Whoi records (raises on error).
 whois = client.Whoi.list
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced
@@ -754,7 +777,7 @@ stores the returned data and match criteria internally.
 
 ```ruby
 utility = client.Utility
-utility.load()
+utility.load({ "input" => "example" })
 
 # utility.data_get now returns the utility data from the last load
 # utility.match_get returns the last match criteria

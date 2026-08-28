@@ -45,7 +45,7 @@ client = KiprioApiSuiteSDK({
 
 ```python
 try:
-    dnsresult = client.DnsResult().load()
+    dnsresult = client.DnsResult().load({"domain": "example_domain"})
     print(dnsresult)
 except Exception as err:
     print(f"load failed: {err}")
@@ -58,7 +58,7 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    utility = client.Utility().load()
+    utility = client.Utility().load({"input": "example"})
     print(utility)
 except Exception as err:
     print(f"load failed: {err}")
@@ -127,7 +127,7 @@ client = KiprioApiSuiteSDK.test()
 
 # Entity ops return the ENTITY and raises on error;
 # call data_get() for the record.
-utility = client.Utility().load()
+utility = client.Utility().load({"input": "example"})
 # utility contains the mock response record
 ```
 
@@ -423,7 +423,7 @@ Create an instance: `dns_result = client.DnsResult()`
 #### Example: Load
 
 ```python
-dns_result = client.DnsResult().load()
+dns_result = client.DnsResult().load({"domain": "domain"})
 ```
 
 
@@ -448,7 +448,7 @@ Create an instance: `domain = client.Domain()`
 #### Example: List
 
 ```python
-domains = client.Domain().list()
+domains = client.Domain().list({"url": "example"})
 ```
 
 
@@ -479,7 +479,7 @@ Create an instance: `email_validate = client.EmailValidate()`
 #### Example: Load
 
 ```python
-email_validate = client.EmailValidate().load()
+email_validate = client.EmailValidate().load({"email": "email"})
 ```
 
 
@@ -496,7 +496,7 @@ Create an instance: `generate = client.Generate()`
 #### Example: Load
 
 ```python
-generate = client.Generate().load()
+generate = client.Generate().load({"url": "url"})
 ```
 
 
@@ -616,7 +616,7 @@ Create an instance: `ssl = client.Ssl()`
 #### Example: List
 
 ```python
-ssls = client.Ssl().list()
+ssls = client.Ssl().list({"domain": "example"})
 ```
 
 
@@ -642,7 +642,7 @@ Create an instance: `utility = client.Utility()`
 #### Example: Load
 
 ```python
-utility = client.Utility().load()
+utility = client.Utility().load({"input": "input"})
 ```
 
 
@@ -672,8 +672,31 @@ Create an instance: `whoi = client.Whoi()`
 #### Example: List
 
 ```python
-whois = client.Whoi().list()
+whois = client.Whoi().list({"domain": "example"})
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced
@@ -752,7 +775,7 @@ stores the returned data and match criteria internally.
 
 ```python
 utility = client.Utility()
-utility.load()
+utility.load({"input": "example"})
 
 # utility.data_get() now returns the utility data from the last load
 # utility.match_get() returns the last match criteria

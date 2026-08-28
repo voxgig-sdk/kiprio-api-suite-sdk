@@ -22,8 +22,8 @@ class DnsResult
 /** Request payload for DnsResult#load. */
 class DnsResultLoadMatch
 {
-    public ?string $domain = null;
-    public ?array $records = null;
+    public string $domain;
+    public ?string $type = null;
 }
 
 /** Domain entity data model. */
@@ -37,9 +37,7 @@ class Domain
 /** Request payload for Domain#list. */
 class DomainListMatch
 {
-    public ?array $agents = null;
-    public ?array $sitemaps = null;
-    public ?string $url = null;
+    public string $url;
 }
 
 /** EmailValidate entity data model. */
@@ -59,15 +57,7 @@ class EmailValidate
 /** Request payload for EmailValidate#load. */
 class EmailValidateLoadMatch
 {
-    public ?float $confidence = null;
-    public ?bool $disposable = null;
-    public ?string $email = null;
-    public ?bool $free_provider = null;
-    public ?bool $mx_found = null;
-    public ?bool $role_based = null;
-    public ?string $suggest = null;
-    public ?bool $syntax_ok = null;
-    public ?bool $valid = null;
+    public string $email;
 }
 
 /** Generate entity data model. */
@@ -78,6 +68,12 @@ class Generate
 /** Request payload for Generate#load. */
 class GenerateLoadMatch
 {
+    public ?string $bg = null;
+    public ?string $ec_level = null;
+    public ?string $fg = null;
+    public ?string $format = null;
+    public ?int $size = null;
+    public string $url;
 }
 
 /** Grammar entity data model. */
@@ -115,15 +111,7 @@ class Ipn
 /** Request payload for Ipn#load. */
 class IpnLoadMatch
 {
-    public ?string $asn = null;
-    public ?string $city = null;
-    public ?string $country = null;
-    public ?string $country_code = null;
     public ?string $ip = null;
-    public ?float $latitude = null;
-    public ?float $longitude = null;
-    public ?string $org = null;
-    public ?string $timezone = null;
 }
 
 /** Redact entity data model. */
@@ -166,16 +154,8 @@ class Ssl
 /** Request payload for Ssl#list. */
 class SslListMatch
 {
-    public ?string $cipher = null;
-    public ?int $days_remaining = null;
-    public ?string $domain = null;
-    public ?string $expires_at = null;
-    public ?string $grade = null;
-    public ?string $issuer = null;
-    public ?string $protocol = null;
-    public ?array $sans = null;
-    public ?string $subject = null;
-    public ?bool $valid = null;
+    public string $domain;
+    public ?int $port = null;
 }
 
 /** Utility entity data model. */
@@ -191,9 +171,7 @@ class Utility
 class UtilityLoadMatch
 {
     public ?string $algo = null;
-    public ?string $hash = null;
-    public ?string $input = null;
-    public ?int $length = null;
+    public string $input;
 }
 
 /** Whoi entity data model. */
@@ -212,13 +190,6 @@ class Whoi
 /** Request payload for Whoi#list. */
 class WhoiListMatch
 {
-    public ?string $created = null;
-    public ?string $domain = null;
-    public ?string $expires = null;
-    public ?array $nameservers = null;
-    public ?bool $registered = null;
-    public ?string $registrar = null;
-    public ?array $status = null;
-    public ?string $updated = null;
+    public string $domain;
 }
 

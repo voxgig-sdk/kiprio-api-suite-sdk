@@ -11,8 +11,8 @@
 ---@field records? table
 
 ---@class DnsResultLoadMatch
----@field domain? string
----@field records? table
+---@field domain string
+---@field type? string
 
 ---@class Domain
 ---@field agents? table
@@ -20,9 +20,7 @@
 ---@field url? string
 
 ---@class DomainListMatch
----@field agents? table
----@field sitemaps? table
----@field url? string
+---@field url string
 
 ---@class EmailValidate
 ---@field confidence? number
@@ -36,19 +34,17 @@
 ---@field valid? boolean
 
 ---@class EmailValidateLoadMatch
----@field confidence? number
----@field disposable? boolean
----@field email? string
----@field free_provider? boolean
----@field mx_found? boolean
----@field role_based? boolean
----@field suggest? string
----@field syntax_ok? boolean
----@field valid? boolean
+---@field email string
 
 ---@class Generate
 
 ---@class GenerateLoadMatch
+---@field bg? string
+---@field ec_level? string
+---@field fg? string
+---@field format? string
+---@field size? number
+---@field url string
 
 ---@class Grammar
 ---@field correction_count? number
@@ -74,15 +70,7 @@
 ---@field timezone? string
 
 ---@class IpnLoadMatch
----@field asn? string
----@field city? string
----@field country? string
----@field country_code? string
 ---@field ip? string
----@field latitude? number
----@field longitude? number
----@field org? string
----@field timezone? string
 
 ---@class Redact
 ---@field counts? table
@@ -113,16 +101,8 @@
 ---@field valid? boolean
 
 ---@class SslListMatch
----@field cipher? string
----@field days_remaining? number
----@field domain? string
----@field expires_at? string
----@field grade? string
----@field issuer? string
----@field protocol? string
----@field sans? table
----@field subject? string
----@field valid? boolean
+---@field domain string
+---@field port? number
 
 ---@class Utility
 ---@field algo? string
@@ -132,9 +112,7 @@
 
 ---@class UtilityLoadMatch
 ---@field algo? string
----@field hash? string
----@field input? string
----@field length? number
+---@field input string
 
 ---@class Whoi
 ---@field created? string
@@ -147,14 +125,7 @@
 ---@field updated? string
 
 ---@class WhoiListMatch
----@field created? string
----@field domain? string
----@field expires? string
----@field nameservers? table
----@field registered? boolean
----@field registrar? string
----@field status? table
----@field updated? string
+---@field domain string
 
 local M = {}
 

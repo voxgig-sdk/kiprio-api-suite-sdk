@@ -54,7 +54,7 @@ func main() {
     })
 
     // Load a single dnsResult — the value is the loaded record.
-    dnsResult, err := client.DnsResult(nil).Load(nil, nil)
+    dnsResult, err := client.DnsResult(nil).Load(map[string]any{"domain": "example_domain"}, nil)
     if err != nil {
         panic(err)
     }
@@ -69,7 +69,7 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-utility, err := client.Utility(nil).Load(nil, nil)
+utility, err := client.Utility(nil).Load(map[string]any{"input": "example"}, nil)
 if err != nil {
     // handle err
     return
@@ -139,7 +139,7 @@ Create a mock client for unit testing — no server required:
 client := sdk.Test()
 
 utility, err := client.Utility(nil).Load(
-    nil, nil,
+    map[string]any{"input": "example"}, nil,
 )
 if err != nil {
     panic(err)
@@ -441,7 +441,7 @@ Create an instance: `dnsResult := client.DnsResult(nil)`
 #### Example: Load
 
 ```go
-dnsResult, err := client.DnsResult(nil).Load(nil, nil)
+dnsResult, err := client.DnsResult(nil).Load(map[string]any{"domain": "domain"}, nil)
 if err != nil {
     panic(err)
 }
@@ -505,7 +505,7 @@ Create an instance: `emailValidate := client.EmailValidate(nil)`
 #### Example: Load
 
 ```go
-emailValidate, err := client.EmailValidate(nil).Load(nil, nil)
+emailValidate, err := client.EmailValidate(nil).Load(map[string]any{"email": "email"}, nil)
 if err != nil {
     panic(err)
 }
@@ -526,7 +526,7 @@ Create an instance: `generate := client.Generate(nil)`
 #### Example: Load
 
 ```go
-generate, err := client.Generate(nil).Load(nil, nil)
+generate, err := client.Generate(nil).Load(map[string]any{"url": "url"}, nil)
 if err != nil {
     panic(err)
 }
@@ -692,7 +692,7 @@ Create an instance: `utility := client.Utility(nil)`
 #### Example: Load
 
 ```go
-utility, err := client.Utility(nil).Load(nil, nil)
+utility, err := client.Utility(nil).Load(map[string]any{"input": "input"}, nil)
 if err != nil {
     panic(err)
 }
@@ -732,6 +732,29 @@ if err != nil {
 }
 fmt.Println(whois) // the array of records
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced
@@ -808,7 +831,7 @@ stores the returned data and match criteria internally.
 
 ```go
 utility := client.Utility(nil)
-utility.Load(nil, nil)
+utility.Load(map[string]any{"input": "example"}, nil)
 
 // utility.Data() now returns the utility data from the last load
 // utility.Match() returns the last match criteria
