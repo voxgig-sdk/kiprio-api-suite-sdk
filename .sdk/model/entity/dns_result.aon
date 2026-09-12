@@ -45,8 +45,10 @@ main: kit: entity: dns_result: {
           }
           method: "GET"
           orig: "/dns-lookup"
-          parts: [
-            "dns-lookup"
+          segments: [
+            {
+              lit: "dns-lookup"
+            }
           ]
           select: {
             exist: [

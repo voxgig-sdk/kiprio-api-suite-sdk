@@ -10,6 +10,17 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
+// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
+// the model's active plugin groups. A feature that takes a `plugins` option
+// (secrets over sekreto) reads its own entry; a feature with no plugins has
+// none. Named imports above make each definition statically reachable, so
+// an SDK carries exactly the plugin modules its model selects — the same
+// leanness the old side-effect registry imports bought, without a registry.
+const FEATURE_PLUGINS: Record<string, any[]> = {
+  
+}
+
+
 class Config {
 
   makeFeature(this: any, fn: string) {
@@ -135,8 +146,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/dns-lookup",
-              "parts": [
-                "dns-lookup"
+              "segments": [
+                {
+                  "lit": "dns-lookup"
+                }
               ],
               "select": {
                 "exist": [
@@ -147,7 +160,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.records`"
-              }
+              },
+              "parts": [
+                "dns-lookup"
+              ]
             }
           ]
         }
@@ -193,8 +209,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/robots-txt",
-              "parts": [
-                "robots-txt"
+              "segments": [
+                {
+                  "lit": "robots-txt"
+                }
               ],
               "select": {
                 "exist": [
@@ -204,7 +222,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "robots-txt"
+              ]
             }
           ]
         }
@@ -216,6 +237,7 @@ class Config {
     "email_validate": {
       "fields": [
         {
+          "format": "float",
           "name": "confidence",
           "type": "`$NUMBER`"
         },
@@ -224,6 +246,7 @@ class Config {
           "type": "`$BOOLEAN`"
         },
         {
+          "format": "email",
           "name": "email",
           "type": "`$STRING`"
         },
@@ -275,8 +298,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/email-validate",
-              "parts": [
-                "email-validate"
+              "segments": [
+                {
+                  "lit": "email-validate"
+                }
               ],
               "select": {
                 "exist": [
@@ -286,7 +311,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "email-validate"
+              ]
             }
           ]
         }
@@ -354,8 +382,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/qr",
-              "parts": [
-                "qr"
+              "segments": [
+                {
+                  "lit": "qr"
+                }
               ],
               "select": {
                 "exist": [
@@ -370,7 +400,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "qr"
+              ]
             },
             {
               "args": {
@@ -416,8 +449,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/barcode",
-              "parts": [
-                "barcode"
+              "segments": [
+                {
+                  "lit": "barcode"
+                }
               ],
               "select": {
                 "exist": [
@@ -431,7 +466,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "barcode"
+              ]
             },
             {
               "args": {
@@ -463,8 +501,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/screenshot",
-              "parts": [
-                "screenshot"
+              "segments": [
+                {
+                  "lit": "screenshot"
+                }
               ],
               "select": {
                 "exist": [
@@ -476,7 +516,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "screenshot"
+              ]
             }
           ]
         }
@@ -523,14 +566,19 @@ class Config {
               "kind": "http",
               "method": "POST",
               "orig": "/grammar",
-              "parts": [
-                "grammar"
+              "segments": [
+                {
+                  "lit": "grammar"
+                }
               ],
               "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "grammar"
+              ]
             }
           ]
         }
@@ -562,10 +610,12 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "double",
           "name": "latitude",
           "type": "`$NUMBER`"
         },
         {
+          "format": "double",
           "name": "longitude",
           "type": "`$NUMBER`"
         },
@@ -599,8 +649,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/ip",
-              "parts": [
-                "ip"
+              "segments": [
+                {
+                  "lit": "ip"
+                }
               ],
               "select": {
                 "exist": [
@@ -610,7 +662,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "ip"
+              ]
             }
           ]
         }
@@ -661,8 +716,10 @@ class Config {
               "kind": "http",
               "method": "POST",
               "orig": "/redact",
-              "parts": [
-                "redact"
+              "segments": [
+                {
+                  "lit": "redact"
+                }
               ],
               "select": {},
               "transform": {
@@ -670,7 +727,10 @@ class Config {
                   "redact": "`reqdata`"
                 },
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "redact"
+              ]
             }
           ]
         }
@@ -694,6 +754,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "date-time",
           "name": "expires_at",
           "type": "`$STRING`"
         },
@@ -751,8 +812,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/ssl",
-              "parts": [
-                "ssl"
+              "segments": [
+                {
+                  "lit": "ssl"
+                }
               ],
               "select": {
                 "exist": [
@@ -763,7 +826,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.sans`"
-              }
+              },
+              "parts": [
+                "ssl"
+              ]
             }
           ]
         }
@@ -820,8 +886,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/hash",
-              "parts": [
-                "hash"
+              "segments": [
+                {
+                  "lit": "hash"
+                }
               ],
               "select": {
                 "exist": [
@@ -832,7 +900,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "hash"
+              ]
             }
           ]
         }
@@ -844,6 +915,7 @@ class Config {
     "whoi": {
       "fields": [
         {
+          "format": "date-time",
           "name": "created",
           "type": "`$STRING`"
         },
@@ -852,6 +924,7 @@ class Config {
           "type": "`$STRING`"
         },
         {
+          "format": "date-time",
           "name": "expires",
           "type": "`$STRING`"
         },
@@ -872,6 +945,7 @@ class Config {
           "type": "`$ARRAY`"
         },
         {
+          "format": "date-time",
           "name": "updated",
           "type": "`$STRING`"
         }
@@ -898,8 +972,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/whois",
-              "parts": [
-                "whois"
+              "segments": [
+                {
+                  "lit": "whois"
+                }
               ],
               "select": {
                 "exist": [
@@ -909,7 +985,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "whois"
+              ]
             }
           ]
         }
@@ -925,6 +1004,7 @@ class Config {
 const config = new Config()
 
 export {
-  config
+  config,
+  FEATURE_PLUGINS,
 }
 

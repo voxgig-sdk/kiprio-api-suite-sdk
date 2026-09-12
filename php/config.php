@@ -107,8 +107,10 @@ class KiprioApiSuiteConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/dns-lookup',
-                  'parts' => [
-                    'dns-lookup',
+                  'segments' => [
+                    [
+                      'lit' => 'dns-lookup',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -119,6 +121,9 @@ class KiprioApiSuiteConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.records`',
+                  ],
+                  'parts' => [
+                    'dns-lookup',
                   ],
                 ],
               ],
@@ -165,8 +170,10 @@ class KiprioApiSuiteConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/robots-txt',
-                  'parts' => [
-                    'robots-txt',
+                  'segments' => [
+                    [
+                      'lit' => 'robots-txt',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -176,6 +183,9 @@ class KiprioApiSuiteConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'robots-txt',
                   ],
                 ],
               ],
@@ -188,6 +198,7 @@ class KiprioApiSuiteConfig
         'email_validate' => [
           'fields' => [
             [
+              'format' => 'float',
               'name' => 'confidence',
               'type' => '`$NUMBER`',
             ],
@@ -196,6 +207,7 @@ class KiprioApiSuiteConfig
               'type' => '`$BOOLEAN`',
             ],
             [
+              'format' => 'email',
               'name' => 'email',
               'type' => '`$STRING`',
             ],
@@ -247,8 +259,10 @@ class KiprioApiSuiteConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/email-validate',
-                  'parts' => [
-                    'email-validate',
+                  'segments' => [
+                    [
+                      'lit' => 'email-validate',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -258,6 +272,9 @@ class KiprioApiSuiteConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'email-validate',
                   ],
                 ],
               ],
@@ -326,8 +343,10 @@ class KiprioApiSuiteConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/qr',
-                  'parts' => [
-                    'qr',
+                  'segments' => [
+                    [
+                      'lit' => 'qr',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -342,6 +361,9 @@ class KiprioApiSuiteConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'qr',
                   ],
                 ],
                 [
@@ -388,8 +410,10 @@ class KiprioApiSuiteConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/barcode',
-                  'parts' => [
-                    'barcode',
+                  'segments' => [
+                    [
+                      'lit' => 'barcode',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -403,6 +427,9 @@ class KiprioApiSuiteConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'barcode',
                   ],
                 ],
                 [
@@ -435,8 +462,10 @@ class KiprioApiSuiteConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/screenshot',
-                  'parts' => [
-                    'screenshot',
+                  'segments' => [
+                    [
+                      'lit' => 'screenshot',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -448,6 +477,9 @@ class KiprioApiSuiteConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'screenshot',
                   ],
                 ],
               ],
@@ -495,13 +527,18 @@ class KiprioApiSuiteConfig
                   'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/grammar',
-                  'parts' => [
-                    'grammar',
+                  'segments' => [
+                    [
+                      'lit' => 'grammar',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'grammar',
                   ],
                 ],
               ],
@@ -534,10 +571,12 @@ class KiprioApiSuiteConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'double',
               'name' => 'latitude',
               'type' => '`$NUMBER`',
             ],
             [
+              'format' => 'double',
               'name' => 'longitude',
               'type' => '`$NUMBER`',
             ],
@@ -571,8 +610,10 @@ class KiprioApiSuiteConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/ip',
-                  'parts' => [
-                    'ip',
+                  'segments' => [
+                    [
+                      'lit' => 'ip',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -582,6 +623,9 @@ class KiprioApiSuiteConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'ip',
                   ],
                 ],
               ],
@@ -633,8 +677,10 @@ class KiprioApiSuiteConfig
                   'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/redact',
-                  'parts' => [
-                    'redact',
+                  'segments' => [
+                    [
+                      'lit' => 'redact',
+                    ],
                   ],
                   'select' => [],
                   'transform' => [
@@ -642,6 +688,9 @@ class KiprioApiSuiteConfig
                       'redact' => '`reqdata`',
                     ],
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'redact',
                   ],
                 ],
               ],
@@ -666,6 +715,7 @@ class KiprioApiSuiteConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'expires_at',
               'type' => '`$STRING`',
             ],
@@ -723,8 +773,10 @@ class KiprioApiSuiteConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/ssl',
-                  'parts' => [
-                    'ssl',
+                  'segments' => [
+                    [
+                      'lit' => 'ssl',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -735,6 +787,9 @@ class KiprioApiSuiteConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.sans`',
+                  ],
+                  'parts' => [
+                    'ssl',
                   ],
                 ],
               ],
@@ -792,8 +847,10 @@ class KiprioApiSuiteConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/hash',
-                  'parts' => [
-                    'hash',
+                  'segments' => [
+                    [
+                      'lit' => 'hash',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -804,6 +861,9 @@ class KiprioApiSuiteConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'hash',
                   ],
                 ],
               ],
@@ -816,6 +876,7 @@ class KiprioApiSuiteConfig
         'whoi' => [
           'fields' => [
             [
+              'format' => 'date-time',
               'name' => 'created',
               'type' => '`$STRING`',
             ],
@@ -824,6 +885,7 @@ class KiprioApiSuiteConfig
               'type' => '`$STRING`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'expires',
               'type' => '`$STRING`',
             ],
@@ -844,6 +906,7 @@ class KiprioApiSuiteConfig
               'type' => '`$ARRAY`',
             ],
             [
+              'format' => 'date-time',
               'name' => 'updated',
               'type' => '`$STRING`',
             ],
@@ -870,8 +933,10 @@ class KiprioApiSuiteConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/whois',
-                  'parts' => [
-                    'whois',
+                  'segments' => [
+                    [
+                      'lit' => 'whois',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -881,6 +946,9 @@ class KiprioApiSuiteConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'whois',
                   ],
                 ],
               ],

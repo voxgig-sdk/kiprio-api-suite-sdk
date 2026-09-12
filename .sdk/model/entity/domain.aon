@@ -42,8 +42,10 @@ main: kit: entity: domain: {
           }
           method: "GET"
           orig: "/robots-txt"
-          parts: [
-            "robots-txt"
+          segments: [
+            {
+              lit: "robots-txt"
+            }
           ]
           select: {
             exist: [

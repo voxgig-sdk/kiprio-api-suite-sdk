@@ -43,8 +43,10 @@ main: kit: entity: grammar: {
         {
           method: "POST"
           orig: "/grammar"
-          parts: [
-            "grammar"
+          segments: [
+            {
+              lit: "grammar"
+            }
           ]
           transform: {
             req: "`reqdata`"

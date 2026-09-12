@@ -81,8 +81,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/dns-lookup",
-                ["parts"] = {
-                  "dns-lookup",
+                ["segments"] = {
+                  {
+                    ["lit"] = "dns-lookup",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -93,6 +95,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.records`",
+                },
+                ["parts"] = {
+                  "dns-lookup",
                 },
               },
             },
@@ -139,8 +144,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/robots-txt",
-                ["parts"] = {
-                  "robots-txt",
+                ["segments"] = {
+                  {
+                    ["lit"] = "robots-txt",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -150,6 +157,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "robots-txt",
                 },
               },
             },
@@ -162,6 +172,7 @@ local function make_config()
       ["email_validate"] = {
         ["fields"] = {
           {
+            ["format"] = "float",
             ["name"] = "confidence",
             ["type"] = "`$NUMBER`",
           },
@@ -170,6 +181,7 @@ local function make_config()
             ["type"] = "`$BOOLEAN`",
           },
           {
+            ["format"] = "email",
             ["name"] = "email",
             ["type"] = "`$STRING`",
           },
@@ -221,8 +233,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/email-validate",
-                ["parts"] = {
-                  "email-validate",
+                ["segments"] = {
+                  {
+                    ["lit"] = "email-validate",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -232,6 +246,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "email-validate",
                 },
               },
             },
@@ -300,8 +317,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/qr",
-                ["parts"] = {
-                  "qr",
+                ["segments"] = {
+                  {
+                    ["lit"] = "qr",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -316,6 +335,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "qr",
                 },
               },
               {
@@ -362,8 +384,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/barcode",
-                ["parts"] = {
-                  "barcode",
+                ["segments"] = {
+                  {
+                    ["lit"] = "barcode",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -377,6 +401,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "barcode",
                 },
               },
               {
@@ -409,8 +436,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/screenshot",
-                ["parts"] = {
-                  "screenshot",
+                ["segments"] = {
+                  {
+                    ["lit"] = "screenshot",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -422,6 +451,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "screenshot",
                 },
               },
             },
@@ -469,13 +501,18 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/grammar",
-                ["parts"] = {
-                  "grammar",
+                ["segments"] = {
+                  {
+                    ["lit"] = "grammar",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "grammar",
                 },
               },
             },
@@ -508,10 +545,12 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "double",
             ["name"] = "latitude",
             ["type"] = "`$NUMBER`",
           },
           {
+            ["format"] = "double",
             ["name"] = "longitude",
             ["type"] = "`$NUMBER`",
           },
@@ -545,8 +584,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/ip",
-                ["parts"] = {
-                  "ip",
+                ["segments"] = {
+                  {
+                    ["lit"] = "ip",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -556,6 +597,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "ip",
                 },
               },
             },
@@ -607,8 +651,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "POST",
                 ["orig"] = "/redact",
-                ["parts"] = {
-                  "redact",
+                ["segments"] = {
+                  {
+                    ["lit"] = "redact",
+                  },
                 },
                 ["select"] = {},
                 ["transform"] = {
@@ -616,6 +662,9 @@ local function make_config()
                     ["redact"] = "`reqdata`",
                   },
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "redact",
                 },
               },
             },
@@ -640,6 +689,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "expires_at",
             ["type"] = "`$STRING`",
           },
@@ -697,8 +747,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/ssl",
-                ["parts"] = {
-                  "ssl",
+                ["segments"] = {
+                  {
+                    ["lit"] = "ssl",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -709,6 +761,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.sans`",
+                },
+                ["parts"] = {
+                  "ssl",
                 },
               },
             },
@@ -766,8 +821,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/hash",
-                ["parts"] = {
-                  "hash",
+                ["segments"] = {
+                  {
+                    ["lit"] = "hash",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -778,6 +835,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "hash",
                 },
               },
             },
@@ -790,6 +850,7 @@ local function make_config()
       ["whoi"] = {
         ["fields"] = {
           {
+            ["format"] = "date-time",
             ["name"] = "created",
             ["type"] = "`$STRING`",
           },
@@ -798,6 +859,7 @@ local function make_config()
             ["type"] = "`$STRING`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "expires",
             ["type"] = "`$STRING`",
           },
@@ -818,6 +880,7 @@ local function make_config()
             ["type"] = "`$ARRAY`",
           },
           {
+            ["format"] = "date-time",
             ["name"] = "updated",
             ["type"] = "`$STRING`",
           },
@@ -844,8 +907,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/whois",
-                ["parts"] = {
-                  "whois",
+                ["segments"] = {
+                  {
+                    ["lit"] = "whois",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -855,6 +920,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "whois",
                 },
               },
             },

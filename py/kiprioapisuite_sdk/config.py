@@ -1,6 +1,14 @@
 # KiprioApiSuite SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -102,8 +110,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/dns-lookup",
-                "parts": [
-                  "dns-lookup",
+                "segments": [
+                  {
+                    "lit": "dns-lookup",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -115,6 +125,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.records`",
                 },
+                "parts": [
+                  "dns-lookup",
+                ],
               },
             ],
           },
@@ -160,8 +173,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/robots-txt",
-                "parts": [
-                  "robots-txt",
+                "segments": [
+                  {
+                    "lit": "robots-txt",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -172,6 +187,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "robots-txt",
+                ],
               },
             ],
           },
@@ -183,6 +201,7 @@ def make_config():
       "email_validate": {
         "fields": [
           {
+            "format": "float",
             "name": "confidence",
             "type": "`$NUMBER`",
           },
@@ -191,6 +210,7 @@ def make_config():
             "type": "`$BOOLEAN`",
           },
           {
+            "format": "email",
             "name": "email",
             "type": "`$STRING`",
           },
@@ -242,8 +262,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/email-validate",
-                "parts": [
-                  "email-validate",
+                "segments": [
+                  {
+                    "lit": "email-validate",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -254,6 +276,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "email-validate",
+                ],
               },
             ],
           },
@@ -321,8 +346,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/qr",
-                "parts": [
-                  "qr",
+                "segments": [
+                  {
+                    "lit": "qr",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -338,6 +365,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "qr",
+                ],
               },
               {
                 "args": {
@@ -383,8 +413,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/barcode",
-                "parts": [
-                  "barcode",
+                "segments": [
+                  {
+                    "lit": "barcode",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -399,6 +431,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "barcode",
+                ],
               },
               {
                 "args": {
@@ -430,8 +465,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/screenshot",
-                "parts": [
-                  "screenshot",
+                "segments": [
+                  {
+                    "lit": "screenshot",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -444,6 +481,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "screenshot",
+                ],
               },
             ],
           },
@@ -490,14 +530,19 @@ def make_config():
                 "kind": "http",
                 "method": "POST",
                 "orig": "/grammar",
-                "parts": [
-                  "grammar",
+                "segments": [
+                  {
+                    "lit": "grammar",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "grammar",
+                ],
               },
             ],
           },
@@ -529,10 +574,12 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "double",
             "name": "latitude",
             "type": "`$NUMBER`",
           },
           {
+            "format": "double",
             "name": "longitude",
             "type": "`$NUMBER`",
           },
@@ -566,8 +613,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/ip",
-                "parts": [
-                  "ip",
+                "segments": [
+                  {
+                    "lit": "ip",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -578,6 +627,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "ip",
+                ],
               },
             ],
           },
@@ -628,8 +680,10 @@ def make_config():
                 "kind": "http",
                 "method": "POST",
                 "orig": "/redact",
-                "parts": [
-                  "redact",
+                "segments": [
+                  {
+                    "lit": "redact",
+                  },
                 ],
                 "select": {},
                 "transform": {
@@ -638,6 +692,9 @@ def make_config():
                   },
                   "res": "`body`",
                 },
+                "parts": [
+                  "redact",
+                ],
               },
             ],
           },
@@ -661,6 +718,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "date-time",
             "name": "expires_at",
             "type": "`$STRING`",
           },
@@ -718,8 +776,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/ssl",
-                "parts": [
-                  "ssl",
+                "segments": [
+                  {
+                    "lit": "ssl",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -731,6 +791,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.sans`",
                 },
+                "parts": [
+                  "ssl",
+                ],
               },
             ],
           },
@@ -787,8 +850,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/hash",
-                "parts": [
-                  "hash",
+                "segments": [
+                  {
+                    "lit": "hash",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -800,6 +865,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "hash",
+                ],
               },
             ],
           },
@@ -811,6 +879,7 @@ def make_config():
       "whoi": {
         "fields": [
           {
+            "format": "date-time",
             "name": "created",
             "type": "`$STRING`",
           },
@@ -819,6 +888,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "date-time",
             "name": "expires",
             "type": "`$STRING`",
           },
@@ -839,6 +909,7 @@ def make_config():
             "type": "`$ARRAY`",
           },
           {
+            "format": "date-time",
             "name": "updated",
             "type": "`$STRING`",
           },
@@ -865,8 +936,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/whois",
-                "parts": [
-                  "whois",
+                "segments": [
+                  {
+                    "lit": "whois",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -877,6 +950,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "whois",
+                ],
               },
             ],
           },

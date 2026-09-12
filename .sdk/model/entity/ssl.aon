@@ -21,6 +21,7 @@ main: kit: entity: ssl: {
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "expires_at"
       req: false
       type: "`$STRING`"
@@ -85,8 +86,10 @@ main: kit: entity: ssl: {
           }
           method: "GET"
           orig: "/ssl"
-          parts: [
-            "ssl"
+          segments: [
+            {
+              lit: "ssl"
+            }
           ]
           select: {
             exist: [

@@ -6,6 +6,7 @@ main: kit: entity: email_validate: {
 
   fields: [
     {
+      format: "float"
       name: "confidence"
       req: false
       type: "`$NUMBER`"
@@ -16,6 +17,7 @@ main: kit: entity: email_validate: {
       type: "`$BOOLEAN`"
     }
     {
+      format: "email"
       name: "email"
       req: false
       type: "`$STRING`"
@@ -73,8 +75,10 @@ main: kit: entity: email_validate: {
           }
           method: "GET"
           orig: "/email-validate"
-          parts: [
-            "email-validate"
+          segments: [
+            {
+              lit: "email-validate"
+            }
           ]
           select: {
             exist: [

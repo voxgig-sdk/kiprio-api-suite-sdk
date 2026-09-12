@@ -106,14 +106,22 @@ func email_validateDirectSetup(mockres any) *email_validateDirectSetupResult {
 	env := envOverride(map[string]any{
 		"KIPRIO_API_SUITE_TEST_EMAIL_VALIDATE_ENTID": map[string]any{},
 		"KIPRIO_API_SUITE_TEST_LIVE":    "FALSE",
-		"KIPRIO_API_SUITE_APIKEY":       "NONE",
+		"KIPRIO_API_SUITE_APIKEY":       "",
 	})
 
 	live := env["KIPRIO_API_SUITE_TEST_LIVE"] == "TRUE"
 
 	if live {
-		mergedOpts := map[string]any{
+		// sdk-test-control.json's test.client.options seeds the live
+		// client; the generated fields below overwrite anything they name.
+		mergedOpts := map[string]any{}
+		for k, v := range liveClientOptions() {
+			mergedOpts[k] = v
+		}
+		for k, v := range map[string]any{
 			"apikey": env["KIPRIO_API_SUITE_APIKEY"],
+		} {
+			mergedOpts[k] = v
 		}
 		client := sdk.NewKiprioApiSuiteSDK(mergedOpts)
 

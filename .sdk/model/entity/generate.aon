@@ -64,8 +64,10 @@ main: kit: entity: generate: {
           }
           method: "GET"
           orig: "/qr"
-          parts: [
-            "qr"
+          segments: [
+            {
+              lit: "qr"
+            }
           ]
           select: {
             exist: [
@@ -129,8 +131,10 @@ main: kit: entity: generate: {
           }
           method: "GET"
           orig: "/barcode"
-          parts: [
-            "barcode"
+          segments: [
+            {
+              lit: "barcode"
+            }
           ]
           select: {
             exist: [
@@ -177,8 +181,10 @@ main: kit: entity: generate: {
           }
           method: "GET"
           orig: "/screenshot"
-          parts: [
-            "screenshot"
+          segments: [
+            {
+              lit: "screenshot"
+            }
           ]
           select: {
             exist: [

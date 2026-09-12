@@ -76,7 +76,7 @@ def grammar_basic_setup(extra)
     "KIPRIO_API_SUITE_TEST_GRAMMAR_ENTID" => idmap,
     "KIPRIO_API_SUITE_TEST_LIVE" => "FALSE",
     "KIPRIO_API_SUITE_TEST_EXPLAIN" => "FALSE",
-    "KIPRIO_API_SUITE_APIKEY" => "NONE",
+    "KIPRIO_API_SUITE_APIKEY" => "",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -87,6 +87,9 @@ def grammar_basic_setup(extra)
 
   if env["KIPRIO_API_SUITE_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
+      # FIRST, so the generated fields below win: sdk-test-control.json's
+      # test.client.options adds to the live client, it does not redirect it.
+      Runner.live_client_options,
       {
         "apikey" => env["KIPRIO_API_SUITE_APIKEY"],
       },

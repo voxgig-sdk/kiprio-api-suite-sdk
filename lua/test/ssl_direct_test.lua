@@ -63,7 +63,7 @@ function ssl_direct_setup(mockres)
   local env = runner.env_override({
     ["KIPRIO_API_SUITE_TEST_SSL_ENTID"] = {},
     ["KIPRIO_API_SUITE_TEST_LIVE"] = "FALSE",
-    ["KIPRIO_API_SUITE_APIKEY"] = "NONE",
+    ["KIPRIO_API_SUITE_APIKEY"] = "",
   })
 
   local live = env["KIPRIO_API_SUITE_TEST_LIVE"] == "TRUE"
@@ -72,6 +72,13 @@ function ssl_direct_setup(mockres)
     local merged_opts = {
       apikey = env["KIPRIO_API_SUITE_APIKEY"],
     }
+    -- sdk-test-control.json's test.client.options goes UNDER the generated
+    -- fields: it adds to the live client, it does not redirect it.
+    for _k, _v in pairs(runner.live_client_options()) do
+      if merged_opts[_k] == nil then
+        merged_opts[_k] = _v
+      end
+    end
     local client = sdk.new(merged_opts)
     return {
       client = client,

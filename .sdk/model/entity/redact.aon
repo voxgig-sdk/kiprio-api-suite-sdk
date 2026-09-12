@@ -48,8 +48,10 @@ main: kit: entity: redact: {
         {
           method: "POST"
           orig: "/redact"
-          parts: [
-            "redact"
+          segments: [
+            {
+              lit: "redact"
+            }
           ]
           transform: {
             req: {

@@ -50,7 +50,7 @@ func TestEmailValidateEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		emailValidateRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.email_validate", setup.data)))
+		emailValidateRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.email_validate")))
 		var emailValidateRef01Data map[string]any
 		if len(emailValidateRef01DataRaw) > 0 {
 			emailValidateRef01Data = core.ToMapAny(emailValidateRef01DataRaw[0][1])
@@ -97,7 +97,7 @@ func email_validateBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"email_validate01", "email_validate02", "email_validate03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -117,7 +117,7 @@ func email_validateBasicSetup(extra map[string]any) *entityTestSetup {
 		"KIPRIO_API_SUITE_TEST_EMAIL_VALIDATE_ENTID": idmap,
 		"KIPRIO_API_SUITE_TEST_LIVE":      "FALSE",
 		"KIPRIO_API_SUITE_TEST_EXPLAIN":   "FALSE",
-		"KIPRIO_API_SUITE_APIKEY":         "NONE",
+		"KIPRIO_API_SUITE_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["KIPRIO_API_SUITE_TEST_EMAIL_VALIDATE_ENTID"])
@@ -126,11 +126,23 @@ func email_validateBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["KIPRIO_API_SUITE_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["KIPRIO_API_SUITE_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewKiprioApiSuiteSDK(core.ToMapAny(mergedOpts))
 	}

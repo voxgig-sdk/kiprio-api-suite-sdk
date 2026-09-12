@@ -31,11 +31,13 @@ main: kit: entity: ipn: {
       type: "`$STRING`"
     }
     {
+      format: "double"
       name: "latitude"
       req: false
       type: "`$NUMBER`"
     }
     {
+      format: "double"
       name: "longitude"
       req: false
       type: "`$NUMBER`"
@@ -72,8 +74,10 @@ main: kit: entity: ipn: {
           }
           method: "GET"
           orig: "/ip"
-          parts: [
-            "ip"
+          segments: [
+            {
+              lit: "ip"
+            }
           ]
           select: {
             exist: [

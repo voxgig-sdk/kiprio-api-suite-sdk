@@ -6,6 +6,7 @@ main: kit: entity: whoi: {
 
   fields: [
     {
+      format: "date-time"
       name: "created"
       req: false
       type: "`$STRING`"
@@ -16,6 +17,7 @@ main: kit: entity: whoi: {
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "expires"
       req: false
       type: "`$STRING`"
@@ -41,6 +43,7 @@ main: kit: entity: whoi: {
       type: "`$ARRAY`"
     }
     {
+      format: "date-time"
       name: "updated"
       req: false
       type: "`$STRING`"
@@ -67,8 +70,10 @@ main: kit: entity: whoi: {
           }
           method: "GET"
           orig: "/whois"
-          parts: [
-            "whois"
+          segments: [
+            {
+              lit: "whois"
+            }
           ]
           select: {
             exist: [

@@ -93,8 +93,10 @@ module KiprioApiSuiteConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/dns-lookup",
-                  "parts" => [
-                    "dns-lookup",
+                  "segments" => [
+                    {
+                      "lit" => "dns-lookup",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -106,6 +108,9 @@ module KiprioApiSuiteConfig
                     "req" => "`reqdata`",
                     "res" => "`body.records`",
                   },
+                  "parts" => [
+                    "dns-lookup",
+                  ],
                 },
               ],
             },
@@ -151,8 +156,10 @@ module KiprioApiSuiteConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/robots-txt",
-                  "parts" => [
-                    "robots-txt",
+                  "segments" => [
+                    {
+                      "lit" => "robots-txt",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -163,6 +170,9 @@ module KiprioApiSuiteConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "robots-txt",
+                  ],
                 },
               ],
             },
@@ -174,6 +184,7 @@ module KiprioApiSuiteConfig
         "email_validate" => {
           "fields" => [
             {
+              "format" => "float",
               "name" => "confidence",
               "type" => "`$NUMBER`",
             },
@@ -182,6 +193,7 @@ module KiprioApiSuiteConfig
               "type" => "`$BOOLEAN`",
             },
             {
+              "format" => "email",
               "name" => "email",
               "type" => "`$STRING`",
             },
@@ -233,8 +245,10 @@ module KiprioApiSuiteConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/email-validate",
-                  "parts" => [
-                    "email-validate",
+                  "segments" => [
+                    {
+                      "lit" => "email-validate",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -245,6 +259,9 @@ module KiprioApiSuiteConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "email-validate",
+                  ],
                 },
               ],
             },
@@ -312,8 +329,10 @@ module KiprioApiSuiteConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/qr",
-                  "parts" => [
-                    "qr",
+                  "segments" => [
+                    {
+                      "lit" => "qr",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -329,6 +348,9 @@ module KiprioApiSuiteConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "qr",
+                  ],
                 },
                 {
                   "args" => {
@@ -374,8 +396,10 @@ module KiprioApiSuiteConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/barcode",
-                  "parts" => [
-                    "barcode",
+                  "segments" => [
+                    {
+                      "lit" => "barcode",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -390,6 +414,9 @@ module KiprioApiSuiteConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "barcode",
+                  ],
                 },
                 {
                   "args" => {
@@ -421,8 +448,10 @@ module KiprioApiSuiteConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/screenshot",
-                  "parts" => [
-                    "screenshot",
+                  "segments" => [
+                    {
+                      "lit" => "screenshot",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -435,6 +464,9 @@ module KiprioApiSuiteConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "screenshot",
+                  ],
                 },
               ],
             },
@@ -481,14 +513,19 @@ module KiprioApiSuiteConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/grammar",
-                  "parts" => [
-                    "grammar",
+                  "segments" => [
+                    {
+                      "lit" => "grammar",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "grammar",
+                  ],
                 },
               ],
             },
@@ -520,10 +557,12 @@ module KiprioApiSuiteConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "double",
               "name" => "latitude",
               "type" => "`$NUMBER`",
             },
             {
+              "format" => "double",
               "name" => "longitude",
               "type" => "`$NUMBER`",
             },
@@ -557,8 +596,10 @@ module KiprioApiSuiteConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/ip",
-                  "parts" => [
-                    "ip",
+                  "segments" => [
+                    {
+                      "lit" => "ip",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -569,6 +610,9 @@ module KiprioApiSuiteConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "ip",
+                  ],
                 },
               ],
             },
@@ -619,8 +663,10 @@ module KiprioApiSuiteConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/redact",
-                  "parts" => [
-                    "redact",
+                  "segments" => [
+                    {
+                      "lit" => "redact",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
@@ -629,6 +675,9 @@ module KiprioApiSuiteConfig
                     },
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "redact",
+                  ],
                 },
               ],
             },
@@ -652,6 +701,7 @@ module KiprioApiSuiteConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "expires_at",
               "type" => "`$STRING`",
             },
@@ -709,8 +759,10 @@ module KiprioApiSuiteConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/ssl",
-                  "parts" => [
-                    "ssl",
+                  "segments" => [
+                    {
+                      "lit" => "ssl",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -722,6 +774,9 @@ module KiprioApiSuiteConfig
                     "req" => "`reqdata`",
                     "res" => "`body.sans`",
                   },
+                  "parts" => [
+                    "ssl",
+                  ],
                 },
               ],
             },
@@ -778,8 +833,10 @@ module KiprioApiSuiteConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/hash",
-                  "parts" => [
-                    "hash",
+                  "segments" => [
+                    {
+                      "lit" => "hash",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -791,6 +848,9 @@ module KiprioApiSuiteConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "hash",
+                  ],
                 },
               ],
             },
@@ -802,6 +862,7 @@ module KiprioApiSuiteConfig
         "whoi" => {
           "fields" => [
             {
+              "format" => "date-time",
               "name" => "created",
               "type" => "`$STRING`",
             },
@@ -810,6 +871,7 @@ module KiprioApiSuiteConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "expires",
               "type" => "`$STRING`",
             },
@@ -830,6 +892,7 @@ module KiprioApiSuiteConfig
               "type" => "`$ARRAY`",
             },
             {
+              "format" => "date-time",
               "name" => "updated",
               "type" => "`$STRING`",
             },
@@ -856,8 +919,10 @@ module KiprioApiSuiteConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/whois",
-                  "parts" => [
-                    "whois",
+                  "segments" => [
+                    {
+                      "lit" => "whois",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -868,6 +933,9 @@ module KiprioApiSuiteConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "whois",
+                  ],
                 },
               ],
             },

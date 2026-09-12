@@ -52,7 +52,7 @@ func TestGrammarEntity(t *testing.T) {
 		// CREATE
 		grammarRef01Ent := client.Grammar(nil)
 		grammarRef01Data := core.ToMapAny(vs.GetProp(
-			vs.GetPath([]any{"new", "grammar"}, setup.data), "grammar_ref01"))
+			vs.GetPath(setup.data, []any{"new", "grammar"}), "grammar_ref01"))
 
 		grammarRef01DataResult, err := grammarRef01Ent.Create(grammarRef01Data, nil)
 		if err != nil {
@@ -90,7 +90,7 @@ func grammarBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"grammar01", "grammar02", "grammar03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -110,7 +110,7 @@ func grammarBasicSetup(extra map[string]any) *entityTestSetup {
 		"KIPRIO_API_SUITE_TEST_GRAMMAR_ENTID": idmap,
 		"KIPRIO_API_SUITE_TEST_LIVE":      "FALSE",
 		"KIPRIO_API_SUITE_TEST_EXPLAIN":   "FALSE",
-		"KIPRIO_API_SUITE_APIKEY":         "NONE",
+		"KIPRIO_API_SUITE_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["KIPRIO_API_SUITE_TEST_GRAMMAR_ENTID"])
@@ -119,11 +119,23 @@ func grammarBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["KIPRIO_API_SUITE_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["KIPRIO_API_SUITE_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewKiprioApiSuiteSDK(core.ToMapAny(mergedOpts))
 	}

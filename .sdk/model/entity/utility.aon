@@ -55,8 +55,10 @@ main: kit: entity: utility: {
           }
           method: "GET"
           orig: "/hash"
-          parts: [
-            "hash"
+          segments: [
+            {
+              lit: "hash"
+            }
           ]
           select: {
             exist: [

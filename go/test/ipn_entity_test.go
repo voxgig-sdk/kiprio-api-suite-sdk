@@ -50,7 +50,7 @@ func TestIpnEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		ipnRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.ipn", setup.data)))
+		ipnRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.ipn")))
 		var ipnRef01Data map[string]any
 		if len(ipnRef01DataRaw) > 0 {
 			ipnRef01Data = core.ToMapAny(ipnRef01DataRaw[0][1])
@@ -97,7 +97,7 @@ func ipnBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"ipn01", "ipn02", "ipn03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -117,7 +117,7 @@ func ipnBasicSetup(extra map[string]any) *entityTestSetup {
 		"KIPRIO_API_SUITE_TEST_IPN_ENTID": idmap,
 		"KIPRIO_API_SUITE_TEST_LIVE":      "FALSE",
 		"KIPRIO_API_SUITE_TEST_EXPLAIN":   "FALSE",
-		"KIPRIO_API_SUITE_APIKEY":         "NONE",
+		"KIPRIO_API_SUITE_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["KIPRIO_API_SUITE_TEST_IPN_ENTID"])
@@ -126,11 +126,23 @@ func ipnBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["KIPRIO_API_SUITE_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["KIPRIO_API_SUITE_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewKiprioApiSuiteSDK(core.ToMapAny(mergedOpts))
 	}
