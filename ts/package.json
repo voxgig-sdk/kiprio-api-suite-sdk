@@ -1,5 +1,5 @@
 {
-  "name": "@voxgig-sdk/kiprio-api-suite",
+  "name": "@voxgig-sdk/kiprio-api-suite-sdk",
   "version": "0.0.1",
   "description": "Unofficial generated TypeScript SDK for the Kiprio public API. Not affiliated with or endorsed by the upstream API provider.",
   "keywords": [

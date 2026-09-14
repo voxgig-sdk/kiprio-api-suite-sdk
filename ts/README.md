@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { KiprioApiSuiteSDK } from '@voxgig-sdk/kiprio-api-suite'
+import { KiprioApiSuiteSDK } from '@voxgig-sdk/kiprio-api-suite-sdk'
 
 const client = new KiprioApiSuiteSDK({
   apikey: process.env.KIPRIO_API_SUITE_APIKEY,
@@ -805,7 +805,7 @@ kiprio-api-suite/
 Import the SDK from the package root:
 
 ```ts
-import { KiprioApiSuiteSDK } from '@voxgig-sdk/kiprio-api-suite'
+import { KiprioApiSuiteSDK } from '@voxgig-sdk/kiprio-api-suite-sdk'
 ```
 
 ### Entity state

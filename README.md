@@ -105,7 +105,7 @@ local result, err = client:Utility():load({ input = "example" })
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/kiprio-api-suite` | publish pending — [install from git tag](https://github.com/voxgig-sdk/kiprio-api-suite-sdk/releases) |
+| TypeScript | `@voxgig-sdk/kiprio-api-suite-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/kiprio-api-suite-sdk/releases) |
 | Python | `voxgig-sdk-kiprio-api-suite` | publish pending — [install from git tag](https://github.com/voxgig-sdk/kiprio-api-suite-sdk/releases) |
 | PHP | `voxgig-sdk/kiprio-api-suite` | publish pending — [install from git tag](https://github.com/voxgig-sdk/kiprio-api-suite-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/kiprio-api-suite-sdk/go` | `go get github.com/voxgig-sdk/kiprio-api-suite-sdk/go@latest` |
@@ -119,7 +119,7 @@ local result, err = client:Utility():load({ input = "example" })
 ### TypeScript
 
 ```ts
-import { KiprioApiSuiteSDK } from '@voxgig-sdk/kiprio-api-suite'
+import { KiprioApiSuiteSDK } from '@voxgig-sdk/kiprio-api-suite-sdk'
 
 const client = new KiprioApiSuiteSDK({
   apikey: process.env.KIPRIO_API_SUITE_APIKEY,
